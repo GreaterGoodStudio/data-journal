@@ -1,8 +1,12 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   root to: "projects#index"
 
-  require "sidekiq/web"
-  mount Sidekiq::Web => "/sidekiq"
+  # Sidekiq
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   # ActionCable
   mount ActionCable.server => "/cable"
