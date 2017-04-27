@@ -1,4 +1,4 @@
-class User < ApplicationRecord  
+class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :registerable,
          :rememberable, :trackable, :validatable, :invitable
 
@@ -11,8 +11,7 @@ class User < ApplicationRecord
   has_many :photos
   has_many :consent_forms
 
-
   def moderates?(project)
-  	project.memberships.find_by(member: self, moderator: true).present?
+    project.memberships.find_by(member: self, moderator: true).present?
   end
 end

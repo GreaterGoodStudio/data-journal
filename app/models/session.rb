@@ -1,7 +1,7 @@
 class Session < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  
+
   belongs_to :project, touch: true
   belongs_to :member, class_name: "User", foreign_key: :user_id
 
@@ -22,7 +22,7 @@ class Session < ApplicationRecord
 
   private
 
-  	def should_generate_new_friendly_id?
-  	  true
-  	end
+    def should_generate_new_friendly_id?
+      true
+    end
 end

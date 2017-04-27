@@ -1,3 +1,3 @@
 class SessionDecorator < BaseDecorator
-	decorates_association :member
+  decorates_association :member
 end

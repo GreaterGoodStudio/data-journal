@@ -9,7 +9,7 @@ class CreateSessions < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    
+
     add_index :sessions, :slug, unique: true
   end
 end

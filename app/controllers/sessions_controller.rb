@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       respond_to do |format|
         format.html { render :new, error: @session.errors.full_messages.to_sentence }
         format.js { render json: @session.errors, status: :unprocessable_entity }
-      end      
+      end
     end
   end
 
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
 
   def upload
     @photo = @session.photos.new(key: params[:key])
-    
+
     head @photo.save_and_process ? :ok : :bad_request
   end
 
@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
 
     def find_session
       return unless params[:id]
-      
+
       @session = Session.friendly.find(params[:id])
       authorize @session
     end

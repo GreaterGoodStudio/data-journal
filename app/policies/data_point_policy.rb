@@ -20,7 +20,7 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def bookmark_member?
-  	!bookmark_moderator? && record.member == user
+    !bookmark_moderator? && record.member == user
   end
 
   def bookmark_moderator?

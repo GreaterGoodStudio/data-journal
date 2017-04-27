@@ -8,7 +8,7 @@ class InvitationWorker
     if @member.invited_to_sign_up?
       @member.deliver_invitation
     else
-      ProjectMailer.new_project(@project, @member).deliver 
+      ProjectMailer.new_project(@project, @member).deliver
     end
   end
 end

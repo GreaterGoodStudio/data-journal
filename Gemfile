@@ -50,6 +50,9 @@ gem "bower-rails", "~> 0.11"
 # Decorators
 gem "draper", "3.0.0.pre1"
 
+# Transactional Emails
+gem "mandrill-api"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end

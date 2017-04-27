@@ -9,7 +9,7 @@ class Photo < ApplicationRecord
 
   def save_and_process(options = {})
     if options[:now]
-      self.remote_image_url = image.direct_fog_url(:with_path => true)
+      self.remote_image_url = image.direct_fog_url(with_path: true)
       self.image_processed = true
       save!
     else

@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
 
     def find_project
       return unless params[:id]
-      
+
       @project = Project.friendly.find(params[:id])
       authorize @project
     end
