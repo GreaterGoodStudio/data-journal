@@ -1,7 +1,10 @@
 <header class="<%= "with-submenu" if has_submenu? %>">
   <div class="ui borderless fixed menu">
     <div class="item">
-      <%= link_to "Data Journal", root_path, class: "ui red header logo" %>
+      <%= link_to root_path, class: "ui red header logo" do %>
+        Data Journal
+        <%= content_tag :span, Rails.env.downcase, class: "ui tiny label" unless Rails.env.production? %>
+      <% end %>
     </div>
 
     <div class="ui right dropdown item">
