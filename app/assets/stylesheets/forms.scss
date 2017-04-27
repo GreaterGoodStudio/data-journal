@@ -1,0 +1,24 @@
+@import "variables";
+
+form,
+form.ui.form {
+  .error {
+    .helper {
+      color: #9f3a38;
+    }
+  }
+
+  // textarea,
+  // input:not([type="submit"]):not([type="reset"]) {
+  //   background: $lightestBlue;
+  // }
+ 
+  input[type=file] {
+    padding-left: 0 !important;
+    border: none !important;
+
+    + img {
+      margin-top: 0.5em;
+    }
+  }
+}

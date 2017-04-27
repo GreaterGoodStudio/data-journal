@@ -1,0 +1,57 @@
+<div id="data_point">
+  <div class="ui basic vertical clearing segment">
+    <h1 class="ui left floated header">Data Point Detail</h1>
+  </div>
+
+  <div class="ui grid">
+    <div class="five wide column">
+      <%= link_to @data_point.session, class: "ui header" do %>
+        <%= @data_point.session.name %>
+        <div class="ui sub header"><%= pluralize(@data_point.session.photos.count, "photo") %></div>
+      <% end %>
+
+      <div class="ui small header">
+        <%= pluralize(@data_point.session.data_points.count, "Completed Data Point") %>
+      </div>
+      <div class="ui three cards">
+        <%= render @related_points %>
+      </div>
+    </div>
+
+    <div class="seven wide column">
+      <div class="ui padded segment">
+        <div class="ui grid">
+          <div class="thirteen wide column">
+            <%= image_tag @data_point.photo.image_url(:large), class: "ui fluid image" %>
+          </div>
+          <div class="three wide column right aligned">
+            <%= @data_point.member_bookmark %><%= @data_point.moderator_bookmark %>
+          </div>
+        </div>
+
+        <h5>Observation</h5>
+        <p><%= @data_point.observation %></p>
+
+        <h5>Possible Meaning</h5>
+        <p><%= @data_point.meaning %></p>
+      </div>
+    </div>
+
+    <div class="two wide column">
+      <div class="ui list">
+        <%= link_to edit_data_point_path(@data_point), class: "item" do %>
+          <i class="icon pencil"></i>
+          <div class="content">Edit Data Point</div>
+        <% end if policy(@data_point).edit? %>
+        <%= link_to "#", class: "item" do %>
+          <i class="icon download"></i>
+          <div class="content">Download Data Point</div>
+        <% end if false %>
+        <%= link_to "#", class: "item", method: :delete, data: { confirm: "Are you sure you want to delete this data point?" } do %>
+          <i class="icon remove circle"></i>
+          <div class="content">Delete Data Point</div>
+        <% end if policy(@data_point).destroy? %>
+      </div>
+    </div>
+  </div>  
+</div>

@@ -1,0 +1,113 @@
+<div class="ui basic vertical clearing segment">
+  <h1 class="ui left floated header">Edit Project</h1>
+</div>
+
+<div class="ui padded segment">
+  <div class="ui header">
+    Details
+  </div>
+
+  <%= form_for @project, url: project_path(@project, true), html: { class: "ui form grid" } do |f| %>
+    <div class="six wide column">
+      <div class="required field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="required field">
+        <%= f.label :due_date %>
+        <div class="ui calendar">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <%= f.text_field :due_date %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="six wide column">
+      <div class="field">
+        <%= label_tag "Invite More Members" %>
+        <%= f.collection_select :invitees, User.where.not(id: @project.members.pluck(:id)).decorate, :email, :email_display_name, { include_hidden: false }, { multiple: true, class: "ui search selection dropdown allow-addition" } %>
+      </div>
+
+      <div class="inline field">
+        <div class="ui toggle checkbox">
+          <%= f.check_box :archived %>
+          <%= f.label :archived %>
+        </div>
+      </div>
+    </div>
+
+    <div class="three wide column">
+      <div class="ui list">
+        <div class="item">
+          <%= f.submit "Update project", class: "ui fluid red button" %>
+        </div>
+        <div class="item">
+          <%= link_to "Cancel", project_path(@project), class: "ui fluid basic button" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="ui padded segment">
+  <div class="ui header">
+    Team Members
+  </div>
+
+  <table class="ui table">
+    <thead>
+      <tr>
+        <th>Design Team Member</th>
+        <th>Number of Sessions</th>
+        <th>Last Update</th>
+        <th>Moderator?</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @project.memberships.accepted.each do |membership| %>
+      <tr>
+        <td>
+          <%= image_tag membership.member.avatar_url, class: "ui avatar image" %>
+          <%= membership.member.name %>
+          <% if membership.moderator? %>
+            &nbsp;
+            <span class="ui teal horizontal small label">Moderator</span>
+          <% end %>
+        </td>
+        <td><%= membership.member.sessions.count %></td>
+        <td><%= "#{distance_of_time_in_words_to_now(membership.member.updated_at)} ago" %></td>
+        <td class="right aligned">
+          <% if membership.moderator? %>
+            <%= link_to "Demote Moderator", demote_membership_path(membership), method: :post, class: "item" %>
+          <% else %>
+            <%= link_to "Promote to Moderator", promote_membership_path(membership), method: :post, class: "item" %>
+          <% end %>
+          |
+          <% if membership.member == current_user %>
+            <span class="disabled">Remove Team Member</span>
+          <% else %>
+            <%= link_to "Remove Team Member", membership_path(membership), method: :delete, class: "item" %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+
+      <% @project.memberships.pending.each do |membership| %>
+      <tr>
+        <td><%= membership.member.email %></td>
+        <td colspan="2"></td>
+        <td class="right aligned">
+          <%= link_to "Resend Invitation", reinvite_membership_path(membership), method: :post %>
+          |
+          <%= link_to "Remove Team Member", membership_path(membership), method: :delete, class: "item" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

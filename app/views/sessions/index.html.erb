@@ -1,0 +1,54 @@
+<div class="ui basic vertical clearing segment">
+  <div class="ui right floated horizontal list">
+    <%= link_to "#", class: "ui right labeled branded icon button", data: {transition: "slideDown", target: "#new-session"} do %>
+      <i class="icon plus"></i>
+      <span>Add a new session</span>
+    <% end if policy(Session).new? %>
+  </div>
+
+  <h1 class="ui left floated header"><%= @show_all ? "All" : "My" %> Sessions (<%= @sessions.total_count %>)</h1>
+</div>
+
+<%= render "new_session" if policy(Session).new? %>
+
+<div class="ui basic vertical segment">
+  <table class="ui table">
+    <thead>
+      <tr>
+        <th>Session Name</th>
+        <% if @show_all %>
+        <th>Design Team Member</th>
+        <% end %>
+        <th>Date</th>
+        <th>Number of Data Points</th>
+        <th>Number of Photos</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= link_to session.name, session, class: "ui header" %></td>
+        <% if @show_all %>
+        <td><%= session.member.name_with_avatar %></td>
+        <% end %>
+        <td><%= session.date %></td>
+        <td>
+          <span class="ui large grey text">
+            <i class="icon sticky note"></i><%= session.data_points.count %>
+          </span>
+            Completed Data Points
+        </td>
+        <td>
+          <span class="ui large grey text">
+            <i class="icon image"></i><%= session.photos.count %>
+          </span>
+          Photos
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @sessions %>
+</div>

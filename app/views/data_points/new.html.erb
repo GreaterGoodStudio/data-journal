@@ -1,0 +1,51 @@
+<div id="data_point">
+  <div class="ui basic vertical clearing segment">
+    <h1 class="ui left floated header">Data Point Detail</h1>
+  </div>
+
+  <%= form_for @data_point, url: session_data_points_path(@session), remote: true, html: { class: "ui form" } do |f| %>
+    <div class="ui grid">
+      <div class="five wide column">
+        <%= link_to @session, class: "ui header" do %>
+          <%= @session.name %>
+          <div class="ui sub header"><%= pluralize(@session.photos.count, "photo") %></div>
+        <% end %>
+
+        <div class="ui small header">
+          <%= pluralize(@session.data_points.count, "Completed Data Point") %>
+        </div>
+        <div class="ui three cards">
+          <%= render @related_points %>
+        </div>
+      </div>
+
+      <div class="seven wide column">
+        <div class="ui padded segment">
+          <div class="ui grid">
+            <div class="thirteen wide column">
+              <p id="photo-preview"></p>
+              <%= render "photo_chooser", f: f %>
+            </div>
+          </div>
+
+          <h5>Observation</h5>
+          <p><%= f.text_area :observation %></p>
+
+          <h5>Possible Meaning</h5>
+          <p><%= f.text_area :meaning %></p>
+        </div>
+      </div>
+
+      <div class="two wide column">
+        <div class="ui list">
+          <div class="item">
+            <%= f.submit "Save", class: "ui fluid red button" %>
+          </div>
+          <div class="item">
+            <%= link_to "Cancel", :back, class: "ui fluid basic button" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+</div>

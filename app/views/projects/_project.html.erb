@@ -1,0 +1,47 @@
+<tr class="top aligned project<%= ' archived' if project.archived? %>">
+  <td>
+    <div class="ui large header"><%= link_to project.name, project %></div>
+    <% unless project.archived? %>
+      <div class="ui list">
+        <%= content_tag :div, project.activity_status, class: "item" %>
+        <%= content_tag :div, project.due_date_status, class: "item" %>
+      </div>
+    <% end %>
+  </td>
+  <td><span class="ui large grey text due-date"><%= project.due_date %></span></td>
+  <td class="bold"><%= project.last_updated unless project.archived? %></td>
+  <td><%= link_to "#" do %><i class="red icon download"></i><% end unless project.archived? || true %></td>
+  <td>
+    <% if policy(project).unarchive? %>
+      <%= link_to "Reactivate this project", unarchive_project_path(project), method: :post, class: "medium text" %>
+    <% else %>
+      <div class="ui horizontal large divided sessions list">
+        <%= link_to "My Sessions", project_sessions_path(project), class: "ui red bold item" %>
+        <%= link_to "All Sessions", project_sessions_path(project, show: :all), class: "ui red bold item" %>
+      </div>
+        <% if policy(Project).edit? %>
+          <div>Design Team Members</div>
+          <div class="ui horizontal members list">
+            <%= content_tag :div, class: "item" do %>
+              <span class="ui large grey text">
+                <%= project.memberships.pending.size %>
+                <%= "#{'invite'.pluralize(project.memberships.pending.size)} sent" unless project.memberships.accepted.any? %>
+              </span>
+            <% end if project.memberships.pending.any? %>
+            <div class="item">
+              <div class="ui tiny horizontal list">
+                <% project.memberships.accepted.each do |membership| %>
+                  <%= link_to "#", class: "ui avatar image", "data-tooltip" => membership.member.name do %>
+                    <%= image_tag membership.member.avatar_url(:thumb) %>
+                  <% end %>
+                <% end %>
+                <%= link_to edit_project_path(project) do %>
+                  <i class="icon large blue write"></i>
+                <% end if policy(Project).edit? %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+  </td>
+</tr>

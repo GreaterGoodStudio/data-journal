@@ -1,0 +1,17 @@
+<div class="ui card">
+  <%= link_to consent_form, class: "image" do %>
+    <%= image_tag consent_form.images.first.url(:thumb) %>
+  <% end %>
+  <div class="content">
+    <%= link_to "Consent Form Name", consent_form, class: "header" %>
+  </div>
+  <div class="extra content">
+    <%= link_to "#", class: "right floated" do %>
+      <i class="icon download"></i>
+    <% end %>
+    <span>
+      <i class="icon photo"></i>
+      <%= pluralize(consent_form.images.size, "page") %>
+    </span>
+  </div>
+</div>

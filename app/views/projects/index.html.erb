@@ -1,0 +1,31 @@
+<div class="ui basic vertical clearing segment">
+  <div class="ui right floated horizontal list">
+    <%= link_to "#", class: "ui right labeled branded icon button", data: {transition: "slideDown", target: "#new-project"} do %>
+      <i class="icon plus"></i>
+      <span>New project</span>
+    <% end if policy(Project).new? %>
+  </div>
+
+  <h1 class="ui left floated header">Projects (<%= @projects.total_count %>)</h1>
+</div>
+
+<%= render "new_project" if policy(Project).new? %>
+
+<div class="ui basic vertical segment">
+  <table class="ui table">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Due Date</th>
+        <th>Last Update</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @projects %>
+    </tbody>
+  </table>
+
+  <%= paginate @projects %>
+</div>

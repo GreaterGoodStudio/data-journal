@@ -1,0 +1,15 @@
+<div class="ui card" data-bookmark-member="<%= data_point.bookmark_member %>" data-bookmark-moderator="<%= data_point.bookmark_moderator %>">
+  <%= link_to data_point_path(data_point), class: "image" do %>
+    <% if data_point.photo %>
+      <%= image_tag data_point.photo.image_url(:thumb) %>
+    <% else %>
+      <%= image_tag "http://placehold.it/200x200" %>
+    <% end %>
+  <% end %>
+  <div class="content">
+    <%= data_point.observation %>
+  </div>
+  <div class="extra content">
+    <%= data_point.member_bookmark %><%= data_point.moderator_bookmark %>
+  </div>
+</div>

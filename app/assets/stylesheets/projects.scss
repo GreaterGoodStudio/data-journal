@@ -1,0 +1,31 @@
+@import "variables";
+
+.project {
+  .due-date {
+    color: $grey;
+  }
+
+  .sessions.list {
+    a, a:hover {
+      color: $red;
+    }
+  }
+
+  .members.list {
+     margin-top: 10px;
+
+    .list {
+      padding-top: 0;      
+    }
+
+    .item {
+      vertical-align: middle;
+    }
+  }
+
+  &.archived {
+    &, .header, .due-date {
+      color: $lightGrey;
+    }
+  }
+}

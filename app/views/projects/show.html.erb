@@ -1,0 +1,10 @@
+<div class="ui clearing basic segment">
+  <div class="ui right floated horizontal list">
+    <%= link_to "#", class: "ui labeled icon button", data: {transition: "slideDown", target: "#new-project"} do %>
+      <i class="icon plus"></i>
+      New session
+    <% end %>
+  </div>
+
+  <h1 class="ui left floated header">My Sessions (<%= @sessions.total_count %>)</h1>
+</div>

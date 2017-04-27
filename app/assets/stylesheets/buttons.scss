@@ -1,0 +1,41 @@
+@import "variables";
+
+.ui.button {
+
+  &.primary {
+    color: white;
+    background-color: $red;
+
+    &:hover {
+      background-color: $darkRed;
+    }
+  }
+
+  &.branded.icon {
+    padding-right: 3.5em !important;
+    color: black;
+    background: none;
+
+    span {
+      font-size: 1.1em;
+    }
+
+    .icon {
+      color: white;
+      background: $red;
+      border-radius: 0;
+    }
+
+    &:hover {
+      text-decoration: underline;
+
+      .icon {
+        background: $darkRed;
+      }
+    }
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+}

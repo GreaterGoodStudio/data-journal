@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Journal<%= " – #{yield(:title)}" if yield(:title).present? %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body id="modal">
+    <main class="ui basic segment">
+      <%= yield %>
+    </main>
+  </body>
+</html>
