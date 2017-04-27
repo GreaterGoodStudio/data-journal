@@ -1,5 +1,4 @@
 class InviteMembers
-
   def self.call(project, *emails)
     emails.each do |email|
       email.downcase!

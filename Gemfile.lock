@@ -286,6 +286,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -463,6 +466,7 @@ DEPENDENCIES
   less-rails-semantic_ui (~> 2.2)
   letter_opener
   listen (~> 3.0.5)
+  mandrill-api
   mini_magick
   pg
   puma (~> 3.0)

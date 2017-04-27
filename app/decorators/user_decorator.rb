@@ -5,7 +5,7 @@ class UserDecorator < BaseDecorator
   end
 
   def display_name
-    object.name.present? ? object.name : object.email    
+    object.name.present? ? object.name : object.email
   end
 
   def email_display_name

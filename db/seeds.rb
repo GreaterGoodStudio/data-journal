@@ -4,18 +4,18 @@ User.create!(name: "Admin", email: "admin@example.com", password: default_passwo
 User.create!(name: "Moderator", email: "moderator@example.com", password: default_password, password_confirmation: default_password)
 members = Array.new(20) do |n|
   User.create!(
-    name: "Team Member #{n + 1}", 
-    email: "team#{n + 1}@example.com", 
+    name: "Team Member #{n + 1}",
+    email: "team#{n + 1}@example.com",
     password: default_password,
     password_confirmation: default_password,
   )
-end 
+end
 User.update_all invitation_accepted_at: Time.now
 
 # Projects
 8.times do |n|
   project = Project.new(
-    name: Faker::Lorem.sentence(2, false, 5).chomp("."), 
+    name: Faker::Lorem.sentence(2, false, 5).chomp("."),
     due_date: Faker::Date.between(1.week.from_now, 1.month.from_now),
     archived: n == 0
   )

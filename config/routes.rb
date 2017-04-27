@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Sidekiq
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   # ActionCable

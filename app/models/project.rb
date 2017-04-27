@@ -5,7 +5,7 @@ class Project < ApplicationRecord
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   attr_accessor :invitees
-  
+
   has_many :memberships, class_name: "ProjectMembership", dependent: :destroy
   has_many :members, through: :memberships
   has_many :sessions, dependent: :destroy do

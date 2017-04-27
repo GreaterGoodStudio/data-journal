@@ -10,7 +10,7 @@ class SessionPolicy < ApplicationPolicy
   def upload?
     record.member == user
   end
-  
+
   class Scope < Scope
     def resolve
       scope.where(member: user)
