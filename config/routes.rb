@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     end
 
     resources :sessions do
-      get "upload", on: :member, as: :upload_asset_to
+      post "upload/:asset_type", on: :member, to: "sessions#upload", as: :upload_asset_to
 
       resources :data_points, except: [:index] do
         member do

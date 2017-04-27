@@ -55,12 +55,4 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
   config.action_mailer.delivery_method = :letter_opener
-
-  # For carrierwave_direct responses
-  config.middleware.insert_before 0, "Rack::Cors" do
-    allow do
-      origins "*"
-      resource "*", :headers => :any, :methods => [:get, :post, :options, :delete, :put, :patch], credentials: true
-    end
-  end
 end

@@ -11,6 +11,7 @@ $(document).on "turbolinks:load", ->
     $dropzone = $(this).closest(".segment").find(".upload")
 
     $(this).fileupload
+      dataType: "xml"
       dropZone: $dropzone
       singleFileUploads: !$(this).hasClass("bulk")
       start: ->
@@ -21,6 +22,9 @@ $(document).on "turbolinks:load", ->
       done: ->
         $dimmer.removeClass "active"
         $loader.text "Saving"
+      success: (data) ->
+        $.post "#{location.pathname}/upload/photo",
+          key: $(data).find("Key").text()
 
   # Bookmarks
   $("#toggle-member-bookmarks").click (e) ->
