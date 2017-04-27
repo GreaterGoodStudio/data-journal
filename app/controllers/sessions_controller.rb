@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :find_session, except: [:upload]
+  before_action :find_session
   before_action :show_submenu, only: [:index]
-  skip_before_action :authenticate_user!, only: [:upload]
 
   def index
     @show_all = params[:show] == "all"
@@ -40,11 +39,10 @@ class SessionsController < ApplicationController
     @consent_forms = @session.consent_forms
 
     @photos_uploader = Photo.new.image
-    @photos_uploader.success_action_redirect = upload_asset_to_session_url(@session.id, :photo)
+    @photos_uploader.success_action_status = "201"
   end
 
   def upload
-    @session = Session.friendly.find(params[:id])
     @photo = @session.photos.new(key: params[:key])
     
     head @photo.save_and_process ? :ok : :bad_request

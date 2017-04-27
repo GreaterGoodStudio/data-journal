@@ -51,20 +51,7 @@
       </div>
     </div>
 
-    <div class="ui tab basic segment active" data-tab="data_points">
-      <div class="ui six cards">
-        <%= link_to new_session_data_point_path(@session), class: "vertically centered add card" do %>
-          <div class="ui icon small marginless header">
-            <i class="icon add"></i>
-            Add a Data Point
-          </div>
-        <% end if policy(@session).upload? %>
-
-        <%= render @data_points %>
-      </div>
-    </div>
-
-    <div class="ui tab basic segment" data-tab="photos">
+    <div class="ui tab basic segment active" data-tab="photos">
       <div class="ui six cards">
         <% if policy(@session).upload? %>
           <%= link_to "#", class: "vertically centered upload card" do %>
@@ -95,6 +82,19 @@
         <% end %>
 
         <%= render @consent_forms %>
+      </div>
+    </div>
+
+    <div class="ui tab basic segment" data-tab="data_points">
+      <div class="ui six cards">
+        <%= link_to new_session_data_point_path(@session), class: "vertically centered add card" do %>
+          <div class="ui icon small marginless header">
+            <i class="icon add"></i>
+            Add a Data Point
+          </div>
+        <% end if policy(@session).upload? %>
+
+        <%= render @data_points %>
       </div>
     </div>
   </div>
