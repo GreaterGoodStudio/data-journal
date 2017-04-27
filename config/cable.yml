@@ -1,10 +1,10 @@
 redis: &redis
   adapter: redis
-  url: <%= ENV['REDIS_URL'] %>
-
+  url: <%= Rails.application.secrets.redis_url %>
 
 test:
   adapter: async
 
 development: *redis
+staging: *redis
 production: *redis

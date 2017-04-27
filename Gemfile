@@ -35,6 +35,9 @@ gem "kaminari", "~> 1.0"
 # Friendly IDs
 gem "friendly_id", "~> 5.1"
 
+# Redis
+gem "redis-rails", "~> 5.0"
+
 # Background jobs
 gem "sidekiq", "~> 4.2"
 
