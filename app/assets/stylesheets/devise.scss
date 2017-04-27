@@ -1,0 +1,16 @@
+@import "variables";
+
+body.devise {
+  & > .grid {
+  	margin-top: 0em;
+    height: 100%;
+  }
+
+  .column {
+    max-width: 36rem;
+  }
+
+  .logo {
+    font-size: 1.5em;
+  }
+}

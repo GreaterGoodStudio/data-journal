@@ -1,0 +1,38 @@
+<div id="new-session" class="ui padded hidden segment">
+  <div class="ui large header">
+    Create a New Session
+    <div class="sub header">Create a new session from photos on your computer.</div>
+  </div>
+
+  <%= form_for :session, url: project_sessions_path(@project), remote: true, html: { class: "ui form grid" } do |f| %>
+    <div class="eight wide column">
+      <div class="required field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="four wide column">
+      <div class="required field">
+        <%= f.label :date %>
+        <div class="ui calendar">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <%= f.text_field :date %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="three wide column">
+      <div class="ui list">
+        <div class="item">
+          <%= button_tag "Create session", class: "ui fluid red button" %>
+        </div>
+        <div class="item">
+          <%= button_tag "Cancel", type: :reset, class: "ui fluid basic button", data: {transition: "slideUp", target: "#new-session"}  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

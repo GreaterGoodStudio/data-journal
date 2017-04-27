@@ -1,0 +1,43 @@
+<header class="<%= "with-submenu" if has_submenu? %>">
+  <div class="ui borderless fixed menu">
+    <div class="item">
+      <%= link_to "Data Journal", root_path, class: "ui red header logo" %>
+    </div>
+
+    <div class="ui right dropdown item">
+      <% if user_signed_in? %>
+        <%= current_user.name_with_avatar %>
+        <i class="dropdown icon"></i>
+        <div class="ui menu">
+          <%= link_to edit_user_registration_path, class: "item" do %>
+            <i class="icon user"></i>
+            My profile
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
+            <i class="icon sign out"></i>
+            Sign out
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if has_submenu? %>
+  <div class="ui borderless fixed sub menu">
+    <div class="item">
+      <%= link_to @project.name, @project, class: "ui header" %>
+    </div>
+
+    <div class="item">
+      Due Date: <span class="ui large grey text due-date"><%= @project.due_date %></span>
+    </div>
+
+    <%= content_tag :div, @project.due_date_status, class: "item" %>
+
+    <div class="right menu">
+      <%= active_link_to "My Sessions", project_sessions_path(@project), class: "item", active: :exact %>
+      <%= active_link_to "All Sessions", project_sessions_path(@project, show: :all), class: "item", active: :exact %>
+    </div>
+  </div>
+  <% end %>
+</header>

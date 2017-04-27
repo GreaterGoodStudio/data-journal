@@ -1,0 +1,42 @@
+<div id="new-project" class="ui padded hidden segment">
+  <div class="ui large header">
+    Create a New Project
+  </div>
+
+  <%= form_for :project, url: projects_path, remote: true, html: { class: "ui form grid" } do |f| %>
+    <div class="six wide column">
+      <div class="required field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="required field">
+        <%= f.label :due_date %>
+        <div class="ui calendar">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <%= f.text_field :due_date %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="six wide column">
+      <div class="field">
+        <%= label_tag "New Member Emails" %>
+        <%= f.collection_select :invitees, User.all.decorate, :email, :email_display_name, { include_hidden: false }, { multiple: true, class: "ui search selection dropdown allow-addition" } %>
+      </div>
+    </div>
+
+    <div class="three wide column">
+      <div class="ui list">
+        <div class="item">
+          <%= f.submit "Create project", class: "ui fluid red button" %>
+        </div>
+        <div class="item">
+          <%= button_tag "Cancel", type: :reset, class: "ui fluid basic button", data: {transition: "slideUp", target: "#new-project"}  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

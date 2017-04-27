@@ -1,0 +1,59 @@
+<div id="data_point">
+  <div class="ui basic vertical clearing segment">
+    <h1 class="ui left floated header">Data Point Detail</h1>
+  </div>
+
+  <%= form_for @data_point, html: { class: "ui form" } do |f| %>
+    <div class="ui grid">
+      <div class="five wide column">
+        <%= link_to @data_point.session, class: "ui header" do %>
+          <%= @data_point.session.name %>
+          <div class="ui sub header"><%= pluralize(@data_point.session.photos.count, "photo") %></div>
+        <% end %>
+
+        <div class="ui small header">
+          <%= pluralize(@data_point.session.data_points.count, "Completed Data Point") %>
+        </div>
+        <div class="ui three cards">
+          <%= render @related_points %>
+        </div>
+      </div>
+
+      <div class="seven wide column">
+        <div class="ui padded segment">
+          <div class="ui grid">
+            <div class="thirteen wide column">
+              <p id="photo-preview">
+                <%= image_tag @data_point.photo.image_url(:large), class: "ui fluid image" %>
+              </p>
+              <%= render "photo_chooser", f: f %>
+            </div>
+            <div class="three wide column right aligned">
+              <%= link_to "#" do %><i class="icon large bookmark"></i><% end %>
+            </div>
+          </div>
+
+          <h5>
+            Observation<br>
+            <small class="grey text">What happened? What did you see or hear?</small>
+          </h5>
+          <p><%= f.text_area :observation, placeholder: "Your observations about the photo" %></p>
+
+          <h5>Possible Meaning</h5>
+          <p><%= f.text_area :meaning, placeholder: "Type the possible meaning of the observation here" %></p>
+        </div>
+      </div>
+
+      <div class="three wide column">
+        <div class="ui list">
+          <div class="item">
+            <%= f.submit "Save changes", class: "ui fluid red button" %>
+          </div>
+          <div class="item">
+            <%= link_to "Cancel", @data_point, class: "ui fluid basic button" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+</div>

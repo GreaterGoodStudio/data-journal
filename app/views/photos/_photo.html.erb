@@ -1,0 +1,11 @@
+<%= content_tag :div, class: "ui card", data: { photo_id: photo.id, photo_large: photo.image_url(:large) } do  %>
+  <% if photo.image_processed? %>
+    <%= link_to photo, class: "image" do %>
+      <%= image_tag photo.image_url(:thumb) %>
+    <% end %>
+  <% else %>
+    <div class="ui active inverted dimmer">
+      <div class="ui text loader">Processing</div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,7 @@
+{
+  "name": "dsl-generated-dependencies",
+  "dependencies": {
+    "semantic-ui-calendar": "latest",
+    "jquery-address": "latest"
+  }
+}

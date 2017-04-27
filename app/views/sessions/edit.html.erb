@@ -1,0 +1,37 @@
+<div id="edit-session" class="ui padded segment">
+  <div class="ui large header">
+    Edit Session
+  </div>
+
+  <%= form_for @session, url: session_path(@session), html: { class: "ui form grid" } do |f| %>
+    <div class="eight wide column">
+      <div class="required field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="four wide column">
+      <div class="required field">
+        <%= f.label :date %>
+        <div class="ui calendar">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <%= f.text_field :date %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="three wide column">
+      <div class="ui list">
+        <div class="item">
+          <%= button_tag "Edit session", class: "ui fluid red button" %>
+        </div>
+        <div class="item">
+          <%= link_to "Cancel", session_path(@session), class: "ui fluid basic button" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

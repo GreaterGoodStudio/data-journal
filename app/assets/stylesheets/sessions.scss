@@ -1,0 +1,77 @@
+@import "variables";
+
+#session {
+  .pointing.menu .item {
+    color: $grey;
+    line-height: 1.2em;
+
+    &:hover {
+      color: $darkGrey;
+    }
+
+    &.active {
+      color: black;
+      border-color: $red;
+    }
+
+    [data-count]:before {
+      content: attr(data-count);
+      margin-right: 0.333em;
+    }
+
+    &.floated.right a {
+      color: $blue;
+
+      &.red {
+        color: $red;
+      }
+    }
+  }
+
+  .card {
+    border: 2px solid $lightGrey;
+    box-shadow: none;
+    border-radius: 6px;
+
+    &:hover {
+      border-color: $red;
+      text-decoration: none;
+    }
+
+    &.vertically.centered {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &.upload,
+    &.add {
+      border: 3px dashed $red;
+      background-color: $lightestRed;
+      padding: 2em 0;
+      box-shadow: none;
+      // min-height: 193.5px !important;
+
+      .marginless.header {
+        margin: 0;
+      }
+    }
+
+    img {
+      height: auto;
+    }
+  }
+
+  .ui.header {
+    .ui.floated.image {
+      margin-bottom: 0.5em;
+    }
+
+    .session-date {
+      font-size: 0.667em;
+    }
+  }
+}
+
+.fixed.active.dimmer {
+  position: fixed !important;
+}

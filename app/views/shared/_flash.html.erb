@@ -1,0 +1,8 @@
+<%= content_tag :div, id: "flash" do %>
+  <% flash.each do |key, value| %>
+    <div class="ui message <%= flash_class(key) %> closable">
+      <i class="close icon"></i>
+      <%= value %>
+    </div>
+  <% end %>
+<% end if flash.any? %>

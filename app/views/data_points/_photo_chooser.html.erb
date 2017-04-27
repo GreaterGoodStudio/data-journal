@@ -1,0 +1,20 @@
+<%= button_tag "Choose a Photo", class: "ui button", id: "photo-chooser" %>
+<div class="field">
+  <%= f.hidden_field :photo_id %>
+</div>
+
+<div class="ui modal">
+  <div class="header">
+    Choose a Photo
+  </div>
+  <div class="content">
+    <div class="ui embed" data-url="<%= session_photos_path(@session || @data_point.session) %>"></div>
+  </div>
+  <div class="actions">
+    <div class="ui cancel button">Cancel</div>
+  </div>
+
+  <div class="ui inverted dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+</div>

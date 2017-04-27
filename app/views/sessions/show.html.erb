@@ -1,0 +1,105 @@
+<div class="ui basic vertical clearing segment" style="padding-bottom: 0">
+  <div class="ui right floated header">
+    <ul class="ui large red horizontal divided list">
+      <%= active_link_to "My Sessions", project_sessions_path(@session.project), class: "item", active: :exact %>
+      <%= active_link_to "All Sessions", project_sessions_path(@session.project, show: :all), class: "item", active: :exact %>
+    </ul>
+  </div>
+
+  <%= link_to project_path(@session.project), class: "ui left floated medium header" do %>
+    <i class="angle left icon"></i>Back to sessions
+  <% end %>
+</div>
+
+<div id="session" data-session-id="<%= @session.id %>" class="ui segment">
+  <div class="ui vertical clearing segment">
+    <div class="ui large header">
+      <%= image_tag(@session.photos.first.image_url(:thumb), class: "ui floated image") if @session.photos.any? %>
+      <%= @session.name %>
+      <%= link_to edit_session_path(@session) do %><i class="grey icon pencil"></i><% end if policy(@session).edit? %>
+      <div class="ui grey text session-date">Session date: <%= @session.date %></div>
+    </div>
+  </div>
+
+  <div class="ui vertical segment">
+    <div class="ui pointing secondary menu" data-tabs>
+      <a class="item active" data-tab="photos">
+        <span class="ui medium text">
+          <i class="icon image"></i><%= content_tag :span, nil, "data-count" => @session.photos.count %>
+        </span>
+        Photos
+      </a>
+      <a class="item" data-tab="consent_forms">
+        <span class="ui medium text">
+          <i class="icon file"></i><%= content_tag :span, nil, "data-count" => @session.consent_forms.count %>
+        </span>
+        Consent Forms
+      </a>
+      <a class="item" data-tab="data_points">
+        <span class="ui medium text">
+          <i class="icon sticky note"></i><%= content_tag :span, nil, "data-count" => @session.data_points.count %>
+        </span>
+        Data Points
+      </a>
+
+      <div class="item floated right">
+        <%= link_to "View Bookmarks", "#", id: "toggle-member-bookmarks" if @session.data_points.with_member_bookmarks.any? %>
+        <% if @session.data_points.with_moderator_bookmarks.any? && policy(@session.project).moderator? %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to "View Moderator Bookmarks", "#", id: "toggle-moderator-bookmarks", class: "red" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="ui tab basic segment active" data-tab="data_points">
+      <div class="ui six cards">
+        <%= link_to new_session_data_point_path(@session), class: "vertically centered add card" do %>
+          <div class="ui icon small marginless header">
+            <i class="icon add"></i>
+            Add a Data Point
+          </div>
+        <% end if policy(@session).upload? %>
+
+        <%= render @data_points %>
+      </div>
+    </div>
+
+    <div class="ui tab basic segment" data-tab="photos">
+      <div class="ui six cards">
+        <% if policy(@session).upload? %>
+          <%= link_to "#", class: "vertically centered upload card" do %>
+            <div class="ui icon small marginless header">
+              <i class="icon add"></i>
+              Add Photos
+            </div>
+          <% end %>
+          <%= direct_upload_form_for @photos_uploader, html: { class: "hidden" } do |f| %>
+            <%= f.file_field :file, multiple: true, class: "hidden fileupload" %>
+          <% end %>
+        <% end %>
+
+        <%= render @photos %>
+      </div>
+    </div>
+
+    <div class="ui tab basic segment" data-tab="consent_forms">
+      <div class="ui six cards">
+        <%= link_to "#", class: "vertically centered upload card" do %>
+          <div class="ui icon small marginless header">
+            <i class="icon add"></i>
+            Add a Consent Form
+          </div>
+        <% end if policy(@session).upload? %>
+        <%= form_for :consent_form, url: session_consent_forms_path(@session), html: { class: "hidden" } do |f| %>
+          <%= f.file_field :images, multiple: true, class: "hidden bulk fileupload" %>
+        <% end %>
+
+        <%= render @consent_forms %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui fixed inverted dimmer">
+  <div class="ui medium text loader">Uploading</div>
+</div>
