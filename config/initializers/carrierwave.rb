@@ -6,5 +6,6 @@ CarrierWave.configure do |config|
     aws_secret_access_key:  Rails.application.secrets.aws_secret_access_key
   }
   config.fog_directory      = Rails.application.secrets.aws_s3_bucket
+  config.asset_host         = Rails.application.secrets.asset_host
   config.use_action_status  = true
 end
