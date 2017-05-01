@@ -3,9 +3,6 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   root to: "projects#index"
 
-  get ".well-known/acme-challenge/5SVB40yrS6hlGwelHHILzwsC0x4YR0xwRWJvuaNKnTg", to: proc { [200, {}, ["5SVB40yrS6hlGwelHHILzwsC0x4YR0xwRWJvuaNKnTg.ctiOeEcwoY-q4JwybuZXPquWrI9vj1H97tLhG2SjD_A"]] }
-  get ".well-known/acme-challenge/lbN_DvT6RC-2w_uvbNbw6khfWm4CNYH6MyySbuPc9Kw", to: proc { [200, {}, ["lbN_DvT6RC-2w_uvbNbw6khfWm4CNYH6MyySbuPc9Kw.ctiOeEcwoY-q4JwybuZXPquWrI9vj1H97tLhG2SjD_A"]] }
-
   # Sidekiq
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
