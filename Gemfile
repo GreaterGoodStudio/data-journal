@@ -59,6 +59,7 @@ end
 
 group :production do
   gem "fog-aws"
+  gem "rails_12factor"
 end
 
 group :development, :test do
