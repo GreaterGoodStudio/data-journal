@@ -20,20 +20,7 @@
       </div>
 
       <div class="seven wide column">
-        <div class="ui padded segment">
-          <div class="ui grid">
-            <div class="thirteen wide column">
-              <p id="photo-preview"></p>
-              <%= render "photo_chooser", f: f %>
-            </div>
-          </div>
-
-          <h5>Observation</h5>
-          <p><%= f.text_area :observation %></p>
-
-          <h5>Possible Meaning</h5>
-          <p><%= f.text_area :meaning %></p>
-        </div>
+        <%= render "form_fields", f: f %>
       </div>
 
       <div class="two wide column">

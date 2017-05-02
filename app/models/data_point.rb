@@ -4,5 +4,7 @@ class DataPoint < ApplicationRecord
   has_one :member, through: :session
   has_one :project, through: :session
 
-  validates :photo, presence: true
+  validates :photo_id, presence: true
+  validates :observation, presence: true, length: { maximum: 250 }
+  validates :meaning, length: { maximum: 115 }
 end

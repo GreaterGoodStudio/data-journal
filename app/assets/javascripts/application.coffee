@@ -61,7 +61,7 @@ $(document).on "turbolinks:load", ->
       .find(".helper").remove()
     for field, errors of response
       return unless errors.length
-      
+
       $el = $(this).find("[name*='[#{field}]']")
       $el.closest(".field")
         .addClass("error")
