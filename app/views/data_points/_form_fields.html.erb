@@ -1,0 +1,22 @@
+<div class="ui padded segment">
+  <div class="ui grid">
+    <div class="thirteen wide column">
+      <p id="photo-preview">
+        <%= image_tag @data_point.photo.image_url(:large), class: "ui fluid image" if @data_point.photo %>
+      </p>
+      <%= render "photo_chooser", f: f %>
+    </div>
+  </div>
+
+  <h5>
+    Observation<br>
+    <small class="grey text">What happened? What did you see or hear?</small>
+  </h5>
+  <p class="field"><%= f.text_area :observation, maxlength: 250, placeholder: "Type your observation here." %></p>
+
+  <h5>
+    Possible Meaning<br>
+    <small class="grey text">What do you think that means?</small>
+  </h5>
+  <p class="field"><%= f.text_area :meaning, maxlength: 150, placeholder: "Type the possible meaning of that observation here." %></p>
+</div>

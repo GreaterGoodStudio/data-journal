@@ -20,28 +20,7 @@
       </div>
 
       <div class="seven wide column">
-        <div class="ui padded segment">
-          <div class="ui grid">
-            <div class="thirteen wide column">
-              <p id="photo-preview">
-                <%= image_tag @data_point.photo.image_url(:large), class: "ui fluid image" %>
-              </p>
-              <%= render "photo_chooser", f: f %>
-            </div>
-            <div class="three wide column right aligned">
-              <%= link_to "#" do %><i class="icon large bookmark"></i><% end %>
-            </div>
-          </div>
-
-          <h5>
-            Observation<br>
-            <small class="grey text">What happened? What did you see or hear?</small>
-          </h5>
-          <p><%= f.text_area :observation, placeholder: "Your observations about the photo" %></p>
-
-          <h5>Possible Meaning</h5>
-          <p><%= f.text_area :meaning, placeholder: "Type the possible meaning of the observation here" %></p>
-        </div>
+        <%= render "form_fields", f: f %>
       </div>
 
       <div class="three wide column">

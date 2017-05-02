@@ -7,7 +7,7 @@
     <% end %>
   <% end %>
   <div class="content">
-    <%= data_point.observation %>
+    <%= truncate data_point.observation, length: 50 %>
   </div>
   <div class="extra content">
     <%= data_point.member_bookmark %><%= data_point.moderator_bookmark %>
