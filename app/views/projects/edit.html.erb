@@ -99,7 +99,11 @@
 
       <% @project.memberships.pending.each do |membership| %>
       <tr>
-        <td><%= membership.member.email %></td>
+        <td>
+          <%= membership.member.email %>
+          &nbsp;
+          <span class="ui horizontal small label">Invited</span>
+        </td>
         <td colspan="2"></td>
         <td class="right aligned">
           <%= link_to "Resend Invitation", reinvite_membership_path(membership), method: :post %>
