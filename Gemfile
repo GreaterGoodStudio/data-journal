@@ -53,6 +53,9 @@ gem "draper", "3.0.0.pre1"
 # Transactional Emails
 gem "mandrill-api"
 
+# CORS
+gem "rack-cors", "~> 0.4"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end
