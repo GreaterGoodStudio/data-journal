@@ -44,6 +44,10 @@ $(document).on "turbolinks:load", ->
   $(".ui.calendar").calendar
     type: "date"
 
+  $("a[data-nolink]").click ->
+    alert "Yo"
+    return false
+
   # Slide open content
   $("[data-transition]").click ->
     target = $(this).data("target")

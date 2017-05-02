@@ -20,21 +20,11 @@
         <%= link_to "All Sessions", project_sessions_path(project, show: :all), class: "ui red bold item" %>
       </div>
         <% if policy(Project).edit? %>
-          <div>Design Team Members</div>
+          <div>Design Team Members (<%= project.memberships.size %>)</div>
           <div class="ui horizontal members list">
-            <%= content_tag :div, class: "item" do %>
-              <span class="ui large grey text">
-                <%= project.memberships.pending.size %>
-                <%= "#{'invite'.pluralize(project.memberships.pending.size)} sent" unless project.memberships.accepted.any? %>
-              </span>
-            <% end if project.memberships.pending.any? %>
             <div class="item">
               <div class="ui tiny horizontal list">
-                <% project.memberships.accepted.each do |membership| %>
-                  <%= link_to "#", class: "ui avatar image", "data-tooltip" => membership.member.name do %>
-                    <%= image_tag membership.member.avatar_url(:thumb) %>
-                  <% end %>
-                <% end %>
+                <%= project.design_team %>
                 <%= link_to edit_project_path(project) do %>
                   <i class="icon large blue write"></i>
                 <% end if policy(Project).edit? %>
