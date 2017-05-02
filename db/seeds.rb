@@ -8,6 +8,7 @@ members = Array.new(20) do |n|
     email: "team#{n + 1}@example.com",
     password: default_password,
     password_confirmation: default_password,
+    remote_avatar_url: "https://www.gravatar.com/avatar/#{n}?d=identicon"
   )
 end
 User.update_all invitation_accepted_at: Time.now
