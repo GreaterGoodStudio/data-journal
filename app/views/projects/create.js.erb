@@ -1,0 +1,11 @@
+var $count = $("[data-count]");
+$count.attr("data-count", $count.data("count") + 1);
+
+$("<%= escape_javascript(render @project) %>")
+  .hide()
+  .prependTo("#projects tbody")
+  .delay(150)
+  .fadeIn("slow");
+
+$("[data-target='#new-project']").trigger("click");
+$("#new-project").find(".dropdown").dropdown("clear");

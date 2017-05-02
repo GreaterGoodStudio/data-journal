@@ -6,13 +6,13 @@
     <% end if policy(Project).new? %>
   </div>
 
-  <h1 class="ui left floated header">Projects (<%= @projects.total_count %>)</h1>
+  <h1 class="ui left floated header">Projects (<span data-count="<%= @projects.total_count %>"></span>)</h1>
 </div>
 
 <%= render "new_project" if policy(Project).new? %>
 
 <div class="ui basic vertical segment">
-  <table class="ui table">
+  <table id="projects" class="ui table">
     <thead>
       <tr>
         <th>Project Name</th>
@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @projects %>
+      <%= render @projects, cached: true %>
     </tbody>
   </table>
 
