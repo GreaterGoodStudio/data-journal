@@ -18,11 +18,14 @@ class ProjectsController < ApplicationController
 
     if @project.save
       InviteMembers.call(@project, *@project.invitees)
-      redirect_to project_sessions_path(@project), notice: "Project created."
+      respond_to do |format|
+        format.js
+        format.html { redirect_to project_sessions_path(@project), notice: "Project created." }
+      end
     else
       respond_to do |format|
-        format.html { render :new, error: @project.errors.full_messages.to_sentence }
         format.js { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render :new, error: @project.errors.full_messages.to_sentence }
       end
     end
   end

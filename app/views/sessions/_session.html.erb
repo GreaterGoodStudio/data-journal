@@ -1,0 +1,19 @@
+<tr>
+  <td><%= link_to session.name, session, class: "ui header" %></td>
+  <% if @show_all %>
+  <td><%= session.member.name_with_avatar %></td>
+  <% end %>
+  <td><%= session.date %></td>
+  <td>
+    <span class="ui large grey text">
+      <i class="icon sticky note"></i><%= session.data_points.count %>
+    </span>
+      Completed Data Points
+  </td>
+  <td>
+    <span class="ui large grey text">
+      <i class="icon image"></i><%= session.photos.count %>
+    </span>
+    Photos
+  </td>
+</tr>

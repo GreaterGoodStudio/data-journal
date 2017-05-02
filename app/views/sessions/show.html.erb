@@ -65,7 +65,7 @@
           <% end %>
         <% end %>
 
-        <%= render @photos %>
+        <%= render @photos, cached: true %>
       </div>
     </div>
 
@@ -81,7 +81,7 @@
           <%= f.file_field :images, multiple: true, class: "hidden bulk fileupload" %>
         <% end %>
 
-        <%= render @consent_forms %>
+        <%= render @consent_forms, cached: true %>
       </div>
     </div>
 
@@ -94,7 +94,7 @@
           </div>
         <% end if policy(@session).upload? %>
 
-        <%= render @data_points %>
+        <%= render @data_points, cached: true %>
       </div>
     </div>
   </div>
