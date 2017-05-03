@@ -38,8 +38,8 @@
     <%= content_tag :div, @project.due_date_status, class: "item" %>
 
     <div class="right menu">
-      <%= active_link_to "My Sessions", project_sessions_path(@project), class: "item", active: :exact %>
-      <%= active_link_to "All Sessions", project_sessions_path(@project, show: :all), class: "item", active: :exact %>
+      <%= active_link_to "My Sessions", project_sessions_path(@project), class: "item", active: :exact, data: { sessions: @project.sessions.for_member(current_user).count, data_points: @project.data_points.for_member(current_user).count, position: "bottom right", project_summary: true } %>
+      <%= active_link_to "All Sessions", project_sessions_path(@project, show: :all), class: "item", active: :exact, data: { sessions: @project.sessions.count, data_points: @project.data_points.count, position: "bottom right", project_summary: true } %>
     </div>
   </div>
   <% end %>

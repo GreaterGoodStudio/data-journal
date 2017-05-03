@@ -8,10 +8,26 @@ form.ui.form {
     }
   }
 
-  // textarea,
-  // input:not([type="submit"]):not([type="reset"]) {
-  //   background: $lightestBlue;
-  // }
+  input[type="date"], 
+  input[type="datetime-local"], 
+  input[type="email"], 
+  input[type="number"], 
+  input[type="password"], 
+  input[type="search"], 
+  input[type="tel"], 
+  input[type="time"], 
+  input[type="text"], 
+  input[type="file"], 
+  input[type="url"],
+  textarea,
+  .dropdown {
+    border-color: transparent;
+    border-radius: 0 !important;
+
+    &, &:focus {
+      background: $lightestBlue;
+    }
+  }
  
   input[type=file] {
     padding-left: 0 !important;

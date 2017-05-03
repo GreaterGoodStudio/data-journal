@@ -2,6 +2,11 @@
 
 .ui.button {
 
+  &, &.basic {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
   &.primary {
     color: white;
     background-color: $red;
@@ -15,6 +20,8 @@
     padding-right: 3.5em !important;
     color: black;
     background: none;
+    letter-spacing: 0;
+    text-transform: none;
 
     span {
       font-size: 1.1em;
