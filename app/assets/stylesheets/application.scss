@@ -103,6 +103,18 @@ span.disabled {
 
   &.grey {
     color: $grey;
+
+    &.light {
+      color: $lightGrey;
+    }
+  }
+
+  &.normal {
+    font-weight: normal;
+  }
+
+  &.bold {
+    font-weight: bold;
   }
 }
 

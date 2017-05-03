@@ -44,6 +44,27 @@ $(document).on "turbolinks:load", ->
   $(".ui.calendar").calendar
     type: "date"
 
+  # Project summary
+  $("[data-project-summary]").popup
+    on: "hover"
+    title: "Project Summary"
+    onShow: (el) ->
+      sessionCount = $(el).data("sessions")
+      dataPointCount = $(el).data("data-points")
+      popup = this
+      popup.html """
+        <div class="small header">
+          Sessions Completed
+          <div class="large sub header normal grey text">#{sessionCount}</div>
+        </div><br>
+
+        <div class="small header">
+          Data Points Completed
+          <div class="large sub header normal grey text">#{dataPointCount}</div>
+        </div>
+      """
+
+
   # Slide open content
   $("[data-transition]").click ->
     target = $(this).data("target")

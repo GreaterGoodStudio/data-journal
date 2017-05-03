@@ -13,7 +13,11 @@ class Project < ApplicationRecord
       where(member: member)
     end
   end
-  has_many :data_points, through: :sessions
+  has_many :data_points, through: :sessions do
+    def for_member(member)
+      where("sessions.user_id = ?", member.id)
+    end
+  end
 
   validates :name, presence: true, uniqueness: true
   validates :due_date, presence: true
