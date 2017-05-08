@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   before_action :find_project
   before_action :find_session
 
-  def current_user
-    UserDecorator.decorate(super) unless super.nil?
-  end
-
   def render(*args)
     decorate_all
     super(*args)
