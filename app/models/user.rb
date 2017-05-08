@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :photos
   has_many :consent_forms
 
+  validates :avatar, presence: true
+
   def moderates?(project)
     project.memberships.find_by(member: self, moderator: true).present?
   end

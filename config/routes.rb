@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
 
   # Auth
-  devise_for :users, skip: [:registrations, :sessions]
+  devise_for :users, controllers: { invitations: "users/invitations" }, skip: [:registrations, :sessions]
   as :user do
     get "users/edit" => "users/registrations#edit", :as => "edit_user_registration"
+    get "users/edit_avatar" => "users/registrations#edit_avatar", :as => "edit_user_avatar"
+    post "users/update_avatar" => "users/registrations#update_avatar", :as => "update_user_avatar"
     post "users" => "users/registrations#update", :as => "user_registration"
     get "signin", to: "devise/sessions#new", as: :new_user_session
     post "signin", to: "devise/sessions#create", as: :user_session
