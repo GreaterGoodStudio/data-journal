@@ -1,12 +1,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def update
-    @user = current_user
-    if params[:user][:avatar].present? && update_resource(@user, account_update_params)
-      render :crop
-    elsif params[:user][:crop_x].present? && @user.update_without_password(avatar_crop_params)
-      redirect_to edit_user_registration_path, notice: "Profile updated."
+    if update_resource(current_user, account_update_params)
+      if params[:user][:avatar].present?
+        redirect_to edit_user_avatar_path
+      else
+        redirect_to edit_user_registration_path, notice: "Profile updated."
+      end
     else
-      render :edit, error: @user.errors.full_messages.to_sentence
+      render :edit, error: current_user.errors.full_messages.to_sentence
+    end
+  end
+
+  def update_avatar
+    if current_user.update_without_password(avatar_crop_params)
+      if params[:invited].present?
+        redirect_to root_path, notice: "Welcome to Data Journal."
+      else
+        redirect_to edit_user_registration_path, notice: "Profile updated."
+      end
+    else
+      render :edit, error: current_user.errors.full_messages.to_sentence
     end
   end
 

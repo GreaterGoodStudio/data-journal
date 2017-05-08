@@ -1,16 +1,15 @@
 <h2 class="ui center aligned header">Crop Your Avatar</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: "ui form" }) do |f| %>
-  <%= devise_error_messages! %>
-
+<%= form_for(current_user, url: update_user_avatar_path, html: { method: :post, class: "ui form" }) do |f| %>
   <div class="field">
-    <%= image_tag @user.avatar_url(:large), id: "croppable" %>
+    <%= image_tag current_user.avatar_url(:large), id: "croppable" %>
     <% %w[x y w h].each do |attribute| %>
       <%= f.hidden_field "crop_#{attribute}" %>
     <% end %>
   </div>
 
   <div class="actions">
+    <%= hidden_field_tag :invited, true if params[:invited] %>
     <%= f.submit "Crop", class: "ui fluid primary button" %>
   </div>
 <% end %>

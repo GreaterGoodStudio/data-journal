@@ -72,7 +72,7 @@
       <% @project.memberships.accepted.each do |membership| %>
       <tr>
         <td>
-          <%= image_tag membership.member.avatar_url, class: "ui avatar image" %>
+          <%= image_tag membership.member.avatar_url(:thumb), class: "ui avatar image" %>
           <%= membership.member.name %>
           <% if membership.moderator? %>
             &nbsp;
