@@ -9,7 +9,7 @@
 
     <div class="ui right dropdown item">
       <% if user_signed_in? %>
-        <%= current_user.name_with_avatar %>
+        <%= current_user.decorate.name_with_avatar %>
         <i class="dropdown icon"></i>
         <div class="ui menu">
           <%= link_to edit_user_registration_path, class: "item" do %>

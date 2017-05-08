@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   # Auth
   devise_for :users, skip: [:registrations, :sessions]
   as :user do
-    get "users/edit" => "devise/registrations#edit", :as => "edit_user_registration"
-    put "users" => "devise/registrations#update", :as => "user_registration"
+    get "users/edit" => "users/registrations#edit", :as => "edit_user_registration"
+    post "users" => "users/registrations#update", :as => "user_registration"
     get "signin", to: "devise/sessions#new", as: :new_user_session
     post "signin", to: "devise/sessions#create", as: :user_session
     delete "signout", to: "devise/sessions#destroy", as: :destroy_user_session
