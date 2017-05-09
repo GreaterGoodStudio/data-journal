@@ -1,6 +1,5 @@
-@import "variables";
-
 .ui.button {
+  font-family: $font-sans;
 
   &, &.basic {
     text-transform: uppercase;

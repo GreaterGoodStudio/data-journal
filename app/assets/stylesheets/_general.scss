@@ -1,0 +1,110 @@
+/* General */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100%;
+  background: $lightestGrey;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+span.disabled {
+  color: $lightGrey;
+}
+
+[data-count]:before {
+  content: attr(data-count);
+}
+
+/* Turbolinks */
+.turbolinks-progress-bar {
+  background-color: $blue;
+}
+
+/* List */
+
+.red.horizontal.divided.list {
+  .item {
+    border-width: 2px;
+    border-color: $red;
+  }
+
+  a {
+    color: $red;
+
+    &:hover {
+      color: $darkRed;
+    }
+  }
+}
+
+/* Text helpers */
+
+.text {
+  &.tiny {
+    font-size: 1em;
+  }
+
+  &.small {
+    font-size: 1.07142857em;
+  }
+
+  &.medium {
+    font-size: 1.28571429em;
+  }
+
+  &.large {
+    font-size: 1.71428571em;
+  }
+
+  &.grey {
+    color: $grey;
+
+    &.light {
+      color: $lightGrey;
+    }
+  }
+
+  &.normal {
+    font-weight: normal;
+  }
+
+  &.bold {
+    font-weight: bold;
+  }
+}
+
+/* Layout */
+main {
+  padding: 1em 1em 2em;
+}
+
+/* Flash messages */
+#flash {
+  .ui.message {
+    font-family: $font-sans;
+    margin-bottom: 1em;
+
+    &:first-of-type {
+      margin-top: 1em;
+    }
+  }
+}
