@@ -1,5 +1,3 @@
-@import "variables";
-
 form,
 form.ui.form {
   .error {
@@ -21,6 +19,7 @@ form.ui.form {
   input[type="url"],
   textarea,
   .dropdown {
+    font-family: $font-serif;
     border-color: transparent;
     border-radius: 0 !important;
 
