@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420194633) do
+ActiveRecord::Schema.define(version: 20170509135238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,10 @@ ActiveRecord::Schema.define(version: 20170420194633) do
     t.text     "observation"
     t.text     "meaning"
     t.integer  "session_id"
-    t.integer  "photo_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.boolean  "bookmark_member",    default: false
     t.boolean  "bookmark_moderator", default: false
-    t.index ["photo_id"], name: "index_data_points_on_photo_id", using: :btree
     t.index ["session_id"], name: "index_data_points_on_session_id", using: :btree
   end
 
@@ -51,11 +49,14 @@ ActiveRecord::Schema.define(version: 20170420194633) do
 
   create_table "photos", force: :cascade do |t|
     t.string   "image"
-    t.boolean  "image_processed", default: false
-    t.integer  "session_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.index ["session_id"], name: "index_photos_on_session_id", using: :btree
+    t.boolean  "image_processed",     default: false
+    t.integer  "photographable_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "photographable_type"
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_photos_on_ancestry", using: :btree
+    t.index ["photographable_id", "photographable_type"], name: "index_photos_on_photographable_id_and_photographable_type", using: :btree
   end
 
   create_table "project_memberships", force: :cascade do |t|
@@ -128,9 +129,7 @@ ActiveRecord::Schema.define(version: 20170420194633) do
   end
 
   add_foreign_key "consent_forms", "sessions"
-  add_foreign_key "data_points", "photos"
   add_foreign_key "data_points", "sessions"
-  add_foreign_key "photos", "sessions"
   add_foreign_key "project_memberships", "projects"
   add_foreign_key "project_memberships", "users"
   add_foreign_key "sessions", "projects"

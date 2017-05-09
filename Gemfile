@@ -56,6 +56,12 @@ gem "mandrill-api"
 # CORS
 gem "rack-cors", "~> 0.4"
 
+# Static Pages
+gem "high_voltage", "~> 3.0"
+
+# Tree data structure
+gem "ancestry", "~> 2.2"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end
