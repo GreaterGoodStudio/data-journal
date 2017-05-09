@@ -1,11 +1,13 @@
 class Photo < ApplicationRecord
+  has_ancestry
   mount_uploader :image, PhotoUploader
 
-  belongs_to :session
-  has_many :data_points
-  has_one :member, through: :session
-
+  belongs_to :photographable, polymorphic: true
   default_scope { order(created_at: :desc) }
+
+  def member
+    self.photographable.member
+  end
 
   def save_and_process(options = {})
     if options[:now]

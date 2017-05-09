@@ -1,7 +1,20 @@
 # Users
 default_password = "password"
-User.create!(name: "Admin", email: "admin@example.com", password: default_password, password_confirmation: default_password, admin: true)
-User.create!(name: "Moderator", email: "moderator@example.com", password: default_password, password_confirmation: default_password)
+User.create!(
+  name: "Admin",
+  email: "admin@example.com",
+  password: default_password,
+  password_confirmation: default_password,
+  admin: true,
+  remote_avatar_url: "https://www.gravatar.com/avatar/admin?d=identicon"
+)
+User.create!(
+  name: "Moderator",
+  email: "moderator@example.com",
+  password: default_password,
+  password_confirmation: default_password,
+  remote_avatar_url: "https://www.gravatar.com/avatar/moderator?d=identicon"
+)
 members = Array.new(20) do |n|
   User.create!(
     name: "Team Member #{n + 1}",
@@ -35,13 +48,22 @@ User.update_all invitation_accepted_at: Time.now
     )
 
     rand(1..10).times do
-      session.data_points.new(
-        observation: Faker::Lorem.paragraph,
-        meaning: Faker::Lorem.paragraph,
-        photo: session.photos.new(image_processed: true)
+      session.photos.new(image_processed: true)
+    end
+
+    rand(1..10).times do
+      data_point = session.data_points.new(
+        observation: Faker::Lorem.paragraph[0, 250],
+        meaning: Faker::Lorem.paragraph[0, 115],
+        photo: Photo.new(image_processed: true)
       )
     end
   end
 
-  project.save!
+  begin
+    project.save!
+  rescue Exception => e
+    puts e
+    project.data_points.each { |s| puts s.errors.inspect }
+  end
 end
