@@ -4,6 +4,7 @@
     <title>Data Journal<%= " – #{yield(:title)}" if yield(:title).present? %></title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag "https://cloud.typography.com/6669114/7760172/css/fonts.css", media: "all" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
