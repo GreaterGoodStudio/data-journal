@@ -18,6 +18,6 @@ class Photo < ApplicationRecord
       PhotoWorker.perform_async(id) if save
     end
 
-    SessionChannelWorker.perform_async session_id, "Photo", self.id
+    SessionChannelWorker.perform_async(photographable_id, "Photo", self.id) if photographable_type == "Session"
   end
 end
