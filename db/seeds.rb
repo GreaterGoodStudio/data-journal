@@ -52,7 +52,7 @@ User.update_all invitation_accepted_at: Time.now
     end
 
     rand(1..10).times do
-      data_point = session.data_points.new(
+      session.data_points.new(
         observation: Faker::Lorem.paragraph[0, 250],
         meaning: Faker::Lorem.paragraph[0, 115],
         photo: Photo.new(image_processed: true)

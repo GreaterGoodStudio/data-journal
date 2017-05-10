@@ -18,8 +18,10 @@ class MakePhotosPolymorphic < ActiveRecord::Migration[5.0]
     add_index :photos, :ancestry
 
     reversible do |dir|
-      Photo.reset_column_information
-      Photo.update_all photographable_type: "Session"
+      dir.up do
+        Photo.reset_column_information
+        Photo.update_all photographable_type: "Session"
+      end
     end
   end
 end
