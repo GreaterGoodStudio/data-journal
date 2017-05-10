@@ -3,7 +3,7 @@
     <h1 class="ui left floated header">Data Point Detail</h1>
   </div>
 
-  <%= form_for @data_point, html: { class: "ui form" } do |f| %>
+  <%= form_for @data_point, html: { class: "ui form", data: { loading_text: "Updating Data Point" } } do |f| %>
     <div class="ui grid">
       <div class="five wide column">
         <%= link_to @data_point.session, class: "ui header" do %>

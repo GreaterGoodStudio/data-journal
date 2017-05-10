@@ -1,6 +1,6 @@
 class DataPointsController < ApplicationController
   before_action :find_data_point
-  before_action :find_related_points, only: [:new, :show, :edit]
+  before_action :find_related_points, only: [:new, :show, :edit, :update]
 
   def new
     @data_point = @session.data_points.new
