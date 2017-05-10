@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
       flash[:error] = "Problem deleting photo."
     end
 
-    redirect_to @photo.session
+    redirect_to @photo.photographable
   end
 
   private

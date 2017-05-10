@@ -22,7 +22,7 @@
       <div class="ui padded segment">
         <div class="ui grid">
           <div class="thirteen wide column">
-            <%= image_tag @data_point.photo.image_url(:large), class: "ui fluid image" %>
+            <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image" %>
           </div>
           <div class="three wide column right aligned">
             <%= @data_point.member_bookmark %><%= @data_point.moderator_bookmark %>

@@ -1,6 +1,9 @@
 <%= button_tag "Choose a Photo", class: "ui button", id: "photo-chooser" %>
 <div class="field">
-  <%= f.hidden_field :photo_id %>
+  <%= f.hidden_field :croppable_photo_id %>
+  <% %w[x y w h].each do |attribute| %>
+    <%= f.hidden_field "crop_#{attribute}" %>
+  <% end %>
 </div>
 
 <div class="ui modal">

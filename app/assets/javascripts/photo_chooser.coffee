@@ -9,8 +9,12 @@ $(document).on "turbolinks:load", ->
 
     switch name
       when "photo.selected"
-        $("#data_point_photo_id").val(data.id)
-        $("#photo-preview").html data.img
+        $("#data_point_croppable_photo_id").val(data.id)
+
+        $img = $(data.img).attr("id", "croppable").on "load", ->
+          $("body").trigger "cropper.init"
+
+        $("#photo-preview").html $img
         $modal.modal("hide")
 
   # Listen for a photo chosen inside the iframe
