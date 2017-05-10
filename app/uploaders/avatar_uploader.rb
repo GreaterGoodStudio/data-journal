@@ -20,7 +20,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
       h = model.crop_h.to_f * ratio
       x = model.crop_x.to_f * ratio
       y = model.crop_y.to_f * ratio
-      
+
       resize_to_limit(width, width)
       manipulate! do |img|
         img.crop "#{w}x#{h}+#{x}+#{y}"
