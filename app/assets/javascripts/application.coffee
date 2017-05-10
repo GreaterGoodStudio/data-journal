@@ -74,16 +74,25 @@ $(document).on "turbolinks:load", ->
     $(this).attr("href") != "#"
 
   # Form errors
-  $("form").on "ajax:error", (e, xhr) ->
-    $form = $(this)
-    response = JSON.parse(xhr.responseText)
-    $form
-      .find(".field").removeClass("error")
-      .find(".helper").remove()
-    for field, errors of response
-      return unless errors.length
+  $("form")
+    .on "submit", (e, xhr) ->
+      message = $(this).data("loading-text")
+      if message
+        $loading = $("#loading-overlay")
+        $loading
+          .find(".loader").text(message).end()
+          .addClass "active"
+    .on "ajax:error", (e, xhr) ->
+      $form = $(this)
+      response = JSON.parse(xhr.responseText)
+      $("#loading-overlay").removeClass "active"
+      $form
+        .find(".field").removeClass("error")
+        .find(".helper").remove()
+      for field, errors of response
+        return unless errors.length
 
-      $el = $(this).find("[name*='[#{field}]']")
-      $el.closest(".field")
-        .addClass("error")
-        .append("<small class='helper'>#{errors.join(', ')}.</small>")
+        $el = $(this).find("[name*='[#{field}]']")
+        $el.closest(".field")
+          .addClass("error")
+          .append("<small class='helper'>#{errors.join(', ')}.</small>")

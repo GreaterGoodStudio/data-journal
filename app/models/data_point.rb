@@ -7,6 +7,7 @@ class DataPoint < ApplicationRecord
   has_one :project, through: :session
   has_one :photo, as: :photographable, dependent: :destroy
 
+  validates :croppable_photo_id, presence: true, unless: -> { photo.present? }
   validates :observation, presence: true, length: { maximum: 250 }
   validates :meaning, length: { maximum: 115 }
 
