@@ -17,14 +17,19 @@ class Photo < ApplicationRecord
       self.remote_image_url = image.direct_fog_url(with_path: true)
       self.image_processed = true
       save!
+      broadcast_update
     else
-      PhotoWorker.perform_async(id) if save
+      if save
+        broadcast_update
+        PhotoWorker.perform_async(id)
+      end
     end
-
-    SessionChannelWorker.perform_async(photographable_id, "Photo", self.id) if photographable_type == "Session"
   end
 
   private
+    def broadcast_update
+      SessionChannelWorker.perform_async(photographable_id, "Photo", self.id) if photographable_type == "Session"
+    end
 
     def crop_image
       image.recreate_versions!(:thumb, :square) if crop_x.present?
