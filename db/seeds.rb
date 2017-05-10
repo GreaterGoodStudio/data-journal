@@ -60,10 +60,5 @@ User.update_all invitation_accepted_at: Time.now
     end
   end
 
-  begin
-    project.save!
-  rescue Exception => e
-    puts e
-    project.data_points.each { |s| puts s.errors.inspect }
-  end
+  project.save!
 end

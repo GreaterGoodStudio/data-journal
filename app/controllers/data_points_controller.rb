@@ -64,7 +64,7 @@ class DataPointsController < ApplicationController
     end
 
     def data_point_params
-      params.require(:data_point).permit(:photo_id, :observation, :meaning)
+      params.require(:data_point).permit(:croppable_photo_id, :crop_x, :crop_y, :crop_w, :crop_h, :observation, :meaning)
     end
 
     def bookmark_attr

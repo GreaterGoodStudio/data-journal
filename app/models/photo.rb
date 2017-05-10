@@ -1,5 +1,8 @@
 class Photo < ApplicationRecord
-  has_ancestry
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :crop_image
+
+  has_ancestry orphan_strategy: :rootify
   mount_uploader :image, PhotoUploader
 
   belongs_to :photographable, polymorphic: true
@@ -20,4 +23,10 @@ class Photo < ApplicationRecord
 
     SessionChannelWorker.perform_async(photographable_id, "Photo", self.id) if photographable_type == "Session"
   end
+
+  private
+
+    def crop_image
+      image.recreate_versions!(:thumb, :square) if crop_x.present?
+    end
 end
