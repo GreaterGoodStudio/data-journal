@@ -23,6 +23,7 @@ $(document).on "turbolinks:load", ->
         $dimmer.removeClass "active"
         $loader.text "Saving"
       success: (data) ->
+        return unless data
         $.post "#{location.pathname}/upload/photo",
           key: $(data).find("Key").text()
 

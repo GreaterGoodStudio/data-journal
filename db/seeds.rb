@@ -15,7 +15,7 @@ User.create!(
   password_confirmation: default_password,
   remote_avatar_url: "https://www.gravatar.com/avatar/moderator?d=identicon"
 )
-members = Array.new(20) do |n|
+members = Array.new(3) do |n|
   User.create!(
     name: "Team Member #{n + 1}",
     email: "team#{n + 1}@example.com",
@@ -27,7 +27,7 @@ end
 User.update_all invitation_accepted_at: Time.now
 
 # Projects
-8.times do |n|
+2.times do |n|
   project = Project.new(
     name: Faker::Lorem.sentence(2, false, 5).chomp("."),
     due_date: Faker::Date.between(1.week.from_now, 1.month.from_now),
@@ -47,16 +47,8 @@ User.update_all invitation_accepted_at: Time.now
       member: project_members.sample
     )
 
-    rand(1..10).times do
-      session.photos.new(image_processed: true)
-    end
-
-    rand(1..10).times do
-      session.data_points.new(
-        observation: Faker::Lorem.paragraph[0, 250],
-        meaning: Faker::Lorem.paragraph[0, 115],
-        photo: Photo.new(image_processed: true)
-      )
+    rand(1..3).times do
+      session.photos.new(image_processed: true, remote_image_url: Faker::LoremPixel.image("800x600"))
     end
   end
 

@@ -18,7 +18,7 @@ form.ui.form {
   input[type="file"], 
   input[type="url"],
   textarea,
-  .dropdown {
+  .dropdown:not(.icon) {
     font-family: $font-serif;
     border-color: transparent;
     border-radius: 0 !important;
