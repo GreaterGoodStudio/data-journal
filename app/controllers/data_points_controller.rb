@@ -11,7 +11,7 @@ class DataPointsController < ApplicationController
     authorize @data_point
 
     if @data_point.save
-      redirect_to @data_point, notice: "Data point created."
+      redirect_to new_session_data_point_path(@session), notice: "Data point created."
     else
       respond_to do |format|
         format.html { render :new, error: @data_point.errors.full_messages.to_sentence }
