@@ -1,6 +1,5 @@
-class PhotoUploader < CarrierWave::Uploader::Base
+class PhotoUploader < BaseUploader
   include CarrierWaveDirect::Uploader
-  include CarrierWave::MiniMagick
 
   version :thumb do
     process :crop
@@ -30,15 +29,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
         img.crop "#{w}x#{h}+#{x}+#{y}"
       end
     end
-  end
-
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
-  alias_method :extension_white_list, :extension_whitelist
-
-  def fog_public
-    false
   end
 
   def default_url(*_args)
