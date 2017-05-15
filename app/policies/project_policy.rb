@@ -7,6 +7,10 @@ class ProjectPolicy < ApplicationPolicy
     admin? || record.members.exists?(user)
   end
 
+  def members?
+    show?
+  end
+
   def archive?
     admin? && !record.archived?
   end

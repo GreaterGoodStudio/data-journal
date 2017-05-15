@@ -1,15 +1,6 @@
 <div class="ui basic vertical clearing segment">
-  <div class="ui right floated horizontal list">
-    <%= link_to "#", class: "ui right labeled branded icon button", data: {transition: "slideDown", target: "#new-session"} do %>
-      <i class="icon plus"></i>
-      <span>Add a new session</span>
-    <% end if policy(Session).new? %>
-  </div>
-
-  <h1 class="ui left floated header"><%= My Sessions (<%= @sessions.total_count %>)</h1>
+  <h1 class="ui left floated header"><%= @member.name_with_avatar(possessive: true) %> Sessions (<%= @sessions.total_count %>)</h1>
 </div>
-
-<%= render "new_session" if policy(Session).new? %>
 
 <div class="ui basic vertical segment">
   <table class="ui table">

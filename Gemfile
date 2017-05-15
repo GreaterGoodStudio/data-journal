@@ -68,6 +68,9 @@ gem "best_in_place", "~> 3.0"
 # ZIP files
 gem "zipline", "~> 0.0.12"
 
+# Possesive nouns
+gem "possessive"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end

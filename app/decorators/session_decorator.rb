@@ -5,6 +5,10 @@ class SessionDecorator < BaseDecorator
     image_tag thumbnail_image, class: "ui image"
   end
 
+  def last_updated
+    "#{h.time_ago_in_words(object.updated_at)} ago"
+  end
+
   def formatted_date
     object.date.strftime("%m/%d/%Y")
   end

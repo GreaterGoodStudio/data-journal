@@ -16,8 +16,8 @@
       <%= link_to "Reactivate this project", unarchive_project_path(project), method: :post, class: "medium text" %>
     <% else %>
       <div class="ui horizontal large divided sessions list">
-        <%= link_to "My Sessions", project_sessions_path(project), class: "ui red bold item", data: { sessions: project.sessions.for_member(current_user).count, data_points: project.data_points.for_member(current_user).count, project_summary: true } %>
-        <%= link_to "All Sessions", project_sessions_path(project, show: :all), class: "ui red bold item", data: { sessions: project.sessions.count, data_points: project.data_points.count, project_summary: true } %>
+        <%= link_to "My Sessions", project_path(project), class: "ui red bold item", data: { sessions: project.sessions.for_member(current_user).count, data_points: project.data_points.for_member(current_user).count, project_summary: true } %>
+        <%= link_to "All Sessions", project_path(project), class: "ui red bold item", data: { sessions: project.sessions.count, data_points: project.data_points.count, project_summary: true } %>
       </div>
         <% if policy(Project).edit? %>
           <div>Design Team Members (<%= project.memberships.size %>)</div>

@@ -1,6 +1,6 @@
 class ProjectDecorator < BaseDecorator
   def last_updated
-    "#{h.time_ago_in_words(project.updated_at)} ago"
+    "#{h.time_ago_in_words(object.updated_at)} ago"
   end
 
   def activity_status
