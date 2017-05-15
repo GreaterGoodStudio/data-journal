@@ -12,6 +12,10 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def members
+    @members = @project.members.decorate
+  end
+
   def create
     @project = Project.new(project_params)
     authorize @project

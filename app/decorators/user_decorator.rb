@@ -1,7 +1,8 @@
 class UserDecorator < BaseDecorator
-  def name_with_avatar
+  def name_with_avatar(possessive: false)
+    name = possessive ? object.name.possessive : object.name
     image_tag(object.avatar_url(:thumb), class: "ui avatar image") +
-      "&nbsp;#{object.name}".html_safe
+      "&nbsp;#{name}".html_safe
   end
 
   def display_name

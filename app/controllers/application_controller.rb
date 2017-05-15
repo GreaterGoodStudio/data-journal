@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
 
     def decorate_all
-      %w(project projects session sessions data_point data_points).each do |var|
+      %w(project projects session sessions members data_point data_points).each do |var|
         decorated = instance_variable_get("@#{var}").try(:decorate)
         instance_variable_set("@#{var}", decorated) if decorated
       end

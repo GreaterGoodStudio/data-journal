@@ -55,4 +55,8 @@ Rails.application.routes.draw do
       resources :photos, only: [:index, :show, :destroy]
     end
   end
+
+  resources :projects, only: [] do
+    resources :members, only: [:index, :show]
+  end
 end

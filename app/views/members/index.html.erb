@@ -6,29 +6,27 @@
     <% end if policy(Session).new? %>
   </div>
 
-  <h1 class="ui left floated header"><%= My Sessions (<%= @sessions.total_count %>)</h1>
+  <h1 class="ui left floated header">Team Members</h1>
 </div>
-
-<%= render "new_session" if policy(Session).new? %>
 
 <div class="ui basic vertical segment">
   <table class="ui table">
     <thead>
       <tr>
-        <th>Session Name</th>
-        <% if @show_all %>
         <th>Design Team Member</th>
-        <% end %>
-        <th>Date</th>
-        <th>Number of Data Points</th>
-        <th>Number of Photos</th>
+        <th>Number of Sessions</th>
+        <th>Last Update</th>
       </tr>
     </thead>
 
     <tbody>
-      <%= render @sessions, cached: true %>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= link_to member.name_with_avatar, project_member_path(@project, member) %></td>
+        <td><%= @project.sessions.for_member(member).size %></td>
+        <td><%=  @project.sessions.for_member(member).order("updated_at DESC").decorate.last.try(:last_updated) %></td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
-
-  <%= paginate @sessions %>
 </div>
