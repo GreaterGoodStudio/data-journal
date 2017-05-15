@@ -1,17 +1,25 @@
 class DataPointDecorator < BaseDecorator
   def member_bookmark
-    icon_class = object.bookmark_member? ? "" : "remove"
     path = object.bookmark_member? ? unbookmark_data_point_path(object) : bookmark_data_point_path(object)
-    bookmark_icon = content_tag(:i, nil, class: "large blue icon bookmark #{icon_class}")
 
-    policy(object).bookmark_member? ? link_to(bookmark_icon, path, method: :post) : bookmark_icon
+    if policy(object).bookmark_member? && !policy(object).bookmark_moderator?
+      link_to(bookmark_icon(object.bookmark_member?, true), path, method: :post)
+    elsif object.bookmark_member?
+      bookmark_icon(object.bookmark_member?)
+    end
   end
 
   def moderator_bookmark
-    icon_class = object.bookmark_moderator? ? "" : "remove"
     path = object.bookmark_moderator? ? unbookmark_data_point_path(object) : bookmark_data_point_path(object)
-    bookmark_icon = content_tag(:i, nil, class: "large red icon bookmark #{icon_class}")
 
-    policy(object).bookmark_moderator? ? link_to(bookmark_icon, path, method: :post) : nil
+    policy(object).bookmark_moderator? ? link_to(bookmark_icon(object.bookmark_moderator?, true), path, method: :post) : nil
   end
+
+  private
+
+    def bookmark_icon(selected, owner = false)
+      selected_class = selected ? "" :  "remove"
+      color_class = owner ? "blue" : "grey"
+      content_tag(:i, nil, class: "large icon bookmark #{selected_class} #{color_class}")
+    end
 end
