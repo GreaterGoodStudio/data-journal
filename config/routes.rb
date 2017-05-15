@@ -48,7 +48,10 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :consent_forms, except: [:new]
+      resources :consent_forms, except: [:new] do
+        get "download", on: :member
+      end
+      
       resources :photos, only: [:index, :show, :destroy]
     end
   end

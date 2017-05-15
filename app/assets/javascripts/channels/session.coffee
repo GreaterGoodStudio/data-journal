@@ -31,4 +31,4 @@ $(document).on "turbolinks:load", ->
       processConsentForm: (data) ->
         $consentForms.find('form').after data.html
         $consentFormCount.attr("data-count", $consentForms.find(".card").length - 1)
-        $(".best_in_place").best_in_place()
+        $consentForms.find(".best_in_place").best_in_place()
