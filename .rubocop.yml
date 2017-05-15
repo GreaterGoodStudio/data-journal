@@ -375,7 +375,7 @@ Security/Eval:
 Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected'
-  Enabled: false
+  Enabled: true
 
 Style/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
@@ -575,7 +575,7 @@ Style/EmptyLines:
 
 Style/EmptyLinesAroundAccessModifier:
   Description: "Keep blank lines around access modifiers."
-  Enabled: false
+  Enabled: true
 
 Style/EmptyLinesAroundBlockBody:
   Description: "Keeps track of empty lines around block bodies."

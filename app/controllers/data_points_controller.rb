@@ -56,6 +56,7 @@ class DataPointsController < ApplicationController
   end
 
   private
+
     def find_data_point
       return unless params[:id]
 

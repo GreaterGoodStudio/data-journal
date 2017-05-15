@@ -27,6 +27,7 @@ class Photo < ApplicationRecord
   end
 
   private
+
     def broadcast_update
       SessionChannelWorker.perform_async(photographable_id, "Photo", self.id) if photographable_type == "Session"
     end

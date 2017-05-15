@@ -15,10 +15,10 @@ class ConsentFormsController < ApplicationController
   def update
     respond_to do |format|
       if @consent_form.update_attributes(consent_form_params)
-        format.html { redirect_to(@consent_form, :notice => "Consent form was successfully updated.") }
+        format.html { redirect_to(@consent_form, notice: "Consent form was successfully updated.") }
         format.json { respond_with_bip(@consent_form) }
       else
-        format.html { render :action => "edit" }
+        format.html { render action: "edit" }
         format.json { respond_with_bip(@consent_form) }
       end
     end
@@ -35,7 +35,7 @@ class ConsentFormsController < ApplicationController
   end
 
   def download
-    files =  @consent_form.images.lazy.map { |image| [open(image.url), File.basename(image.path)] }
+    files = @consent_form.images.lazy.map { |image| [open(image.url), File.basename(image.path)] }
     zipline files, "#{@consent_form.slug}.zip"
   end
 
