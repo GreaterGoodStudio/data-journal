@@ -2,7 +2,11 @@
   <div class="ui grid">
     <div class="thirteen wide column">
       <p id="photo-preview">
-        <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image" if @data_point.photo %>
+        <% if @photo %>
+          <%= image_tag @photo.image_url(:large), id: "croppable", class: "ui fluid image" %>
+        <% elsif @data_point.photo %>
+          <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image" %>
+        <% end %>
       </p>
       <%= render "photo_chooser", f: f %>
     </div>

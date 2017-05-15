@@ -4,6 +4,11 @@ class DataPointsController < ApplicationController
 
   def new
     @data_point = @session.data_points.new
+    if params[:photo]
+      @photo = @session.photos.find(params[:photo])
+      authorize @photo, :create_data_point?
+      @data_point.croppable_photo_id = @photo.id
+    end
   end
 
   def create
