@@ -3,7 +3,7 @@
     <%= image_tag consent_form.images.first.url(:thumb) %>
   <% end %>
   <div class="content">
-    <%= link_to "Consent Form Name", consent_form, class: "header" %>
+    <%= best_in_place consent_form, :name, as: :input, place_holder: "Untitled" %>
   </div>
   <div class="extra content">
     <%= link_to "#", class: "right floated" do %>

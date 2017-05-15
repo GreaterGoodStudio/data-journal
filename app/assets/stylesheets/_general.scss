@@ -38,6 +38,14 @@ span.disabled {
   text-align: center;
 }
 
+.bip-placeholder {
+  color: $lightGrey;
+
+  input {
+    color: black;
+  }
+}
+
 /* Turbolinks */
 .turbolinks-progress-bar {
   background-color: $blue;
