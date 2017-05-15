@@ -1,9 +1,9 @@
 <div class="ui basic vertical clearing segment">
   <div class="ui right floated horizontal list">
-    <%= link_to "#", class: "ui right labeled branded icon button", data: {transition: "slideDown", target: "#new-session"} do %>
+    <%= link_to edit_project_path(@project), class: "ui right labeled branded icon button" do %>
       <i class="icon plus"></i>
-      <span>Add a new session</span>
-    <% end if policy(Session).new? %>
+      <span>New Design Team Member</span>
+    <% end if policy(@project).edit? %>
   </div>
 
   <h1 class="ui left floated header">Team Members</h1>
