@@ -62,6 +62,9 @@ gem "high_voltage", "~> 3.0"
 # Tree data structure
 gem "ancestry", "~> 2.2"
 
+# Edit in place
+gem "best_in_place", "~> 3.0"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end

@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :find_photo, only: [:show, :destroy]
+  before_action :find_photo
 
   def index
     @photos = @session.photos
@@ -19,7 +19,8 @@ class PhotosController < ApplicationController
   end
 
   private
+  
     def find_photo
-      @photo = Photo.find(params[:id])
+      @photo = Photo.find(params[:id]) if params[:id]
     end
 end

@@ -15,11 +15,15 @@
 #= require jquery-fileupload/basic
 #= require semantic_ui/semantic_ui
 #= require semantic-ui-calendar
+#= require best_in_place
 #= require turbolinks
 #= require_tree .
 #= require_self
 
 $(document).on "turbolinks:load", ->
+  # In-place editing
+  $(".best_in_place").best_in_place()
+
   # Closable message
   $(".message.closable .close.icon").on "click", ->
     $(".message.closable").fadeOut("slow")
