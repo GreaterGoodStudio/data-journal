@@ -6,7 +6,7 @@
     <% end if policy(Session).new? %>
   </div>
 
-  <h1 class="ui left floated header"><%= My Sessions (<%= @sessions.total_count %>)</h1>
+  <h1 class="ui left floated header">My Sessions (<%= @sessions.total_count %>)</h1>
 </div>
 
 <%= render "new_session" if policy(Session).new? %>
