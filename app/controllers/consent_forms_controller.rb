@@ -1,4 +1,7 @@
 class ConsentFormsController < ApplicationController
+  include ActionController::Streaming
+  include Zipline
+
   before_action :find_consent_form
 
   def create
@@ -29,6 +32,11 @@ class ConsentFormsController < ApplicationController
     end
 
     redirect_to @consent_form.session
+  end
+
+  def download
+    files =  @consent_form.images.lazy.map { |image| [open(image.url), File.basename(image.path)] }
+    zipline files, "#{@consent_form.slug}.zip"
   end
 
   private
