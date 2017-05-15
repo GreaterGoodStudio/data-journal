@@ -1,1 +1,10 @@
-You've been added to a new project: <%= @project.name %>
+<p>Hello!</p>
+
+<p>You've been added to <%= link_to @project.name, project_url(@project) %>
+ on Data Journal:</p>
+
+<p><%= link_to project_url(@project), project_url(@project) %></p>
+
+____
+
+<p><%= t("devise.mailer.help").html_safe %></p>
