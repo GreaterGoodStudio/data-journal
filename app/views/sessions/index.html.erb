@@ -15,11 +15,8 @@
   <table class="ui table">
     <thead>
       <tr>
-        <th>Session Name</th>
-        <% if @show_all %>
-        <th>Design Team Member</th>
-        <% end %>
-        <th>Date</th>
+        <th><%= sortable "name", "Session Name" %></th>
+        <th><%= sortable "date" %></th>
         <th>Number of Data Points</th>
         <th>Number of Photos</th>
       </tr>

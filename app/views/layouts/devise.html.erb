@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="devise">
+  <body class="devise" data-controller="<%= controller.controller_path %>" data-action="<%= controller.action_name %>">
     <%= render "shared/header" %>
 
     <div class="ui middle aligned center aligned grid">
