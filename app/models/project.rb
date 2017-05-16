@@ -7,7 +7,8 @@ class Project < ApplicationRecord
   attr_accessor :invitees
 
   has_many :memberships, class_name: "ProjectMembership", dependent: :destroy
-  has_many :members, through: :memberships
+  has_many :members, -> { merge(User.invitation_accepted) }, through: :memberships
+  has_many :invites, -> { merge(User.invitation_not_accepted) }, through: :memberships
   has_many :sessions, dependent: :destroy do
     def for_member(member)
       where(member: member)
