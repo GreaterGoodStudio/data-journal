@@ -15,11 +15,10 @@
   <table id="projects" class="ui table">
     <thead>
       <tr>
-        <th>Project Name</th>
-        <th>Due Date</th>
-        <th>Last Update</th>
-        <th></th>
-        <th></th>
+        <th><%= sortable "name", "Project Name" %></th>
+        <th><%= sortable "due_date" %></th>
+        <th colspan="2"><%= sortable "updated_at", "Last Update" %></th>
+        <!-- <th></th> -->
       </tr>
     </thead>
     <tbody>

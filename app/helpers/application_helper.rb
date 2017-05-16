@@ -14,15 +14,26 @@ module ApplicationHelper
   def flash_class(level)
     case level.to_sym
     when :success then "ui positive message"
-    when :error then "ui negative message"
+    when :error, :alert then "ui negative message"
     when :notice then "ui warning message"
     end
   end
 
   def sortable(column, title = nil)
     title ||= column.titleize
-    css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to title, { sort: column, direction: direction }, class: css_class
+    link_to "#{sortable_icon(column)} #{title}".html_safe, sort: column, direction: direction
   end
+
+  private
+
+    def sortable_icon(column)
+      # These are purposefully backwards--it just feels better/right
+      css_class = if column == sort_column && sort_direction == "desc"
+        "ascending"
+      elsif column == sort_column && sort_direction == "asc"
+        "descending"
+      end
+      "<i class=\"icon sort #{css_class}\"></i> "
+    end
 end

@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
+  include Sortable
+
   before_action :find_session
   before_action :show_submenu, only: [:index]
 
   def index
     @show_all = params[:show] == "all"
-    @sessions = @project.sessions.order(created_at: :desc).page(params[:page])
-    @sessions = @sessions.for_member(current_user) unless @show_all
+    @sessions = @project.sessions.for_member(current_user).order("#{sort_column} #{sort_direction}").page(params[:page])
   end
 
   def create

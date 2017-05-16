@@ -8,6 +8,10 @@ body.devise {
     max-width: 48rem;
   }
 
+  &[data-controller="devise/sessions"] .column {
+    max-width: 40rem;
+  }
+
   .logo {
     font-size: 1.5em;
   }

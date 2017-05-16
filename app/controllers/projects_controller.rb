@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
   include ProjectHelper
+  include Sortable
 
   before_action :find_project
   before_action :show_submenu, only: [:edit]
 
   def index
-    @projects = policy_scope(Project).order(archived: :asc, created_at: :desc).page params[:page]
+    @projects = policy_scope(Project).order("archived ASC, #{sort_column} #{sort_direction}").page params[:page]
   end
 
   def show
