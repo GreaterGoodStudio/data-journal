@@ -16,6 +16,17 @@ header {
     z-index: 10;
   }
 
+  .right.menu {
+    span, a {
+      color: $red;
+      font-weight: bold;
+
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .logo:before {
     display: inline-block;
     content: "";
