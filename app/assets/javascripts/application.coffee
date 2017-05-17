@@ -28,6 +28,9 @@ $(document).on "turbolinks:load", ->
   $(".message.closable .close.icon").on "click", ->
     $(".message.closable").fadeOut("slow")
     false
+  setTimeout ->
+    $(".message.closable").fadeOut()
+  , 3000
 
   # Dropdown menus
   $(".ui.dropdown:not(.allow-addition)").dropdown()
