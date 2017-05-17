@@ -44,3 +44,13 @@ header {
     vertical-align: bottom;
   }
 }
+
+main {
+  > .ui.clearing.segment:first-of-type {
+    padding-bottom:  0;
+  }
+
+  i.angle.left.icon {
+    margin-right: 0 !important;
+  }
+}
