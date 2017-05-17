@@ -38,6 +38,10 @@ span.disabled {
   text-align: center;
 }
 
+.ui.segment {
+  border-radius: 0;
+}
+
 .bip-placeholder {
   color: $lightGrey;
 

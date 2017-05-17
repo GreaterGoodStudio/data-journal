@@ -1,13 +1,13 @@
-<div class="ui basic vertical clearing segment" style="padding-bottom: 0">
+<div class="ui basic vertical clearing segment">
   <div class="ui right floated header">
     <ul class="ui large red horizontal divided list">
       <%= active_link_to "My Sessions", project_sessions_path(@session.project), class: "item", active: :exact %>
-      <%= active_link_to "All Sessions", project_sessions_path(@session.project, show: :all), class: "item", active: :exact %>
+      <%= active_link_to "My Team's Sessions", project_sessions_path(@session.project, show: :all), class: "item", active: :exact %>
     </ul>
   </div>
 
   <%= link_to project_path(@session.project), class: "ui left floated medium header" do %>
-    <i class="angle left icon"></i>Back to sessions
+    <i class="angle left icon"></i>Back
   <% end %>
 </div>
 
