@@ -29,7 +29,8 @@ $(document).on "turbolinks:load", ->
     $(".message.closable").fadeOut("slow")
     false
   setTimeout ->
-    $(".message.closable").fadeOut()
+    $(".message.closable").fadeTo "slow", 0, ->
+      $(this).slideUp()
   , 3000
 
   # Dropdown menus
