@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   include Sortable
 
-  before_action :show_submenu, only: [:show]
+  before_action :show_submenu
 
   def index
     @members = @project.members.order("#{sort_column} #{sort_direction}")
