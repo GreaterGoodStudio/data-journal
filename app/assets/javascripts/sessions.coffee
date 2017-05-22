@@ -28,13 +28,14 @@ $(document).on "turbolinks:load", ->
           key: $(data).find("Key").text()
 
   # Bookmarks
-  $("#toggle-member-bookmarks").click (e) ->
+  $("#toggle-bookmarks").click (e) ->
     e.preventDefault()
-    $("[data-bookmark-member='false']").toggle()
+    $(this).toggleClass("active")
+    descriptor = if $(this).hasClass("active") then "All Data Points" else "Bookmarks"
+    $(this).find("span").text(descriptor)
 
-  $("#toggle-moderator-bookmarks").click (e) ->
-    e.preventDefault()
-    $("[data-bookmark-moderator='false']").toggle()
+    $(".icon.remove.bookmark").closest(".ui.card").toggle()
 
   $("a .bookmark.icon").click (e) ->
     $(this).toggleClass "remove"
+    

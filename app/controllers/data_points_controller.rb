@@ -79,6 +79,7 @@ class DataPointsController < ApplicationController
       if @data_point.update_attribute bookmark_attr, val
         respond_to do |format|
           format.html { redirect_to :back, notice: "Bookmark updated" }
+          format.js
         end
       else
         respond_to do |format|
