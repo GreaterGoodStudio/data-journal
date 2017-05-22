@@ -27,14 +27,26 @@ $(document).on "turbolinks:load", ->
         $.post "#{location.pathname}/upload/photo",
           key: $(data).find("Key").text()
 
+  # Tabs
+  $("[data-tabs] .item").tab
+    onLoad: (tabPath, parameterArray, historyEvent) ->
+      $("#toggle-bookmarks").toggle tabPath == "data_points"
+
   # Bookmarks
   $("#toggle-bookmarks").click (e) ->
     e.preventDefault()
+    
     $(this).toggleClass("active")
-    descriptor = if $(this).hasClass("active") then "All Data Points" else "Bookmarks"
+
+    if $(this).hasClass("active")
+      descriptor = "All Data Points"
+      $(".icon.remove.bookmark").closest(".ui.card").hide()
+    else
+      descriptor = "Bookmarks"
+      $(".icon.bookmark").closest(".ui.card").show()
+
     $(this).find("span").text(descriptor)
 
-    $(".icon.remove.bookmark").closest(".ui.card").toggle()
 
   $("a .bookmark.icon").click (e) ->
     $(this).toggleClass "remove"

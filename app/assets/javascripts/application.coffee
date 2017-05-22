@@ -44,9 +44,6 @@ $(document).on "turbolinks:load", ->
     allowAdditions: true
     hideAdditions: false
 
-  # Tabs
-  $("[data-tabs] .item").tab()
-
   # Checkboxes
   $(".ui.checkbox").checkbox()
 
