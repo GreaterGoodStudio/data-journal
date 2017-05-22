@@ -35,6 +35,8 @@ class SessionsController < ApplicationController
   end
 
   def show
+    @active_tab = params[:tab] || "photos"
+
     @data_points = @session.data_points
     @photos = @session.photos
     @consent_forms = @session.consent_forms

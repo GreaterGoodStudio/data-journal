@@ -1,0 +1,8 @@
+<%= link_to new_session_data_point_path(@session), class: "vertically centered add card" do %>
+  <div class="ui icon small marginless header">
+    <i class="icon add"></i>
+    Add a Data Point
+  </div>
+<% end if policy(@session).upload? %>
+
+<%= render @data_points, cached: true %>

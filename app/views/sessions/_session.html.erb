@@ -10,12 +10,12 @@
     <span class="ui large grey text">
       <i class="icon sticky note"></i><%= session.data_points.count %>
     </span>
-      Completed Data Points
+      <%= link_to "Completed Data Points", tab_session_path(session, tab: :data_points) %>
   </td>
   <td>
     <span class="ui large grey text">
       <i class="icon image"></i><%= session.photos.count %>
     </span>
-    Photos
+    <%= link_to "Photos", tab_session_path(session, tab: :photos) %>
   </td>
 </tr>

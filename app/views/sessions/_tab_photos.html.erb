@@ -1,0 +1,13 @@
+<% if policy(@session).upload? %>
+  <%= link_to "#", class: "vertically centered upload card" do %>
+    <div class="ui icon small marginless header">
+      <i class="icon add"></i>
+      Add Photos
+    </div>
+  <% end %>
+  <%= direct_upload_form_for @photos_uploader, html: { class: "hidden" } do |f| %>
+    <%= f.file_field :file, multiple: true, class: "hidden fileupload" %>
+  <% end %>
+<% end %>
+
+<%= render @photos, cached: true %>
