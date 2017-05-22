@@ -7,7 +7,7 @@ class AvatarUploader < BaseUploader
   end
 
   version :large do
-    process resize_to_limit: [600, 600]
+    process resize_to_fit: [600, 600]
   end
 
   def crop

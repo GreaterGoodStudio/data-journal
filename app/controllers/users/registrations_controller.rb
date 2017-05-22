@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_avatar
-    if current_user.update_without_password(avatar_crop_params)
+    if update_resource(current_user, avatar_crop_params)
       if params[:invited].present?
         redirect_to root_path, notice: "Welcome to Data Journal."
       else
@@ -22,6 +22,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :edit, error: current_user.errors.full_messages.to_sentence
     end
   end
+
+  protected
+
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
 
   private
 

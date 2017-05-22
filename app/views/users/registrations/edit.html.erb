@@ -5,12 +5,6 @@
 
   <%= render "users/shared/user_form", f: f %>
 
-  <div class="required field">
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: "off" %>
-    <small class="helper">(we need your current password to confirm your changes)</small>
-  </div>
-
   <div class="actions">
     <%= f.submit "Save", class: "ui fluid primary button" %>
   </div>
