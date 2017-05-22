@@ -44,8 +44,10 @@
 
       <div class="item floated right">
         <%= link_to "View Bookmarks", "#", id: "toggle-member-bookmarks" if @session.data_points.with_member_bookmarks.any? %>
+        <% if @session.data_points.with_member_bookmarks.any? && @session.data_points.with_moderator_bookmarks.any? %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <% end %>
         <% if @session.data_points.with_moderator_bookmarks.any? && policy(@session.project).moderator? %>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to "View Moderator Bookmarks", "#", id: "toggle-moderator-bookmarks", class: "red" %>
         <% end %>
       </div>

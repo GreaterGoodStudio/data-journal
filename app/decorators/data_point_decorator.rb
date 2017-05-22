@@ -3,7 +3,7 @@ class DataPointDecorator < BaseDecorator
     path = object.bookmark_member? ? unbookmark_data_point_path(object) : bookmark_data_point_path(object)
 
     if policy(object).bookmark_member? && !policy(object).bookmark_moderator?
-      link_to(bookmark_icon(object.bookmark_member?, true), path, method: :post)
+      link_to(bookmark_icon(object.bookmark_member?, true), path, method: :post, remote: true)
     elsif object.bookmark_member?
       bookmark_icon(object.bookmark_member?)
     end
@@ -12,7 +12,7 @@ class DataPointDecorator < BaseDecorator
   def moderator_bookmark
     path = object.bookmark_moderator? ? unbookmark_data_point_path(object) : bookmark_data_point_path(object)
 
-    policy(object).bookmark_moderator? ? link_to(bookmark_icon(object.bookmark_moderator?, true), path, method: :post) : nil
+    policy(object).bookmark_moderator? ? link_to(bookmark_icon(object.bookmark_moderator?, true), path, method: :post, remote: true) : nil
   end
 
   private
