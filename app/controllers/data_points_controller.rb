@@ -46,13 +46,11 @@ class DataPointsController < ApplicationController
   end
 
   def bookmark
-    @data_point.update_attribute bookmark_attr, true
-    redirect_to :back
+    set_bookmark(true)
   end
 
   def unbookmark
-    @data_point.update_attribute bookmark_attr, false
-    redirect_to :back
+    set_bookmark(false)
   end
 
   private
@@ -75,5 +73,18 @@ class DataPointsController < ApplicationController
 
     def bookmark_attr
       policy(@data_point.project).moderator? ? :bookmark_moderator : :bookmark_member
+    end
+
+    def set_bookmark(val)
+      if @data_point.update_attribute bookmark_attr, val
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Bookmark updated" }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, error: "Problem updating bookmark" }
+          format.js { render "bookmark_error" }
+        end
+      end
     end
 end

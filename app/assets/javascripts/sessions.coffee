@@ -35,3 +35,6 @@ $(document).on "turbolinks:load", ->
   $("#toggle-moderator-bookmarks").click (e) ->
     e.preventDefault()
     $("[data-bookmark-moderator='false']").toggle()
+
+  $("a .bookmark.icon").click (e) ->
+    $(this).toggleClass "remove"

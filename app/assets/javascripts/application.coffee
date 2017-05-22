@@ -25,11 +25,13 @@ $(document).on "turbolinks:load", ->
   $(".best_in_place").best_in_place()
 
   # Closable message
-  $(".message.closable .close.icon").on "click", ->
+  $flash = $(".message.closable")
+  $flash.find(".close.icon").on "click", ->
     $(".message.closable").fadeOut("slow")
     false
   setTimeout ->
-    $(".message.closable").fadeTo "slow", 0, ->
+    return if $flash.is(":hidden")
+    $flash.fadeTo "slow", 0, ->
       $(this).slideUp()
   , 3000
 
