@@ -27,15 +27,10 @@ $(document).on "turbolinks:load", ->
         $.post "#{location.pathname}/upload/photo",
           key: $(data).find("Key").text()
 
-  # Tabs
-  $("[data-tabs] .item").tab
-    onLoad: (tabPath, parameterArray, historyEvent) ->
-      $("#toggle-bookmarks").toggle tabPath == "data_points"
-
   # Bookmarks
   $("#toggle-bookmarks").click (e) ->
     e.preventDefault()
-    
+
     $(this).toggleClass("active")
 
     if $(this).hasClass("active")

@@ -22,77 +22,36 @@
   </div>
 
   <div class="ui vertical segment">
-    <div class="ui pointing secondary menu" data-tabs>
-      <a class="item active" data-tab="photos">
+    <div class="ui pointing secondary menu">
+      <%= link_to tab_session_path(@session, tab: :photos), class: "item #{active_tab('photos')}" do %>
         <span class="ui medium text">
           <i class="icon image"></i><%= content_tag :span, nil, "data-count" => @session.photos.count %>
         </span>
         Photos
-      </a>
-      <a class="item" data-tab="consent_forms">
+      <% end %>
+      <%= link_to tab_session_path(@session, tab: :consent_forms), class: "item #{active_tab('consent_forms')}" do %>
         <span class="ui medium text">
           <i class="icon file"></i><%= content_tag :span, nil, "data-count" => @session.consent_forms.count %>
         </span>
         Consent Forms
-      </a>
-      <a class="item" data-tab="data_points">
+      <% end %>
+      <%= link_to tab_session_path(@session, tab: :data_points), class: "item #{active_tab('data_points')}" do %>
         <span class="ui medium text">
           <i class="icon sticky note"></i><%= content_tag :span, nil, "data-count" => @session.data_points.count %>
         </span>
         Data Points
-      </a>
+      <% end %>
 
-      <div class="item floated right">
+      <%= content_tag :div, class: "item floated right" do %>
         <%= link_to "#", id: "toggle-bookmarks", class: "red hidden" do %>
           View <span>Bookmarks</span>
         <% end %>
-      </div>
+      <% end %>
     </div>
 
-    <div class="ui tab basic segment active" data-tab="photos">
+    <div class="ui tab basic segment active">
       <div class="ui six cards">
-        <% if policy(@session).upload? %>
-          <%= link_to "#", class: "vertically centered upload card" do %>
-            <div class="ui icon small marginless header">
-              <i class="icon add"></i>
-              Add Photos
-            </div>
-          <% end %>
-          <%= direct_upload_form_for @photos_uploader, html: { class: "hidden" } do |f| %>
-            <%= f.file_field :file, multiple: true, class: "hidden fileupload" %>
-          <% end %>
-        <% end %>
-
-        <%= render @photos, cached: true %>
-      </div>
-    </div>
-
-    <div class="ui tab basic segment" data-tab="consent_forms">
-      <div class="ui six cards">
-        <%= link_to "#", class: "vertically centered upload card" do %>
-          <div class="ui icon small marginless header">
-            <i class="icon add"></i>
-            Add a Consent Form
-          </div>
-        <% end if policy(@session).upload? %>
-        <%= form_for :consent_form, url: session_consent_forms_path(@session), html: { class: "hidden" } do |f| %>
-          <%= f.file_field :images, multiple: true, class: "hidden bulk fileupload" %>
-        <% end %>
-
-        <%= render @consent_forms, cached: true %>
-      </div>
-    </div>
-
-    <div class="ui tab basic segment" data-tab="data_points">
-      <div class="ui six cards">
-        <%= link_to new_session_data_point_path(@session), class: "vertically centered add card" do %>
-          <div class="ui icon small marginless header">
-            <i class="icon add"></i>
-            Add a Data Point
-          </div>
-        <% end if policy(@session).upload? %>
-
-        <%= render @data_points, cached: true %>
+        <%= render "tab_#{@active_tab}" %>
       </div>
     </div>
   </div>

@@ -1,0 +1,11 @@
+<%= link_to "#", class: "vertically centered upload card" do %>
+  <div class="ui icon small marginless header">
+    <i class="icon add"></i>
+    Add a Consent Form
+  </div>
+<% end if policy(@session).upload? %>
+<%= form_for :consent_form, url: session_consent_forms_path(@session), html: { class: "hidden" } do |f| %>
+  <%= f.file_field :images, multiple: true, class: "hidden bulk fileupload" %>
+<% end %>
+
+<%= render @consent_forms, cached: true %>
