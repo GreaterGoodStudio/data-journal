@@ -29,7 +29,8 @@ class ProjectDecorator < BaseDecorator
   private
 
     def linked_member_avatar(member, tooltip)
-      link_to "#", class: "ui avatar image", "data-tooltip" => tooltip do
+      path = member.invitation_accepted? ? project_member_path(object, member) : edit_project_path(object)
+      link_to path, class: "ui avatar image", "data-tooltip" => tooltip do
         image_tag member.avatar_url(:thumb)
       end
     end
