@@ -48,7 +48,7 @@ gem "active_link_to", "~> 1.0"
 gem "bower-rails", "~> 0.11"
 
 # Decorators
-gem "draper", "3.0.0.pre1"
+gem "draper", "3.0"
 
 # Transactional Emails
 gem "mandrill-api"
