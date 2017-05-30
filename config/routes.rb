@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :sessions do
       member do
         post "upload/:asset_type", to: "sessions#upload", as: :upload_asset_to
-        get ":tab", to: "sessions#show", as: :tab, constraints: { tab: /(photos|consent_forms|data_points)/ }
+        get "tab/:tab", to: "sessions#show", as: :tab, constraints: { tab: /(photos|consent_forms|data_points)/ }
       end
 
       resources :data_points, except: [:index] do
