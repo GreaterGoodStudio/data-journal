@@ -5,7 +5,7 @@
       Add Photos
     </div>
   <% end %>
-  <%= direct_upload_form_for @photos_uploader, html: { class: "hidden" } do |f| %>
+  <%= direct_upload_form_for @photos_uploader, html: { class: "hidden", data: { upload_path: upload_asset_to_session_path(@session, asset_type: :photo) } } do |f| %>
     <%= f.file_field :file, multiple: true, class: "hidden fileupload" %>
   <% end %>
 <% end %>
