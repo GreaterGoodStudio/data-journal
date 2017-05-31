@@ -8,6 +8,7 @@ $(document).on "turbolinks:load", ->
     $(this).next("form").find(".fileupload").trigger("click")
 
   $(".fileupload").each ->
+    uploadPath = $(this).closest("[data-upload-path]").data("upload-path")
     $dropzone = $(this).closest(".segment").find(".upload")
 
     $(this).fileupload
@@ -24,7 +25,7 @@ $(document).on "turbolinks:load", ->
         $loader.text "Saving"
       success: (data) ->
         return unless data
-        $.post "#{location.pathname}/upload/photo",
+        $.post uploadPath,
           key: $(data).find("Key").text()
 
   # Bookmarks

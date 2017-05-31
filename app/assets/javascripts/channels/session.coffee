@@ -1,10 +1,9 @@
 $(document).on "turbolinks:load", ->
   $session = $("#session")
 
-  $photos = $session.find(".tab[data-tab='photos']")
-  $photoCount = $session.find("[data-tab='photos'] [data-count]")
-  $consentForms = $session.find(".tab[data-tab='consent_forms']")
-  $consentFormCount = $session.find("[data-tab='consent_forms'] [data-count]")
+  activeTab = $("[data-active-tab]").data("active-tab")
+  $tab = $session.find(".active.tab")
+  $count = $session.find(".active.item [data-count]")
 
   if $session.length
     App.session = App.cable.subscriptions.create {
@@ -18,17 +17,19 @@ $(document).on "turbolinks:load", ->
           when "ConsentForm" then @processConsentForm(data)
 
       processPhoto: (data) ->
+        return unless activeTab == "photos"
         $photo = $("[data-photo-id='#{data.id}']")
 
         if $photo.length
           $photo.replaceWith data.html
         else
-          $photos.find('form').after data.html
+          $tab.find('form').after data.html
 
-        $photoCount.attr("data-count", $photos.find(".card").length - 1)
+        $count.attr("data-count", $tab.find(".card").length - 1)
 
 
       processConsentForm: (data) ->
-        $consentForms.find('form').after data.html
-        $consentFormCount.attr("data-count", $consentForms.find(".card").length - 1)
-        $consentForms.find(".best_in_place").best_in_place()
+        return unless activeTab == "consent_forms"
+        $tab.find('form').after data.html
+        $count.attr("data-count", $tab.find(".card").length - 1)
+        $tab.find(".best_in_place").best_in_place()
