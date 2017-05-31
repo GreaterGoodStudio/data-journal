@@ -1,5 +1,5 @@
 class AvatarUploader < BaseUploader
-  storage :fog
+  storage :fog unless Rails.env.test?
 
   version :thumb do
     process :crop
