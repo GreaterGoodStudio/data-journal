@@ -2,7 +2,7 @@
   <div class="ui right floated header">
     <ul class="ui large red horizontal divided list">
       <%= active_link_to "My Sessions", project_sessions_path(@session.project), class: "item", active: :exact %>
-      <%= active_link_to "My Team's Sessions", project_sessions_path(@session.project, show: :all), class: "item", active: :exact %>
+      <%= active_link_to "My Team's Sessions", project_members_path(@session.project), class: "item", active: :exact %>
     </ul>
   </div>
 
