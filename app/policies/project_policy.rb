@@ -4,7 +4,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    admin? || record.members.exists?(user)
+    admin? || record.members.exists?(user.id)
   end
 
   def members?
