@@ -13,7 +13,6 @@ $(document).on "turbolinks:load", ->
 
     $(this).fileupload
       dataType: "xml"
-      dropZone: $dropzone
       singleFileUploads: !$(this).hasClass("bulk")
       start: ->
         $dimmer.addClass "active"
