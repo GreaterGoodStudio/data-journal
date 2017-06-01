@@ -28,7 +28,7 @@
   <% if has_submenu? %>
   <div class="ui borderless fixed sub menu">
     <div class="item">
-      <%= link_to @project.name, @project, class: "ui header" %>
+      <%= link_to @project.name, project_sessions_path(@project), class: "ui header" %>
     </div>
 
     <div class="item">

@@ -37,6 +37,7 @@
     border: 2px solid $lightGrey;
     box-shadow: none;
     border-radius: 0;
+    min-width: 200px;
 
     &:hover {
       border-color: $red;
@@ -52,7 +53,7 @@
     &.add {
       border: 3px dashed $red;
       background-color: $lightestRed;
-      padding: 2em 0;
+      padding: 2em;
       box-shadow: none;
       // min-height: 193.5px !important;
 

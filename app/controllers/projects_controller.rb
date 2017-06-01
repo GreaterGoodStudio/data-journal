@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  include ProjectHelper
   include Sortable
 
   before_action :find_project
@@ -10,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    redirect_to project_path(@project)
+    redirect_to project_sessions_path(@project)
   end
 
   def members

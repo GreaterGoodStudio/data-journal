@@ -1,6 +1,6 @@
 <tr class="top aligned project<%= ' archived' if project.archived? %>">
   <td>
-    <div class="ui large header"><%= link_to project.name, project %></div>
+    <div class="ui large header"><%= link_to project.name, project_sessions_path(project) %></div>
     <% unless project.archived? %>
       <div class="ui list">
         <%= content_tag :div, project.activity_status, class: "item" %>
