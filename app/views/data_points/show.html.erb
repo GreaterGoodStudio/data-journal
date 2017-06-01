@@ -6,7 +6,6 @@
   <div class="ui grid">
     <div class="five wide column">
       <%= link_to @data_point.session, class: "ui header" do %>
-        <div class="ui header"><%= @data_point.session.decorate.thumbnail %></div>
         <%= @data_point.session.name %>
         <div class="ui sub header"><%= pluralize(@data_point.session.photos.count, "photo") %></div>
       <% end %>

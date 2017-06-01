@@ -16,7 +16,7 @@ class ProjectPolicyTest < ActiveSupport::TestCase
 
   test "moderator permissions" do
     moderator = create(:moderator_user)
-    @project.memberships <<  create(:project_membership, member: moderator, moderator: true)
+    @project.memberships << create(:project_membership, member: moderator, moderator: true)
 
     assert_not ProjectPolicy.new(moderator, Project.new).new?
     # assert     ProjectPolicy.new(moderator, @project).show?

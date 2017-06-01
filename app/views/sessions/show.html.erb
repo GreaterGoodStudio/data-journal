@@ -14,7 +14,6 @@
 <div id="session" data-session-id="<%= @session.id %>" data-active-tab="<%= @active_tab %>" class="ui segment">
   <div class="ui vertical clearing segment">
     <div class="ui large header">
-      <span class="ui floated image"><%= @session.thumbnail %></span>
       <%= @session.name %>
       <%= link_to edit_session_path(@session) do %><i class="grey icon pencil"></i><% end if policy(@session).edit? %>
       <div class="ui grey text session-date">Session date: <%= @session.date %></div>
@@ -43,10 +42,10 @@
       <% end %>
 
       <%= content_tag :div, class: "item floated right" do %>
-        <%= link_to "#", id: "toggle-bookmarks", class: "red hidden" do %>
+        <%= link_to "#", id: "toggle-bookmarks", class: "red" do %>
           View <span>Bookmarks</span>
         <% end %>
-      <% end %>
+      <% end if @active_tab == "data_points" %>
     </div>
 
     <div class="ui tab basic segment active">

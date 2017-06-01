@@ -1,6 +1,8 @@
 <div id="photo">
   <div class="ui basic vertical clearing segment">
-    <h1 class="ui left floated header">Photo Detail</h1>
+    <%= link_to tab_session_path(@photo.photographable, tab: :photos), class: "ui left floated medium header" do %>
+      <i class="angle left icon"></i>Back to All Photos
+    <% end %>
   </div>
 
   <div class="ui grid">
