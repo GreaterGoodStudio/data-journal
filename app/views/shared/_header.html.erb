@@ -41,7 +41,7 @@
       <div class="item">
         <%= active_link_to "My Sessions", project_sessions_path(@project), active: :exact, data: { sessions: @project.sessions.for_member(current_user).count, data_points: @project.data_points.for_member(current_user).count, position: "bottom right", project_summary: true } %>
         <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-        <%= active_link_to "My Team's Sessions", project_members_path(@project), active: :exact, data: { sessions: @project.sessions.count, data_points: @project.data_points.count, position: "bottom right", project_summary: true } %>
+        <%= active_link_to "My Team's Sessions", project_members_path(@project), active: :exact, data: { sessions: @project.sessions_count, data_points: @project.data_points.count, position: "bottom right", project_summary: true } %>
       </div>
     </div>
   </div>

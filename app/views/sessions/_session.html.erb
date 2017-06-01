@@ -8,7 +8,7 @@
   <td class="grey text"><%= session.formatted_date %></td>
   <td>
     <span class="ui large grey text">
-      <i class="icon sticky note"></i><%= session.data_points.count %>
+      <i class="icon sticky note"></i><%= session.data_points_count %>
     </span>
       <%= link_to "Completed Data Points", tab_session_path(session, tab: :data_points) %>
   </td>

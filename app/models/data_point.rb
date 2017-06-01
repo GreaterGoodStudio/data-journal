@@ -2,7 +2,7 @@ class DataPoint < ApplicationRecord
   attr_accessor :croppable_photo_id, :crop_x, :crop_y, :crop_w, :crop_h
   after_save :crop_and_save_photo
 
-  belongs_to :session, touch: true
+  belongs_to :session, counter_cache: true, touch: true
   has_one :member, through: :session
   has_one :project, through: :session
   has_one :photo, as: :photographable, dependent: :destroy

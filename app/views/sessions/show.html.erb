@@ -31,13 +31,13 @@
       <% end %>
       <%= link_to tab_session_path(@session, tab: :consent_forms), class: "item #{active_tab('consent_forms')}" do %>
         <span class="ui medium text">
-          <i class="icon file"></i><%= content_tag :span, nil, "data-count" => @session.consent_forms.count %>
+          <i class="icon file"></i><%= content_tag :span, nil, "data-count" => @session.consent_forms_count %>
         </span>
         Consent Forms
       <% end %>
       <%= link_to tab_session_path(@session, tab: :data_points), class: "item #{active_tab('data_points')}" do %>
         <span class="ui medium text">
-          <i class="icon sticky note"></i><%= content_tag :span, nil, "data-count" => @session.data_points.count %>
+          <i class="icon sticky note"></i><%= content_tag :span, nil, "data-count" => @session.data_points_count %>
         </span>
         Data Points
       <% end %>

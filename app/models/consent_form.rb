@@ -1,7 +1,7 @@
 class ConsentForm < ApplicationRecord
   mount_uploaders :images, ConsentFormUploader
 
-  belongs_to :session
+  belongs_to :session, counter_cache: true, touch: true
   has_one :member, through: :session
 
   def slug

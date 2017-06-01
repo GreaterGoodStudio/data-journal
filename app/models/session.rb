@@ -2,7 +2,7 @@ class Session < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
 
-  belongs_to :project, touch: true
+  belongs_to :project, counter_cache: true, touch: true
   belongs_to :member, class_name: "User", foreign_key: :user_id
 
   has_many :photos, as: :photographable, dependent: :destroy
