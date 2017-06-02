@@ -1,19 +1,20 @@
-<% environment.context_class.instance_eval { include PdfHelper } %>
+<% environment.context_class.instance_eval { include WickedPdf::WickedPdfHelper::Assets } %>
 
 @import "_variables";
 
 @font-face {
   font-family: "Circular Std";
-  src: url("<%= asset_data_base64('lineto-circular-medium.woff') %>") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  src: url("<%= wicked_pdf_asset_base64('lineto-circular-bold.woff') %>") format("woff");
+  font-weight: bold;
+  font-style: bold;
+}
 
 @font-face {
-  font-family: "Circular Std";
-  src: url("<%= asset_data_base64('lineto-circular-bold.woff') %>") format("woff");
-  font-weight: bold;
-  font-style: bold; }
-
+  font-family: Georgia;
+  src: url("<%= wicked_pdf_asset_base64('Georgia.ttf') %>")  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html {
   box-sizing: border-box;
@@ -24,8 +25,9 @@ html {
 }
 
 body {
+  /* For some reason, Heroku is printing smaller fonts */
+  font-size: <%= "#{Rails.env.development? ? 18 : 22}px" %>;
   font-family: $font-serif;
-  font-size: 18px;
 }
 
 .page { 

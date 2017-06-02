@@ -1,7 +1,7 @@
 {
   "name": "data-journal-staging",
   "scripts": {
-    "postdeploy": "bundle exec rake db:schema:load db:seed"
+    "postdeploy": "bundle exec rake db:schema:load db:seed" 
   },
   "env": {
     "ASSET_HOST": {
@@ -48,6 +48,12 @@
     }
   },
   "formation": {
+    "web": {
+      "quantity": 1
+    },
+    "worker": {
+      "quantity": 1
+    }
   },
   "addons": [
     "heroku-postgresql",
