@@ -10,7 +10,11 @@
   </td>
   <td><span class="ui large grey text due-date"><%= project.due_date %></span></td>
   <td class="bold"><%= project.last_updated unless project.archived? %></td>
-  <!--<td><%= link_to "#" do %><i class="red icon download"></i><% end unless project.archived? %></td> -->
+  <td>
+    <%= link_to download_project_path(project) do %>
+      <i class="red icon download"></i>
+    <% end if project.data_points.any? && !project.archived? %>
+  </td>
   <td>
     <% if policy(project).unarchive? %>
       <%= link_to "Reactivate this project", unarchive_project_path(project), method: :post, class: "medium text" %>

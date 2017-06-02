@@ -61,6 +61,11 @@ class ProjectsController < ApplicationController
     redirect_to :back
   end
 
+  def download
+    @data_points = @project.data_points
+    render pdf: @project.slug
+  end
+
   private
 
     def find_project

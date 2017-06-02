@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%= stylesheet_link_tag "https://cloud.typography.com/6669114/7760172/css/fonts.css", media: "all" %>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  </head>
+  <body>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

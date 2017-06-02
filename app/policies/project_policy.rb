@@ -19,6 +19,10 @@ class ProjectPolicy < ApplicationPolicy
     admin? && record.archived?
   end
 
+  def download?
+    show?
+  end
+
   def moderator?
     admin? || user.moderates?(record)
   end

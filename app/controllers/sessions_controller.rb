@@ -51,6 +51,11 @@ class SessionsController < ApplicationController
     head @photo.save_and_process ? :ok : :bad_request
   end
 
+  def download
+    @data_points = @session.data_points
+    render pdf: @session.slug
+  end
+
   private
 
     def find_session
