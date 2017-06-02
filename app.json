@@ -1,6 +1,7 @@
 {
-  "name": "data-journal",
+  "name": "data-journal-staging",
   "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load db:seed"
   },
   "env": {
     "ASSET_HOST": {
