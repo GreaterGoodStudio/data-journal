@@ -9,7 +9,13 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    redirect_to project_sessions_path(@project)
+    respond_to do |format|
+      format.pdf do
+        @data_points = @project.data_points
+        render pdf: @project.slug
+      end
+      format.html { redirect_to project_sessions_path(@project) }
+    end
   end
 
   def members

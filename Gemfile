@@ -71,18 +71,24 @@ gem "zipline", "~> 0.0.12"
 # Possesive nouns
 gem "possessive"
 
+# PDF
+gem "wicked_pdf", "~> 1.1"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end
 
-group :production do
+group :staging, :production do
   gem "fog-aws"
   gem "rails_12factor"
+  gem "wkhtmltopdf-heroku", "~> 2.0"
 end
 
 group :development, :test do
   gem "byebug", platform: :mri
   gem "dotenv-rails", "~> 2.2"
+  gem "faker", "~> 1.7"
+  gem "wkhtmltopdf-binary", "~> 0.12"
 end
 
 group :development do
@@ -99,7 +105,6 @@ group :test do
   gem "poltergeist", "~> 1.15"
   gem "factory_girl_rails", "~> 4.0"
   gem "database_cleaner", "~> 1.6"
-  gem "faker", "~> 1.7"
   gem "shoulda", "~> 3.5"
   gem "shoulda-matchers", "~> 2.0"
   gem "simplecov", "~> 0.14", require: false

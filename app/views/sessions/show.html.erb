@@ -13,7 +13,14 @@
 
 <div id="session" data-session-id="<%= @session.id %>" data-active-tab="<%= @active_tab %>" class="ui segment">
   <div class="ui vertical clearing segment">
-    <div class="ui large header">
+    <div class="ui right floated tiny red header">
+      <br>
+      <%= link_to session_path(@session, format: :pdf), target: "_blank" do %>
+        Download Session <i class="red icon download"></i>
+      <% end unless @session.data_points_count.zero? %>
+    </div>
+
+    <div class="ui left floated large header">
       <%= @session.name %>
       <%= link_to edit_session_path(@session) do %><i class="grey icon pencil"></i><% end if policy(@session).edit? %>
       <div class="ui grey text session-date">Session date: <%= @session.date %></div>

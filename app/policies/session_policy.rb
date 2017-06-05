@@ -1,6 +1,6 @@
 class SessionPolicy < ApplicationPolicy
   def show?
-    true
+    ProjectPolicy.new(user, record.project).show?
   end
 
   def edit?
@@ -9,6 +9,10 @@ class SessionPolicy < ApplicationPolicy
 
   def upload?
     record.member == user
+  end
+
+  def download?
+    show?
   end
 
   class Scope < Scope

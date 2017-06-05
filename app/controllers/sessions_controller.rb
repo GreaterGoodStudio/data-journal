@@ -35,14 +35,22 @@ class SessionsController < ApplicationController
   end
 
   def show
-    @active_tab = params[:tab] || "photos"
-
     @data_points = @session.data_points
-    @photos = @session.photos
-    @consent_forms = @session.consent_forms
 
-    @photos_uploader = Photo.new.image
-    @photos_uploader.success_action_status = "201"
+    respond_to do |format|
+      format.html do
+        @active_tab = params[:tab] || "photos"
+
+        @photos = @session.photos
+        @consent_forms = @session.consent_forms
+
+        @photos_uploader = Photo.new.image
+        @photos_uploader.success_action_status = "201"
+      end
+      format.pdf do
+        render pdf: @session.slug
+      end
+    end
   end
 
   def upload
