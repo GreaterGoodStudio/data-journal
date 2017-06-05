@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Icons";
+  src: url("<%= wicked_pdf_asset_base64('semantic_ui/themes/default/assets/fonts/icons.ttf') %>")  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -30,14 +37,17 @@ body {
   font-family: $font-serif;
 }
 
-.page { 
+.page {
   page-break-before: always;
 }
 
 .data_point {
+  position: relative;
   float: left;
   width: 50%;
-  padding: 1.5em 1em;
+  padding: 0.25in 0.2in;
+  /* For some reason, Heroku isn't calculating orientation/sizes correctly */
+  height: <%= "#{Rails.env.development? ? 8 : 10.25}in" %>;
 
   img {
     max-width: 80%;
@@ -54,5 +64,39 @@ body {
   p {
     margin: 0 0 2em;
     line-height: 1.33em;
+  }
+
+  .attribution {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    font-size: 0.5em;
+    line-height: 1em;
+    font-family: $font-sans;
+    color: $lightGrey;
+  }
+
+  .bookmark {
+    position: absolute;
+    top: 0.75em;
+    right: 0.5em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    color: $blue;
+    font-size: 2em;
+    font-family: 'Icons';
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+
+    &:before {
+      content: "\f02e";
+      background: none !important;
+    }
+
+    &.remove:before {
+      content: "\f097";
+    }
   }
 }

@@ -9,6 +9,11 @@
 
       <h2>Possible Meaning</h2>
       <p><%= data_point.meaning %></p>
+
+      <small class="attribution">
+        <%= data_point.session.name %>, <%= data_point.member.name %></em>
+      </small>
+      <i class="huge blue bookmark icon <%= 'remove' unless data_point.bookmark_member? %>"></i>
     </div>
   <% end %>
 </div>

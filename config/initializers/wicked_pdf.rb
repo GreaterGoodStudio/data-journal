@@ -15,6 +15,7 @@ WickedPdf.config.merge!(
   template: "shared/download",
   # disposition: "attachment",
   orientation: "Landscape",
+  page_size: "Letter",
   margin: {
     top: 0,
     bottom: 0,
