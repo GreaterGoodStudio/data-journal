@@ -7,7 +7,7 @@
   </td>
   <td class="grey text"><%= session.formatted_date %></td>
   <td>
-    <%= link_to download_session_path(session) do %>
+    <%= link_to session_path(session, format: :pdf), target: "_blank" do %>
       <i class="red icon download"></i>
     <% end unless session.data_points_count.zero? %>
   </td>

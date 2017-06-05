@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     member do
       post "archive"
       post "unarchive"
-      get "download"
     end
 
     resources :membership, only: [:destroy] do
@@ -42,7 +41,6 @@ Rails.application.routes.draw do
     resources :sessions do
       member do
         post "upload/:asset_type", to: "sessions#upload", as: :upload_asset_to
-        get "download"
         get "tab/:tab", to: "sessions#show", as: :tab, constraints: { tab: /(photos|consent_forms|data_points)/ }
       end
 

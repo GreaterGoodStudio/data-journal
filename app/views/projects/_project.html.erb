@@ -11,7 +11,7 @@
   <td><span class="ui large grey text due-date"><%= project.due_date %></span></td>
   <td class="bold"><%= project.last_updated unless project.archived? %></td>
   <td>
-    <%= link_to download_project_path(project) do %>
+    <%= link_to project_path(project, format: :pdf), target: "_blank" do %>
       <i class="red icon download"></i>
     <% end if project.data_points.any? && !project.archived? %>
   </td>

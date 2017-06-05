@@ -11,9 +11,9 @@
 # Need to merge for Heroku gem to work
 WickedPdf.config ||= {}
 WickedPdf.config.merge!(
-  layout: "pdf",
-  template: "shared/pdf",
-  disposition: "attachment",
+  layout: "download",
+  template: "shared/download",
+  # disposition: "attachment",
   orientation: "Landscape",
   margin: {
     top: 0,
