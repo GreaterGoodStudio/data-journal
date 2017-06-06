@@ -4,6 +4,16 @@ class ConsentFormsController < ApplicationController
 
   before_action :find_consent_form
 
+  def show
+    respond_to do |format|
+      format.html
+      format.zip do
+        files = @consent_form.images.lazy.map { |image| [open(image.url), "#{@consent_form.slug}/#{File.basename(image.path)}"] }
+        zipline files, "#{@consent_form.slug}.zip"
+      end
+    end
+  end
+
   def create
     @consent_form = @session.consent_forms.new(consent_form_params)
     if @consent_form.save
@@ -32,11 +42,6 @@ class ConsentFormsController < ApplicationController
     end
 
     redirect_to @consent_form.session
-  end
-
-  def download
-    files = @consent_form.images.lazy.map { |image| [open(image.url), File.basename(image.path)] }
-    zipline files, "#{@consent_form.slug}.zip"
   end
 
   private

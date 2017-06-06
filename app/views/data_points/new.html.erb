@@ -15,12 +15,23 @@
           <%= pluralize(@session.data_points.count, "Completed Data Point") %>
         </div>
         <div class="ui three cards">
-          <%= render @related_points %>
+          <%= render @related_points, cached: true %>
         </div>
       </div>
 
       <div class="seven wide column">
         <%= render "form_fields", f: f %>
+
+        <div class="field">
+          <div class="ui horizontal list">
+            <div class="item">
+              <%= f.submit "Save", class: "ui fluid red button" %>
+            </div>
+            <div class="item">
+              <%= link_to "Cancel", :back, class: "ui fluid basic button" %>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="two wide column">

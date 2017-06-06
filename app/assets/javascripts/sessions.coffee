@@ -45,4 +45,13 @@ $(document).on "turbolinks:load", ->
 
   $("a .bookmark.icon").click (e) ->
     $(this).toggleClass "remove"
-    
+
+  # Helper to make whole card clickable
+  $("#session .ui.card").click (e) ->
+    $target = $(e.target)
+    link = $target.closest("a")
+
+    console.log $target
+
+    if link.length == 0 && !e.isTrigger && !$target.hasClass("best_in_place")
+      Turbolinks.visit $(this).find("a:first").attr("href")

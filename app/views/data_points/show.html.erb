@@ -14,7 +14,7 @@
         <%= pluralize(@data_point.session.data_points.count, "Completed Data Point") %>
       </div>
       <div class="ui three cards">
-        <%= render @related_points %>
+        <%= render @related_points, cached: true %>
       </div>
     </div>
 
