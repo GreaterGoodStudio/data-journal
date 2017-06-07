@@ -1,17 +1,43 @@
 .ui.button {
   font-family: $font-sans;
+  border-radius: 0 !important;
+  border-width: 3px !important;
+  border-style: solid !important;
 
   &, &.basic {
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
+  &.basic {
+    background: transparent !important;
+    border-color: $darkGrey !important;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      border-color: $grey !important;
+      box-shadow: none;
+    }
+
+    &:active {
+      border-color: $darkestGrey !important;
+    }
+  }
+
   &.primary {
     color: white;
     background-color: $red;
+    border-color: $red;
 
-    &:hover {
-      background-color: $darkRed;
+    &:hover,
+    &:focus {
+      background-color: $lightRed !important;
+    }
+
+    &:active {
+      background-color: $darkRed !important;
+      border-color: $darkRed;
     }
   }
 
@@ -21,6 +47,7 @@
     background: none;
     letter-spacing: 0;
     text-transform: none;
+    border: none !important;
 
     span {
       font-size: 1.1em;

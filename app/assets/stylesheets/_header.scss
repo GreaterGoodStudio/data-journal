@@ -3,6 +3,14 @@ header {
 
   height: $height;
 
+  .ui.red.header {
+    color: $red !important;
+
+    &:hover {
+      color: $darkRed !important;
+    }
+  }
+
   &.with-submenu {
     height: $height * 2;
 
@@ -18,7 +26,6 @@ header {
 
   .right.menu {
     span, a {
-      color: $red;
       font-weight: bold;
 
       &.active {

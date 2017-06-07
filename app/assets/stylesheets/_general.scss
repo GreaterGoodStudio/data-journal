@@ -20,6 +20,18 @@ a {
     color: inherit;
     text-decoration: underline;
   }
+
+  &.red {
+    color: $red !important;
+
+    &:hover {
+      color: $darkRed !important;
+    }
+  }
+
+  &.gold {
+    color: $gold !important;
+  }
 }
 
 .hidden {
