@@ -9,4 +9,10 @@
       display: none;
     }
   }
+
+  textarea[maxlength] + small {
+    display: block;
+    text-align: right;
+    color: $grey;
+  }
 }
