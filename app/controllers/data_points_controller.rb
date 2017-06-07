@@ -34,6 +34,16 @@ class DataPointsController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @data_points = [@data_point]
+        render pdf: "data_point_#{@data_point.id}"
+      end
+    end
+  end
+
   def destroy
     session = @data_point.session
     if @data_point.destroy
