@@ -6,17 +6,7 @@
   <%= form_for @data_point, html: { class: "ui form", data: { loading_text: "Updating Data Point" } } do |f| %>
     <div class="ui grid">
       <div class="five wide column">
-        <%= link_to @data_point.session, class: "ui header" do %>
-          <%= @data_point.session.name %>
-          <div class="ui sub header"><%= pluralize(@data_point.session.photos.count, "photo") %></div>
-        <% end %>
-
-        <div class="ui small header">
-          <%= pluralize(@data_point.session.data_points.count, "Completed Data Point") %>
-        </div>
-        <div class="ui three cards">
-          <%= render @related_points, cached: true %>
-        </div>
+        <%= render "info" %>
       </div>
 
       <div class="seven wide column">
@@ -35,12 +25,14 @@
       </div>
 
       <div class="three wide column">
-        <div class="ui list">
-          <div class="item">
-            <%= f.submit "Save changes", class: "ui fluid red button" %>
-          </div>
-          <div class="item">
-            <%= link_to "Cancel", @data_point, class: "ui fluid basic button" %>
+        <div class="ui sticky">
+          <div class="ui list">
+            <div class="item">
+              <%= f.submit "Save changes", class: "ui fluid red button" %>
+            </div>
+            <div class="item">
+              <%= link_to "Cancel", @data_point, class: "ui fluid basic button" %>
+            </div>
           </div>
         </div>
       </div>

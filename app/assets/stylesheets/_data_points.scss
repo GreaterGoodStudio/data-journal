@@ -1,5 +1,9 @@
 #data_point {
   .ui.cards {
+    .card {
+      min-width: 100px;
+    }
+
     .content {
       font-size: 10px;
       line-height: 1.3em;

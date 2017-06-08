@@ -7,3 +7,7 @@ $(document).on "turbolinks:load", ->
     $textarea.on "keyup", ->
       numChars = $textarea.val().length
       $counter.text numChars
+
+  $("#data_point .ui.sticky").sticky
+    content: "#data_point"
+    offset: 80

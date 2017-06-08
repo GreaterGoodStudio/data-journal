@@ -3,6 +3,10 @@ header {
 
   height: $height;
 
+  > .ui.fixed.menu {
+    z-index: 1000;
+  }
+
   .ui.red.header {
     color: $red !important;
 
