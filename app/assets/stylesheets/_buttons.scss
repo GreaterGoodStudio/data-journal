@@ -25,7 +25,8 @@
     }
   }
 
-  &.primary {
+  &.primary,
+  &.red {
     color: white;
     background-color: $red;
     border-color: $red;

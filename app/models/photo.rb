@@ -5,7 +5,7 @@ class Photo < ApplicationRecord
   has_ancestry orphan_strategy: :rootify
   mount_uploader :image, PhotoUploader
 
-  belongs_to :photographable, polymorphic: true
+  belongs_to :photographable, polymorphic: true, touch: true
   default_scope { order(created_at: :desc) }
 
   def member
