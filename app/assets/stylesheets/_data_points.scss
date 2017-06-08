@@ -19,23 +19,4 @@
     text-align: right;
     color: $grey;
   }
-
-  .actions.list {
-    font-family: $font-sans;
-    font-weight: bold;
-
-    a, i {
-      color: $red;
-    }
-
-    a:hover {
-      text-decoration: none;
-      color: $darkRed;
-
-      .content {
-        text-decoration: underline;
-      }
-    }
-    
-  }
 }

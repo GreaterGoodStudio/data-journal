@@ -76,6 +76,25 @@
   }
 }
 
+.actions.list {
+  font-family: $font-sans;
+  font-weight: bold;
+
+  a, i {
+    color: $red !important;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $darkRed !important;
+
+    .content {
+      text-decoration: underline;
+    }
+  }
+  
+}
+
 .fixed.active.dimmer {
   position: fixed !important;
 }
