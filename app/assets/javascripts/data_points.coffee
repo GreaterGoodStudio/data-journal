@@ -9,5 +9,5 @@ $(document).on "turbolinks:load", ->
       $counter.text numChars
 
   $("#data_point .ui.sticky").sticky
-    content: "#data_point"
-    offset: 80
+    context: "#data_point"
+    offset: 70

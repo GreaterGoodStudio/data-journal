@@ -33,7 +33,7 @@ html {
 
 body {
   /* For some reason, Heroku is printing smaller fonts */
-  font-size: <%= "#{Rails.env.development? ? 17 : 21}px" %>;
+  font-size: <%= "#{Rails.env.development? ? 16 : 20}px" %>;
   font-family: $font-serif;
 }
 
@@ -44,10 +44,13 @@ body {
 .data_point {
   position: relative;
   float: left;
-  width: 50%;
-  padding: 0.25in 0.2in;
   /* For some reason, Heroku isn't calculating orientation/sizes correctly */
-  height: <%= "#{Rails.env.development? ? 8 : 10.25}in" %>;
+  width: <%= "#{Rails.env.development? ? 4.625 : 6}in" %>;
+  height: <%= "#{Rails.env.development? ? 7.5 : 9.5}in" %>;
+
+  &:first-child {
+    margin-right: 0.5in;
+  }
 
   img {
     max-width: 80%;
@@ -78,8 +81,8 @@ body {
 
   .bookmark {
     position: absolute;
-    top: 0.75em;
-    right: 0.5em;
+    top: 0;
+    right: 0;
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -88,6 +91,7 @@ body {
     font-family: 'Icons';
     font-style: normal;
     font-weight: normal;
+    text-align: right;
     -webkit-font-smoothing: antialiased;
 
     &:before {
