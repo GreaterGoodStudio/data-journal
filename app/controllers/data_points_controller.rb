@@ -74,7 +74,7 @@ class DataPointsController < ApplicationController
 
     def find_related_points
       session = @session || @data_point.session
-      @related_points = session.data_points.decorate
+      @related_points = session.data_points.recent(6, params[:id]).decorate
     end
 
     def data_point_params

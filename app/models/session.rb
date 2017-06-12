@@ -15,6 +15,12 @@ class Session < ApplicationRecord
     def with_moderator_bookmarks
       where(bookmark_moderator: true)
     end
+
+    def recent(limit, starting_id = nil)
+      query = order(id: :desc).limit(limit)
+      query = query.where("id < ?", starting_id) unless starting_id.nil?
+      query
+    end
   end
 
   validates :name, presence: true, uniqueness: { scope: :project_id }

@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
   end
 
   def show
-    @data_points = @session.data_points.order(:session_id)
+    @data_points = @session.data_points.order(session_id: :asc, id: :desc)
 
     respond_to do |format|
       format.html do
