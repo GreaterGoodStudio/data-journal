@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   def show
     respond_to do |format|
       format.pdf do
-        @data_points = @project.data_points
+        @data_points = @project.data_points.order(:session_id)
         render pdf: @project.slug
       end
       format.html { redirect_to project_sessions_path(@project) }
