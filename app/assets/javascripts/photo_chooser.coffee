@@ -11,6 +11,9 @@ $(document).on "turbolinks:load", ->
       when "photo.selected"
         $("#data_point_croppable_photo_id").val(data.id)
 
+        # See data_points.coffee
+        $("form[data-dirty=false]").attr "data-dirty", true
+
         $img = $(data.img).attr("id", "croppable").on "load", ->
           $("body").trigger "cropper.init"
 

@@ -51,7 +51,5 @@ $(document).on "turbolinks:load", ->
     $target = $(e.target)
     link = $target.closest("a")
 
-    console.log $target
-
     if link.length == 0 && !e.isTrigger && !$target.hasClass("best_in_place")
       Turbolinks.visit $(this).find("a:first").attr("href")
