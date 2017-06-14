@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  EXTRA_USER_FIELDS = %w(name avatar avatar_cache)
+  EXTRA_USER_FIELDS = %w(name avatar avatar_cache eula)
 
   protect_from_forgery with: :exception
 
