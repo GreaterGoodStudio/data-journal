@@ -39,18 +39,6 @@ header {
     }
   }
 
-  .logo:before {
-    display: inline-block;
-    content: "";
-    width: 1.25em;
-    height: 1.25em;
-    line-height: 1.5em;
-    margin-right: 10px;
-    background: image-url("logo.png");
-    background-size: 1.25em 1.25em;
-    vertical-align: top;
-  }
-
   .due-date {
     margin-left: 0.5em;
     vertical-align: bottom;

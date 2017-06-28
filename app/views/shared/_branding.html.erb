@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag Rails.application.secrets.typography_stylesheet, media: "all" if Rails.application.secrets.typography_stylesheet.present? %>
+
+<% if Rails.application.secrets.brand_assets.present? %>
+  <%= stylesheet_link_tag "#{Rails.application.secrets.brand_assets}/brand.css", media: "all" %>
+  <%= favicon_link_tag "#{Rails.application.secrets.brand_assets}/favicon.ico" %>
+<% end %>
