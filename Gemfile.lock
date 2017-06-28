@@ -261,6 +261,8 @@ GEM
     formatador (0.2.5)
     friendly_id (5.2.1)
       activerecord (>= 4.0.0)
+    gaffe (1.2.0)
+      rails (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     high_voltage (3.0.0)
@@ -506,6 +508,7 @@ DEPENDENCIES
   faker (~> 1.7)
   fog-aws
   friendly_id (~> 5.1)
+  gaffe (~> 1.2)
   high_voltage (~> 3.0)
   jquery-fileupload-rails (~> 0.4)
   jquery-rails
@@ -542,4 +545,4 @@ DEPENDENCIES
   zipline (~> 0.0.12)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

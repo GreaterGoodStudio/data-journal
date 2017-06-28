@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= yield(:page_title).present? ? yield(:page_title) : "Error" %> | Data Journal</title>
+    <style type="text/css">
+      <%= File.read(Gaffe.root.join('app/assets/stylesheets/errors.css')).gsub("\n", ' ').gsub('  ', ' ') %>
+      .grid {
+        margin-top: 0em;
+        height: 100%;
+      }
+
+      .column {
+        max-width: 48rem;
+      }
+    </style>
+    <%= stylesheet_link_tag "https://cloud.typography.com/6669114/7760172/css/fonts.css", media: "all" %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+  </head>
+  <body>
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+        <div class="ui left aligned padded segment">
+          <div>
+            <h1 class="ui red header"><%= yield(:page_title).present? ? yield(:page_title) : "Error" %></h1>
+
+            <div class="content">
+              <hr>
+              <%= yield %>
+              <hr>
+            </div>
+
+            <% if Rails.env.development? || Rails.env.test? %>
+              <p>Original exception (only displayed in <strong>development</strong> and <strong>test</strong> environment):</p>
+
+<pre>
+<code><%= @exception.inspect %></code>
+</pre>
+      <% end %>
+
+      <p>You can overwrite this page by creating these files:</p>
+
+<% handlers = ActionView::Template::Handlers.extensions.map(&:to_s).join(', ') %>
+<pre>
+<code><%= Rails.root.join('app', 'views', 'layouts', "error.html.<em title='#{handlers}'>handler</em>").to_s.html_safe %></code>
+<code><%= Rails.root.join('app', 'views', 'errors', "#{@rescue_response.to_s}.html.<em title='#{handlers}'>handler</em>").to_s.html_safe %></code>
+</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

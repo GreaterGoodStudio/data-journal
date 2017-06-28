@@ -74,6 +74,9 @@ gem "possessive"
 # PDF
 gem "wicked_pdf", "~> 1.1"
 
+# Custom error pages
+gem "gaffe", "~> 1.2"
+
 group :assets do
   gem "therubyracer", platforms: :ruby
 end
