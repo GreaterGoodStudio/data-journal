@@ -11,7 +11,7 @@
       </div>
 
       <div class="required field">
-        <%= f.label :due_date %>
+        <%= f.label :due_date, "Due Date" %>
         <div class="ui calendar">
           <div class="ui input left icon">
             <i class="calendar icon"></i>
@@ -23,7 +23,7 @@
 
     <div class="six wide column">
       <div class="field">
-        <%= label_tag "New Member Emails" %>
+        <%= label_tag "New Member Emails", "New Member Emails" %>
         <%= f.collection_select :invitees, User.all.decorate, :email, :email_display_name, { include_hidden: false }, { multiple: true, class: "ui search selection dropdown allow-addition" } %>
       </div>
     </div>

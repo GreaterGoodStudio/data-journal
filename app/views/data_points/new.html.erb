@@ -1,7 +1,7 @@
+<%= content_for :page_title, "Create New Data Point" %>
+
 <div id="data_point">
-  <div class="ui basic vertical clearing segment">
-    <h1 class="ui left floated header">Data Point Detail</h1>
-  </div>
+  <%= render "back" %>
 
   <%= form_for @data_point, url: session_data_points_path(@session), remote: true, html: { class: "ui form", data: { loading_text: "Creating Data Point" } } do |f| %>
     <div class="ui grid">

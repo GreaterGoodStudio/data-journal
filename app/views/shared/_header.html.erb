@@ -27,11 +27,11 @@
   <% if has_submenu? %>
   <div class="ui borderless fixed sub menu">
     <div class="item">
-      <%= link_to @project.name, project_sessions_path(@project), class: "ui header" %>
+      <%= link_to @project.name, project_sessions_path(@project), class: "ui small header" %>
     </div>
 
     <div class="item">
-      <strong>Due Date:</strong> <span class="ui large grey text due-date"><%= @project.due_date %></span>
+      <strong>Due Date:</strong> <span class="ui grey text due-date"><%= @project.due_date %></span>
     </div>
 
     <%= content_tag :div, @project.due_date_status, class: "item" %>

@@ -1,7 +1,7 @@
+<%= content_for :page_title, "Data Point for #{@data_point.session.name}" %>
+
 <div id="data_point">
-  <div class="ui basic vertical clearing segment">
-    <h1 class="ui left floated header">Data Point Detail</h1>
-  </div>
+  <%= render "back" %>
 
   <div class="ui grid">
     <div class="five wide column">
@@ -45,7 +45,7 @@
           <br>
           <%= link_to new_session_data_point_path(@data_point.session), class: "item" do %>
             <i class="icon add circle"></i>
-            <div class="content">Create a Data Point</div>
+            <div class="content">Create a New Data Point</div>
           <% end if policy(@data_point).new? %>
         </div>
       </div>

@@ -1,14 +1,18 @@
 class DataPointPolicy < ApplicationPolicy
+  def new?
+    record.member == user
+  end
+
   def show?
     true
   end
 
   def edit?
-    record.member == user
+    new?
   end
 
   def destroy?
-    edit?
+    new?
   end
 
   def bookmark?

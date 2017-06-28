@@ -1,7 +1,16 @@
 .ui.table {
+  &, th, td {
+    border-radius: 0 !important;
+  }
+
   thead {
     th {
       background: $lightGrey;
     }
+  }
+
+  a.vertically.align {
+    line-height: 1em;
+    vertical-align: text-top;
   }
 }

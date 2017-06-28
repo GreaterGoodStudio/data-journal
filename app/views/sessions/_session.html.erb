@@ -7,20 +7,20 @@
   </td>
   <td class="grey text"><%= session.formatted_date %></td>
   <td>
-    <%= link_to session_path(session, format: :pdf), target: "_blank" do %>
-      <i class="red icon download"></i>
-    <% end unless session.data_points_count.zero? %>
-  </td>
-  <td>
     <span class="ui large grey text">
       <i class="icon sticky note"></i><%= session.data_points_count %>
     </span>
-      <%= link_to "Completed Data Points", tab_session_path(session, tab: :data_points) %>
+      <%= link_to "Completed Data Points", tab_session_path(session, tab: :data_points), class: "vertically align" %>
   </td>
   <td>
     <span class="ui large grey text">
       <i class="icon image"></i><%= session.photos.count %>
     </span>
-    <%= link_to "Photos", tab_session_path(session, tab: :photos) %>
+    <%= link_to "Photos", tab_session_path(session, tab: :photos), class: "vertically align" %>
+  </td>
+  <td>
+    <%= link_to session_path(session, format: :pdf), class: "red text", target: "_blank" do %>
+      Download Session <i class="red icon download"></i>
+    <% end unless session.data_points_count.zero? %>
   </td>
 </tr>

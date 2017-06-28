@@ -1,3 +1,5 @@
+<%= content_for :page_title, "#{@member.name.possessive} Sessions for #{@project.name}" %>
+
 <div class="ui basic vertical clearing segment">
   <h1 class="ui left floated header"><%= @member.name_with_avatar(possessive: true) %> Sessions (<%= @sessions.total_count %>)</h1>
 </div>

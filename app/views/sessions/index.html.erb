@@ -1,8 +1,10 @@
+<%= content_for :page_title, "My Sessions for #{@project.name}" %>
+
 <div class="ui basic vertical clearing segment">
   <div class="ui right floated horizontal list">
     <%= link_to "#", class: "ui right labeled branded icon button", data: {transition: "slideDown", target: "#new-session"} do %>
       <i class="icon plus"></i>
-      <span>Add a new session</span>
+      <span>Add a New Session</span>
     <% end if policy(Session).new? %>
   </div>
 
@@ -17,9 +19,9 @@
       <tr>
         <th><%= sortable "name", "Session Name" %></th>
         <th><%= sortable "date" %></th>
-        <th></th>
         <th>Number of Data Points</th>
         <th>Number of Photos</th>
+        <th></th>
       </tr>
     </thead>
 

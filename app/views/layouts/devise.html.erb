@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Journal<%= " – #{yield(:title)}" if yield(:title).present? %></title>
+    <title><%= "#{yield(:page_title)} | " if yield(:page_title).present? %> Data Journal</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "https://cloud.typography.com/6669114/7760172/css/fonts.css", media: "all" %>

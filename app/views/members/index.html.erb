@@ -1,3 +1,5 @@
+<%= content_for :page_title, "Team Members for #{@project.name}" %>
+
 <div class="ui basic vertical clearing segment">
   <div class="ui right floated horizontal list">
     <%= link_to edit_project_path(@project), class: "ui right labeled branded icon button" do %>
@@ -14,7 +16,7 @@
     <thead>
       <tr>
         <th><%= sortable "name", "Design Team Member" %></th>
-        <th>Number of Sessions</th>
+        <th class="collapsing">Number of Sessions</th>
         <th>Last Update</th>
       </tr>
     </thead>

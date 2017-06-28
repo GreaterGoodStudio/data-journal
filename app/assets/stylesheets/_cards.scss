@@ -1,0 +1,7 @@
+.ui.card,
+.ui.cards > .card > :first-child, 
+.ui.card > :first-child {
+  &, > .image {
+    border-radius: 0 !important;
+  }
+}

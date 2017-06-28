@@ -1,5 +1,5 @@
 <div class="ui sticky">
-  <%= link_to @data_point.session, class: "ui header" do %>
+  <%= link_to @data_point.session, class: "ui large header" do %>
     <%= @data_point.session.name %>
     <div class="ui sub header"><%= pluralize(@data_point.session.photos.count, "photo") %></div>
   <% end %>

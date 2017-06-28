@@ -4,7 +4,7 @@ class SessionPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? || user.moderates?(record.project)
+    moderator?
   end
 
   def upload?
@@ -13,6 +13,10 @@ class SessionPolicy < ApplicationPolicy
 
   def download?
     show?
+  end
+
+  def moderator?
+    admin? || user.moderates?(record.project)
   end
 
   class Scope < Scope
