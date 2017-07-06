@@ -81,8 +81,6 @@ $(document).on "turbolinks:load", ->
     $(this).attr("href") != "#"
 
   # Form errors
-  loadingInterval = null
-  loadingCount = 0
   $("form")
     .on "submit", (e, xhr) ->
       message = $(this).data("loading-text")
@@ -91,11 +89,6 @@ $(document).on "turbolinks:load", ->
         $loading
           .find(".loader").text(message).end()
           .addClass "active"
-
-        loadingInterval = setInterval ->
-          $loading
-            .find(".loader").html("#{message}<br><small>(elapsed time: #{++loadingCount} seconds)<small>").end()
-        , 1000
     .on "ajax:error", (e, xhr) ->
       $form = $(this)
       response = JSON.parse(xhr.responseText)
@@ -110,5 +103,4 @@ $(document).on "turbolinks:load", ->
         $el.closest(".field")
           .addClass("error")
           .append("<small class='helper'>#{errors.join(', ')}.</small>")
-    .on "ajax:complete", ->
-      clearInterval(loadingInterval)
+ 
