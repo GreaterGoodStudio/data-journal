@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = policy_scope(Project).order("archived ASC, #{sort_column} #{sort_direction}").page params[:page]
+    authorize :project
   end
 
   def show
@@ -54,9 +55,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def archive
     @project.update_attributes archived: true
     redirect_to :back
@@ -70,7 +68,7 @@ class ProjectsController < ApplicationController
   private
 
     def find_project
-      return unless params[:id]
+      return unless params[:id].present?
 
       @project = Project.friendly.find(params[:id])
       authorize @project

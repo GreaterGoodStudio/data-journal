@@ -16,6 +16,8 @@ class ConsentFormsController < ApplicationController
 
   def create
     @consent_form = @session.consent_forms.new(consent_form_params)
+    authorize @consent_form
+
     if @consent_form.save
       SessionChannelWorker.perform_async @session.id, "ConsentForm", @consent_form.id
     else
@@ -47,7 +49,12 @@ class ConsentFormsController < ApplicationController
   private
 
     def find_consent_form
-      @consent_form = ConsentForm.find(params[:id]) if params[:id]
+      return unless params[:id].present?
+
+      @consent_form = ConsentForm.find(params[:id])
+      @project ||= @consent_form.project
+
+      authorize @consent_form
     end
 
     def consent_form_params

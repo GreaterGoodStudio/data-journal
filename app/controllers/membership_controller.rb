@@ -44,6 +44,11 @@ class MembershipController < ApplicationController
   private
 
     def find_membership
+      return unless params[:id].present?
+
       @membership = ProjectMembership.find(params[:id])
+      @project ||= @membership.project
+
+      authorize @membership
     end
 end

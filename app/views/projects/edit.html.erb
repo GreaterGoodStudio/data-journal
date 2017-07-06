@@ -84,15 +84,15 @@
         <td><%= membership.member.sessions.count %></td>
         <td><%= "#{distance_of_time_in_words_to_now(membership.member.updated_at)} ago" %></td>
         <td class="right aligned">
-          <% if membership.moderator? %>
-            <%= link_to "Demote Moderator", demote_membership_path(membership), method: :post, class: "item" %>
-          <% else %>
-            <%= link_to "Promote to Moderator", promote_membership_path(membership), method: :post, class: "item" %>
-          <% end %>
-          |
           <% if membership.member == current_user %>
             <span class="disabled">Remove Team Member</span>
           <% else %>
+            <% if membership.moderator? %>
+              <%= link_to "Demote Moderator", demote_membership_path(membership), method: :post, class: "item" %>
+            <% else %>
+              <%= link_to "Promote to Moderator", promote_membership_path(membership), method: :post, class: "item" %>
+            <% end %>
+            |
             <%= link_to "Remove Team Member", membership_path(membership), method: :delete, class: "item" %>
           <% end %>
         </td>

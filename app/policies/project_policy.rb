@@ -1,26 +1,30 @@
 class ProjectPolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
+  def show?
+    member?
+  end
+
   def new?
     admin?
   end
 
-  def show?
-    admin? || record.members.exists?(user.id)
-  end
-
-  def members?
-    show?
-  end
-
-  def archive?
-    admin? && !record.archived?
-  end
-
-  def unarchive?
-    admin? && record.archived?
+  def edit?
+    moderator?
   end
 
   def download?
-    show?
+    member?
+  end
+
+  def archive?
+    moderator? && !record.archived?
+  end
+
+  def unarchive?
+    moderator? && record.archived?
   end
 
   def moderator?

@@ -1,22 +1,26 @@
 class SessionPolicy < ApplicationPolicy
+  def index?
+    member?
+  end
+
   def show?
-    ProjectPolicy.new(user, record.project).show?
+    member?
+  end
+
+  def new?
+    member?
   end
 
   def edit?
-    moderator?
+    owner?
   end
 
   def upload?
-    record.member == user
+    owner?
   end
 
   def download?
-    show?
-  end
-
-  def moderator?
-    admin? || user.moderates?(record.project)
+    member?
   end
 
   class Scope < Scope

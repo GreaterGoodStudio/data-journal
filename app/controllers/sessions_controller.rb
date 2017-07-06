@@ -7,12 +7,14 @@ class SessionsController < ApplicationController
   def index
     @show_all = params[:show] == "all"
     @sessions = @project.sessions.for_member(current_user).order("#{sort_column} #{sort_direction}").page(params[:page])
+    authorize :session
   end
 
   def create
     @session = @project.sessions.new(session_params)
     @session.member = current_user
     authorize @session
+
     if @session.save
       redirect_to @session, notice: "Session created."
     else
@@ -62,9 +64,11 @@ class SessionsController < ApplicationController
   private
 
     def find_session
-      return unless params[:id]
+      return unless params[:id].present?
 
       @session = Session.friendly.find(params[:id])
+      @project ||= @session.project
+
       authorize @session
     end
 

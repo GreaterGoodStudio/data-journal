@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   EXTRA_USER_FIELDS = %w(name avatar avatar_cache eula)
 
   protect_from_forgery with: :exception
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+
   before_action :find_project
   before_action :find_session
 
@@ -17,14 +19,29 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def pundit_user
+      UserContext.new(current_user, current_project)
+    end
+
     def find_project
-      return unless params[:project_id]
+      return unless params[:project_id].present?
+
       @project = Project.friendly.find(params[:project_id])
     end
 
     def find_session
-      return unless params[:session_id]
+      return unless params[:session_id].present?
+
       @session = Session.friendly.find(params[:session_id])
+    end
+
+    def current_project
+      @project || @session.try(:project) || @data_point.try(:project) || @photo.try(:project) || @consent_form.try(:project)
+    end
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform that action."
+      redirect_to(request.referrer || root_path)
     end
 
     def decorate_all

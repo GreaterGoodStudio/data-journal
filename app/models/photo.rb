@@ -12,6 +12,10 @@ class Photo < ApplicationRecord
     self.photographable.member
   end
 
+  def project
+    self.try { |p| p.photographable.project }
+  end
+
   def save_and_process(options = {})
     if options[:now]
       self.remote_image_url = image.direct_fog_url(with_path: true)

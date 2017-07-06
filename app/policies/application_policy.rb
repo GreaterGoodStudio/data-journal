@@ -1,21 +1,22 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :project, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(user_context, record)
+    @user = user_context.user
+    @project = user_context.project
     @record = record
   end
 
   def index?
-    true
+    false
   end
 
   def show?
-    scope.where(id: record.id).exists?
+    false
   end
 
   def new?
-    true
+    false
   end
 
   def create?
@@ -23,30 +24,39 @@ class ApplicationPolicy
   end
 
   def edit?
-    new?
-  end
-
-  def update?
-    new?
-  end
-
-  def destroy?
     false
   end
 
-  def scope
-    Pundit.policy_scope!(user, record.class)
+  def update?
+    edit?
+  end
+
+  def destroy?
+    update?
   end
 
   def admin?
     user.admin?
   end
 
-  class Scope
-    attr_reader :user, :scope
+  def moderator?
+    admin? || user.moderates?(project)
+  end
 
-    def initialize(user, scope)
-      @user = user
+  def member?
+    admin? || project.members.exists?(user.id)
+  end
+
+  def owner?
+    record.member == user
+  end
+
+  class Scope
+    attr_reader :user, :project, :scope
+
+    def initialize(user_context, scope)
+      @user = user_context.user
+      @project = user_context.project
       @scope = scope
     end
 
