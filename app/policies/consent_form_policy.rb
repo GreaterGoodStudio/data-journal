@@ -1,13 +1,21 @@
 class ConsentFormPolicy < ApplicationPolicy
+  def index?
+    member?
+  end
+
+  def new?
+    member?
+  end
+
+  def show?
+    member?
+  end
+
   def destroy?
-    record.member == user
+    owner?
   end
 
   def download?
-    destroy? || moderator?
-  end
-
-  def moderator?
-    admin? || user.moderates?(record.session.project)
+    member?
   end
 end

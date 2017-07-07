@@ -15,6 +15,12 @@ $(document).on "turbolinks:load", ->
   $("form[data-dirty=false]").on "keyup", ->
     $(this).attr "data-dirty", true
 
+  # Create data points from photos you don't own
+  if $("#photo .sessions.modal").length
+    $("#create-data-point").on "click", (e) ->
+      e.preventDefault()
+      $(".sessions.modal").modal("show")
+
 $(document).on "turbolinks:before-visit", ->
   if $("form[data-dirty=true]").length
     confirm("You have not saved your changes yet. Are you sure you want to leave?")

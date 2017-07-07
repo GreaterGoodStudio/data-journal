@@ -1,18 +1,21 @@
 class PhotoPolicy < ApplicationPolicy
+  def index?
+    member?
+  end
+
+  def new?
+    member?
+  end
+
+  def show?
+    member?
+  end
+
   def destroy?
-    record.member == user && record.photographable_type == "Session"
+    owner?
   end
 
-  def create_data_point?
-    destroy?
-  end
-
-  # TODO: Moderators should be download photos too
   def download?
-    destroy? || moderator?
-  end
-
-  def moderator?
-    admin? || (record.photographable_type == "Session" && user.moderates?(record.photographable.project))
+    owner? || moderator?
   end
 end

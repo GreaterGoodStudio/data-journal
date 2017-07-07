@@ -3,6 +3,8 @@ class PhotosController < ApplicationController
 
   def index
     @photos = @session.photos
+    authorize @session, :show?
+
     render layout: "modal"
   end
 
@@ -21,6 +23,11 @@ class PhotosController < ApplicationController
   private
 
     def find_photo
-      @photo = Photo.find(params[:id]) if params[:id]
+      return unless params[:id].present?
+
+      @photo = Photo.find(params[:id])
+      @project ||= @photo.try(:project)
+
+      authorize @photo
     end
 end

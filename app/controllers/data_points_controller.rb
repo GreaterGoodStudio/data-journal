@@ -4,9 +4,10 @@ class DataPointsController < ApplicationController
 
   def new
     @data_point = @session.data_points.new
+    authorize @session, :edit?
+
     if params[:photo]
-      @photo = @session.photos.find(params[:photo])
-      authorize @photo, :create_data_point?
+      @photo = Photo.find(params[:photo])
       @data_point.croppable_photo_id = @photo.id
     end
   end
@@ -66,9 +67,11 @@ class DataPointsController < ApplicationController
   private
 
     def find_data_point
-      return unless params[:id]
+      return unless params[:id].present?
 
       @data_point = DataPoint.find params[:id]
+      @project ||= @data_point.project
+
       authorize @data_point
     end
 

@@ -17,6 +17,11 @@ class DataPoint < ApplicationRecord
       return unless croppable_photo_id.present?
 
       croppable_photo = Photo.find(croppable_photo_id)
+
+      if croppable_photo.photographable != session
+        croppable_photo = session.photos.create(remote_image_url: croppable_photo.image_url, image_processed: true)
+      end
+
       create_photo!(remote_image_url: croppable_photo.image_url, parent: croppable_photo)
       photo.update_attributes crop_x: crop_x, crop_y: crop_y, crop_w: crop_w, crop_h: crop_h
     end

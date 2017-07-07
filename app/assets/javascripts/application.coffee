@@ -103,3 +103,4 @@ $(document).on "turbolinks:load", ->
         $el.closest(".field")
           .addClass("error")
           .append("<small class='helper'>#{errors.join(', ')}.</small>")
+ 

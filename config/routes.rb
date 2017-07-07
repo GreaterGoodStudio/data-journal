@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   # Resources
-  resources :projects, shallow: true do
+  resources :projects, except: [:destroy], shallow: true do
     member do
       post "archive"
       post "unarchive"

@@ -129,6 +129,15 @@ main {
   padding: 1em 1em 2em;
 }
 
+/* Red Header override */
+.ui.list > .item a.red.header {
+  color: $red !important;
+
+  &:hover {
+    color: $darkRed !important;
+  }
+}
+
 /* Flash messages */
 #flash {
   .ui.message {

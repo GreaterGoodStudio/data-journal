@@ -1,18 +1,26 @@
 class DataPointPolicy < ApplicationPolicy
+  def index?
+    member?
+  end
+
   def new?
-    record.member == user
+    member?
   end
 
   def show?
-    true
+    member?
   end
 
   def edit?
-    new?
+    owner?
   end
 
   def destroy?
-    new?
+    owner?
+  end
+
+  def download?
+    member?
   end
 
   def bookmark?
@@ -24,10 +32,10 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def bookmark_member?
-    !bookmark_moderator? && record.member == user
+    owner? && !moderator?
   end
 
   def bookmark_moderator?
-    admin? || user.moderates?(record.project)
+    moderator?
   end
 end

@@ -14,10 +14,11 @@
 
     <div class="three wide column">
       <div class="ui actions list">
-        <%= link_to new_session_data_point_path(@photo.photographable, photo: @photo.id), class: "item" do %>
+        <%= link_to new_session_data_point_path(@photo.photographable, photo: @photo.id), class: "item", id: "create-data-point" do %>
           <i class="icon add"></i>
           <div class="content">Create a Data Point</div>
-        <% end if policy(@photo).create_data_point? %>
+        <% end if policy(:data_point).new? %>
+
         <%= link_to @photo.image_url, class: "item" do %>
           <i class="icon download"></i>
           <div class="content">Download Photo</div>
@@ -28,5 +29,23 @@
         <% end if policy(@photo).destroy? %>
       </div>
     </div>
-  </div>  
+  </div>
+
+  <% if @photo.member != current_user %>
+    <div class="ui modal sessions">
+      <div class="header">Choose a session</div>
+      <div class="content">
+        <div class="ui relaxed divided list">
+        <% @project.sessions.for_member(current_user).decorate.each do |session| %>
+          <div class="item">
+            <%= link_to new_session_data_point_path(session, photo: @photo.id), class: "ui red header" do %>
+              <%= session.thumbnail %>
+              <%= session.name %>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>  
 </div>
