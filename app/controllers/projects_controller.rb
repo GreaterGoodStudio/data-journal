@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
     authorize @project
 
     if @project.save
+      @project.memberships.create(member: current_user)
       InviteMembers.call(@project, *@project.invitees)
       respond_to do |format|
         format.js

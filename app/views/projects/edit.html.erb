@@ -81,7 +81,7 @@
             <span class="ui teal horizontal small label">Moderator</span>
           <% end %>
         </td>
-        <td><%= membership.member.sessions.count %></td>
+        <td><%= @project.sessions.for_member(membership.member).count %></td>
         <td><%= "#{distance_of_time_in_words_to_now(membership.member.updated_at)} ago" %></td>
         <td class="right aligned">
           <% if membership.member == current_user %>
