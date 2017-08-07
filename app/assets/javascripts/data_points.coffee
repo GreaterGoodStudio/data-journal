@@ -15,11 +15,22 @@ $(document).on "turbolinks:load", ->
   $("form[data-dirty=false]").on "keyup", ->
     $(this).attr "data-dirty", true
 
-  # Create data points from photos you don't own
-  if $("#photo .sessions.modal").length
-    $("#create-data-point").on "click", (e) ->
-      e.preventDefault()
-      $(".sessions.modal").modal("show")
+  # Photo chooser
+  $("#choose-photo").click (e) ->
+    e.preventDefault()
+
+    initialPhotoId = $("#data_point_croppable_photo_id").val() || $("img[data-photo-id]").data("photo-id")
+
+    PhotoChooser.show initialPhotoId, "Use this photo", (data) ->
+      $("#data_point_croppable_photo_id").val data.photoId
+
+      $("form[data-dirty=false]").attr "data-dirty", true
+
+      $img = $("<img src=\"#{data.photoLarge}\" />").attr("id", "croppable").on "load", ->
+        $("body").trigger "cropper.init"
+
+      $("#photo-preview").html $img
+      $(".ui.modal").modal("hide")
 
 $(document).on "turbolinks:before-visit", ->
   if $("form[data-dirty=true]").length

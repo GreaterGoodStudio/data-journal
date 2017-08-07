@@ -53,3 +53,14 @@ $(document).on "turbolinks:load", ->
 
     if link.length == 0 && !e.isTrigger && !$target.hasClass("best_in_place")
       Turbolinks.visit $(this).find("a:first").attr("href")
+
+  # Photo chooser
+  $photoCards = $("#session .ui.card[data-photo-id]")
+  $photoCards.click (e) ->
+    e.preventDefault()
+
+    initialPhotoId = $(this).data("photo-id")
+    sessionSlug = $("#session").data("session-slug")
+
+    PhotoChooser.show initialPhotoId, "New Data Point", (data) ->
+      window.location = "/sessions/#{sessionSlug}/data_points/new?photo=#{data.photoId}"

@@ -1,15 +1,6 @@
 class PhotosController < ApplicationController
   before_action :find_photo
 
-  def index
-    @photos = @session.photos
-    authorize @session, :show?
-
-    render layout: "modal"
-  end
-
-  def show; end
-
   def destroy
     if @photo.destroy
       flash[:notice] = "Photo was deleted."

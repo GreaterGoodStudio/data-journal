@@ -15,6 +15,7 @@
  *= require jquery.fileupload
  *= require jquery.fileupload-ui
  *= require jcrop
+ *= require slick-carousel
  *= require_self
  */
 
@@ -37,3 +38,4 @@
 @import "modal";
 @import "crop";
 @import "calendar";
+@import "photo_chooser";

@@ -40,7 +40,8 @@
     min-width: 200px;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
       border-color: $red;
       text-decoration: none;
     }
@@ -67,6 +68,10 @@
     img {
       height: auto;
       border-radius: 0;
+    }
+
+    .image {
+      outline: none;
     }
   }
 

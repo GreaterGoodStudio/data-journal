@@ -1,53 +1,69 @@
 $(document).on "turbolinks:load", ->
-  # Listen for iframe messages
-  window.addEventListener "message",  (e) ->
-    return unless e.origin == location.origin
+  $modal = $("#photo-chooser.modal")
+  $slick = $modal.find(".slick")
 
-    name = e.data.name
-    data = e.data.data
-    $modal = $(".ui.modal")
+  $btnAction = $modal.find(".action.button")
+  $btnClose = $modal.find(".close.button")
 
-    switch name
-      when "photo.selected"
-        $("#data_point_croppable_photo_id").val(data.id)
+  $currentImg = $(".current.image")
+  $currentSlide = undefined
 
-        # See data_points.coffee
-        $("form[data-dirty=false]").attr "data-dirty", true
+  $slideIndex = $("[data-slide-index]")
+  $slideTotal = $("[data-slide-total]")
 
-        $img = $(data.img).attr("id", "croppable").on "load", ->
-          $("body").trigger "cropper.init"
+  $prevNext = $modal.find(".chevron.circle.icon")
 
-        $("#photo-preview").html $img
-        $modal.modal("hide")
+  selectedIndex = 0
+  btnActionCallback = (() -> )
 
-  # Listen for a photo chosen inside the iframe
-  $("body#modal [data-photo-id]").on "click", (e) ->
+  $modal.modal
+    onShow: ->
+      $slick.hide()
+      $currentImg.attr "src", ""
+    onVisible: ->
+      unless $slick.hasClass("slick-initialized")
+        $slideTotal.text $slick.find("[data-photo-id]").length
+
+        $slick
+          .slick
+            slidesToScroll: 1
+            slidesToShow: 10
+            prevArrow: "<i class=\"angle left icon\"></i>"
+            nextArrow: "<i class=\"angle right icon\"></i>"
+          .on "beforeChange", (e, slick, currentSlide, nextSlide) ->
+            $currentSlide = slick.$slides.eq(nextSlide)
+
+            $slideIndex.text nextSlide + 1
+            $currentImg.attr "src", $currentSlide.data("photo-square")
+
+      $slick
+        .show()
+        .slick "slickGoTo", selectedIndex, true
+
+  $slick.on "click", ".slick-slide", ->
+    $slick.slick "slickGoTo", $(this).data("slick-index")
+
+  $btnClose.click (e) ->
     e.preventDefault()
+    $modal.modal("hide")
 
-    img = $(this).find("img").clone()
-    img.attr "src", $(this).data("photo-large")
-
-    parent.postMessage
-      name: "photo.selected"
-      data:
-        id: $(this).data("photo-id")
-        img: img.prop("outerHTML")
-    , location.origin
-
-  # Show the modal
-  $("#photo-chooser").on "click", (e) ->
+  $btnAction.click (e) ->
     e.preventDefault()
+    btnActionCallback $currentSlide.data()
 
-    $modal = $(".ui.modal")
-    $dimmer = $modal.find(".dimmer").addClass("active")
-    $embed = $modal.find(".ui.embed")
+  $prevNext.click (e) ->
+    e.preventDefault()
+    direction = if $(this).hasClass("left") then "slickPrev" else "slickNext"
+    $slick.slick direction
 
-    $modal.modal
-        closable: true
-        onShow: ->
-          $embed.embed
-            onDisplay: ->
-              setTimeout ->
-                $dimmer.removeClass "active"
-              , 1000
-      .modal("show")
+  # PhotoChooser
+  window.PhotoChooser =
+    show: (initialPhotoId, btnLabel, btnCallback) ->
+      $photo = $slick.find("[data-photo-id='#{initialPhotoId}']").last()
+      selectedIndex = if $slick.hasClass("slick-initialized") then $photo.data("slick-index") else $slick.find("[data-photo-id]").index($photo)
+      btnActionCallback = btnCallback
+
+      $slideIndex.text selectedIndex + 1
+      $btnAction.text btnLabel
+
+      $modal.modal("show")

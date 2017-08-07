@@ -13,7 +13,7 @@
   <% end %>
 </div>
 
-<div id="session" data-session-id="<%= @session.id %>" data-active-tab="<%= @active_tab %>" class="ui segment">
+<div id="session" data-session-id="<%= @session.id %>" data-session-slug="<%= @session.slug %>" data-active-tab="<%= @active_tab %>" class="ui segment">
   <div class="ui vertical clearing segment">
     <div class="ui right floated tiny red header">
       <br>
@@ -68,3 +68,5 @@
 <div class="ui fixed inverted dimmer">
   <div class="ui medium text loader">Uploading</div>
 </div>
+
+<%= render "photos/chooser", photos: @session.photos %>

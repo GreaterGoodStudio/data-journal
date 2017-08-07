@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       end
 
       resources :consent_forms, except: [:new]
-      resources :photos, only: [:index, :show, :destroy]
+      resources :photos, only: [:show, :destroy]
     end
   end
 
