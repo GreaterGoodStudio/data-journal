@@ -17,6 +17,7 @@
 #= require semantic-ui-calendar
 #= require best_in_place
 #= require turbolinks
+#= require slick-carousel
 #= require_tree .
 #= require_self
 
