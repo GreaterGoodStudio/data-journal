@@ -38,7 +38,7 @@
     outline: none;
     border: 3px solid white;
 
-    &.slick-current {
+    &.selected {
       border-color: $red;
     }
   }
@@ -53,11 +53,16 @@
     margin-top: -0.5em;
     cursor: pointer;
 
-    &.left { left: -1em; }
-    &.right { right: -1em; }
+    &.left { left: -0.9em; }
+    &.right { right: -1.1em; }
 
-    .slick-arrow:hover {
-      color: $red;
+    &:hover {
+      opacity: 0.6 !important;
+    }
+
+    &.slick-disabled,
+    &.disabled {
+      display: none !important;
     }
 
     &.chevron.circle.icon {
