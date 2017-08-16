@@ -1,6 +1,6 @@
 <%= content_for :page_title, "My Profile" %>
 
-<h2 class="ui center aligned header">Crop Your Avatar</h2>
+<h2 class="ui center aligned header">Crop Your Profile Picture</h2>
 
 <%= form_for(current_user, url: update_user_avatar_path, html: { method: :post, class: "ui form" }) do |f| %>
   <div class="field">

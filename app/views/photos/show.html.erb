@@ -36,14 +36,16 @@
       <div class="header">Choose a session</div>
       <div class="content">
         <div class="ui relaxed divided list">
-        <% @project.sessions.for_member(current_user).decorate.each do |session| %>
+        <% if @project.sessions.for_member(current_user).decorate.each do |session| %>
           <div class="item">
             <%= link_to new_session_data_point_path(session, photo: @photo.id), class: "ui red header" do %>
               <%= session.thumbnail %>
               <%= session.name %>
             <% end %>
           </div>
-        <% end %>
+        <% end.empty? %>
+          It looks like you don’t have any sessions yet. <%= link_to "Create a session", project_sessions_path(@project), class: "ui red text" %> in order to make this photo into a data point.
+        <% end %>        
         </div>
       </div>
     </div>

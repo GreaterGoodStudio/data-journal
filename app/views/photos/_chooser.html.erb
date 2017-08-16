@@ -1,0 +1,44 @@
+<div id="photo-chooser" class="ui modal">
+  <i class="close icon"></i>
+
+  <div class="content">
+    <div class="ui grid">
+      <div class="four wide info column">
+        <%= @session.thumbnail %>
+        <%= @session.name %><br>
+        <%= pluralize @session.photos.count, "Photo" %>
+      </div>
+
+      <div class="eight wide center aligned column">
+        <div class="row">
+          <a href="#"><i class="chevron circle left icon"></i></a>
+          <img class="ui current image" />
+          <a href="#"><i class="chevron circle right icon"></i></a>
+        </div>
+
+        <p class="row">
+          <span data-slide-index>-</span> / <span data-slide-total>-</span>
+        </p>
+      </div>
+
+      <div class="four wide column">
+        <div class="ui list">
+          <%= content_tag :div, class: "item" do %>
+            <a href="#" class="ui fluid primary action button"></a>
+          <% end if policy(@session).edit? %>
+          <div class="item">
+            <a href="#" class="ui fluid basic close button">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slick">
+      <% photos.each do |photo| %>
+        <%= content_tag :div, data: { photo_id: photo.id, photo_square: photo.image_url(:square), photo_large: photo.image_url(:large) } do %>
+          <%= image_tag photo.image_url(:thumb) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

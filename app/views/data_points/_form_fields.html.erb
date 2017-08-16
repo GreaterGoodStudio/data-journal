@@ -3,12 +3,22 @@
     <div class="thirteen wide column">
       <p id="photo-preview">
         <% if @photo %>
-          <%= image_tag @photo.image_url(:large), id: "croppable", class: "ui fluid image" %>
+          <%= image_tag @photo.image_url(:large), id: "croppable", class: "ui fluid image", "data-photo-id" => @photo.id %>
         <% elsif @data_point.photo %>
-          <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image" %>
+          <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image", "data-photo-id" => @data_point.photo.root.id %>
         <% end %>
       </p>
-      <%= render "photo_chooser", f: f %>
+
+      <%= button_tag "Choose a Photo", class: "ui basic button", id: "choose-photo" %>
+
+      <div class="field">
+        <%= f.hidden_field :croppable_photo_id %>
+        <% %w[x y w h].each do |attribute| %>
+          <%= f.hidden_field "crop_#{attribute}" %>
+        <% end %>
+      </div>
+
+      <%= render "photos/chooser", photos: @session.photos %>
     </div>
   </div>
 
@@ -26,7 +36,7 @@
     <small class="grey text">Why is this meaningful to you? Does it give you any new questions or ideas?</small>
   </h5>
   <p class="field">
-    <%= f.text_area :meaning, maxlength: 300, rows: 5, placeholder: "Type the possible meaning of that observation here." %>
+    <%= f.text_area :meaning, maxlength: 300, rows: 5, placeholder: "Type your interpretation here." %>
     <small><span>0</span>/300 characters</small>
   </p>
 </div>

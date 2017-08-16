@@ -1,53 +1,96 @@
 $(document).on "turbolinks:load", ->
-  # Listen for iframe messages
-  window.addEventListener "message",  (e) ->
-    return unless e.origin == location.origin
+  $modal = $("#photo-chooser.modal")
+  $slick = $modal.find(".slick")
 
-    name = e.data.name
-    data = e.data.data
-    $modal = $(".ui.modal")
+  $btnAction = $modal.find(".action.button")
+  $btnClose = $modal.find(".close.button")
 
-    switch name
-      when "photo.selected"
-        $("#data_point_croppable_photo_id").val(data.id)
+  $btnPrevNext = $modal.find(".chevron.circle.icon")
+  $btnPrev = $btnPrevNext.filter(".left")
+  $btnNext = $btnPrevNext.filter(".right")
 
-        # See data_points.coffee
-        $("form[data-dirty=false]").attr "data-dirty", true
+  $currentImg = $(".current.image")
+  $currentSlide = undefined
 
-        $img = $(data.img).attr("id", "croppable").on "load", ->
-          $("body").trigger "cropper.init"
+  $slideIndex = $("[data-slide-index]")
+  $slideTotal = $("[data-slide-total]")
 
-        $("#photo-preview").html $img
-        $modal.modal("hide")
 
-  # Listen for a photo chosen inside the iframe
-  $("body#modal [data-photo-id]").on "click", (e) ->
+  initialIndex = 0
+  btnActionCallback = (() -> )
+
+  selectSlide = (slideIndex, disableAnimation = false) ->
+    $allSlides = $slick.find(".slick-slide")
+    $currentSlide = $allSlides.eq(slideIndex)
+
+    return if slideIndex > $allSlides.length - 1
+
+    $allSlides.removeClass("selected")
+    $currentSlide.addClass("selected")
+    $btnPrev.toggleClass "disabled", slideIndex == 0
+    $btnNext.toggleClass "disabled", slideIndex >= $allSlides.length - 1
+
+    $slideIndex.text slideIndex + 1
+    $currentImg.attr "src", $currentSlide.data("photo-square")
+
+    $slick
+      .slick "slickGoTo", slideIndex, disableAnimation
+      .show()
+
+  $modal.modal
+    onShow: ->
+      $slick.hide()
+      $btnPrevNext.addClass("disabled")
+      $currentImg.attr "src", ""
+    onVisible: ->
+      unless $slick.hasClass("slick-initialized")
+        $slideTotal.text $slick.find("[data-photo-id]").length
+
+        $slick
+          .slick
+            accessibility: false
+            # centerMode: true
+            # centerPadding: 0
+            infinite: false
+            slidesToScroll: 3
+            slidesToShow: 7
+            prevArrow: "<i class=\"angle left icon\"></i>"
+            nextArrow: "<i class=\"angle right icon\"></i>"
+
+        $(document).keydown (e) ->
+          switch e.which
+            when 37 then $btnPrev.trigger "click"
+            when 39 then $btnNext.trigger "click"
+
+      selectSlide(initialIndex, true)
+
+  $slick.on "click", ".slick-slide", (e) ->
+    e.preventDefault()
+    selectSlide $(this).data("slick-index")
+ 
+  $btnClose.click (e) ->
+    e.preventDefault()
+    $modal.modal("hide")
+
+  $btnAction.click (e) ->
+    e.preventDefault()
+    btnActionCallback $currentSlide.data()
+
+  $btnPrevNext.click (e) ->
     e.preventDefault()
 
-    img = $(this).find("img").clone()
-    img.attr "src", $(this).data("photo-large")
+    direction = if $(this).hasClass("left") then "prev" else "next"
+    $nextSlide = $currentSlide[direction](".slick-slide")
 
-    parent.postMessage
-      name: "photo.selected"
-      data:
-        id: $(this).data("photo-id")
-        img: img.prop("outerHTML")
-    , location.origin
+    if $nextSlide.length
+      selectSlide $nextSlide.data("slick-index")
 
-  # Show the modal
-  $("#photo-chooser").on "click", (e) ->
-    e.preventDefault()
+  # PhotoChooser
+  window.PhotoChooser =
+    show: (initialPhotoId, btnLabel, btnCallback) ->
+      $photo = $slick.find("[data-photo-id='#{initialPhotoId}']").last()
+      $btnAction.text btnLabel
+      btnActionCallback = btnCallback
+      initialIndex = if $slick.hasClass("slick-initialized") then $photo.data("slick-index") else $slick.find("[data-photo-id]").index($photo)
 
-    $modal = $(".ui.modal")
-    $dimmer = $modal.find(".dimmer").addClass("active")
-    $embed = $modal.find(".ui.embed")
-
-    $modal.modal
-        closable: true
-        onShow: ->
-          $embed.embed
-            onDisplay: ->
-              setTimeout ->
-                $dimmer.removeClass "active"
-              , 1000
-      .modal("show")
+      $modal.modal("show")

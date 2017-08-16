@@ -2,6 +2,7 @@
   "name": "dsl-generated-dependencies",
   "dependencies": {
     "semantic-ui-calendar": "latest",
-    "jcrop": "latest"
+    "jcrop": "latest",
+    "slick-carousel": "latest"
   }
 }
