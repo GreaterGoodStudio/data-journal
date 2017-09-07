@@ -14,6 +14,18 @@
     border-color: $darkGrey !important;
     box-shadow: none;
 
+    &.red {
+      border-color: $red !important;
+      box-shadow: none !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: $lightRed !important;
+        box-shadow: none !important
+      }
+    }
+
     &:hover,
     &:focus {
       border-color: $grey !important;

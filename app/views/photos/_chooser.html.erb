@@ -1,6 +1,4 @@
 <div id="photo-chooser" class="ui modal">
-  <i class="close icon"></i>
-
   <div class="content">
     <div class="ui grid">
       <div class="four wide info column">
@@ -10,10 +8,10 @@
       </div>
 
       <div class="eight wide center aligned column">
-        <div class="row">
-          <a href="#"><i class="chevron circle left icon"></i></a>
+        <div class="prevnext row">
+          <a href="#"><i class="angle left icon"></i></a>
           <img class="ui current image" />
-          <a href="#"><i class="chevron circle right icon"></i></a>
+          <a href="#"><i class="angle right icon"></i></a>
         </div>
 
         <p class="row">
@@ -29,6 +27,9 @@
           <div class="item">
             <a href="#" class="ui fluid basic close button">Cancel</a>
           </div>
+          <%= content_tag :div, class: "item" do %>
+            <a href="#" data-method="delete" data-confirm="Are you sure you want to delete this photo?" class="ui fluid red basic delete button">Delete</a>
+          <% end if policy(@session).edit? %>
         </div>
       </div>
     </div>

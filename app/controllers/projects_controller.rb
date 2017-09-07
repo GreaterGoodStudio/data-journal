@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
         @data_points = @project.data_points.order(:session_id)
         render pdf: @project.slug
       end
-      format.html { redirect_to project_sessions_path(@project) }
+      format.html { redirect_to project_members_path(@project) }
     end
   end
 
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       InviteMembers.call(@project, *@project.invitees)
       respond_to do |format|
         format.js
-        format.html { redirect_to project_sessions_path(@project), notice: "Project created." }
+        format.html { redirect_to project_members_path(@project), notice: "Project created." }
       end
     else
       respond_to do |format|

@@ -39,7 +39,7 @@ $(document).on "turbolinks:load", ->
   # Dropdown menus
   $(".ui.dropdown:not(.allow-addition)").dropdown()
   $(".ui.dropdown.allow-addition").dropdown
-    selectOnKeydown: false
+    selectOnKeydown: true
     forceSelection: false
     fullTextSearch: true
     allowAdditions: true

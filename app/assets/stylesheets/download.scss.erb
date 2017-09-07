@@ -30,17 +30,18 @@ body {
 .data_point {
   position: relative;
   float: left;
-  /* For some reason, Heroku isn't calculating orientation/sizes correctly */
-  width: <%= "#{Rails.env.development? ? 4.625 : 6}in" %>;
+  width: 50%;
   height: <%= "#{Rails.env.development? ? 7.5 : 9.5}in" %>;
+  padding-left: 0.5in;
 
   &:first-child {
-    margin-right: 0.5in;
+    padding-left: 0;
+    padding-right: 0.5in;
   }
 
   img {
     max-width: 80%;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.25in;
   }
 
   h2 {
@@ -59,10 +60,10 @@ body {
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 0.5em;
+    font-size: 0.75em;
     line-height: 1em;
     font-family: $font-sans;
-    color: $lightGrey;
+    color: $grey;
   }
 
   .bookmark {

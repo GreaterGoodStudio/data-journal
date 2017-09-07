@@ -1,7 +1,6 @@
 <div id="new-session" class="ui padded hidden segment">
   <div class="ui large header">
     Create a New Session
-    <div class="sub header">Create a new session from photos on your computer.</div>
   </div>
 
   <%= form_for :session, url: project_sessions_path(@project), remote: true, html: { class: "ui form grid" } do |f| %>

@@ -8,15 +8,15 @@
   <td class="grey text"><%= session.formatted_date %></td>
   <td>
     <span class="ui large grey text">
-      <i class="icon sticky note"></i><%= session.data_points_count %>
+      <i class="icon sticky note"></i>
     </span>
-      <%= link_to "Completed Data Points", tab_session_path(session, tab: :data_points), class: "vertically align" %>
+      <%= link_to "Completed Data Points (#{session.data_points_count})", tab_session_path(session, tab: :data_points), class: "vertically align" %>
   </td>
   <td>
     <span class="ui large grey text">
-      <i class="icon image"></i><%= session.photos.count %>
+      <i class="icon image"></i>
     </span>
-    <%= link_to "Photos", tab_session_path(session, tab: :photos), class: "vertically align" %>
+    <%= link_to "Photos (#{session.photos.count})", tab_session_path(session, tab: :photos), class: "vertically align" %>
   </td>
   <td>
     <%= link_to session_path(session, format: :pdf), class: "red text", target: "_blank" do %>
