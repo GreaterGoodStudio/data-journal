@@ -13,10 +13,6 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 body {
   /* For some reason, Heroku is printing smaller fonts */
   font-size: <%= "#{Rails.env.development? ? 16 : 20}px" %>;
@@ -30,17 +26,17 @@ body {
 .data_point {
   position: relative;
   float: left;
-  width: 50%;
-  height: <%= "#{Rails.env.development? ? 7.5 : 9.5}in" %>;
-  padding-left: 0.5in;
+  width: <%= "#{Rails.env.development? ? 4.25 : 5.625}in" %>;
+  height: <%= "#{Rails.env.development? ? 7.25 : 9.25}in" %>;
+  margin-left: 0.5in;
 
   &:first-child {
-    padding-left: 0;
-    padding-right: 0.5in;
+    margin-left: 0;
+    margin-right: 0.5in;
   }
 
   img {
-    max-width: 80%;
+    max-width: <%= "#{Rails.env.development? ? 3.25 : 4.25}in" %>;
     margin-bottom: 0.25in;
   }
 
