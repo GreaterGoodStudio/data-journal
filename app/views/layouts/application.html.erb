@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= "#{yield(:page_title)} | " if yield(:page_title).present? %> Data Journal</title>
+    <title><%= raw "#{yield(:page_title)} | " if yield(:page_title).present? %> Data Journal</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>

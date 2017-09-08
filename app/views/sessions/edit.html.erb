@@ -29,6 +29,9 @@
           <%= button_tag "Edit session", class: "ui fluid red button" %>
         </div>
         <div class="item">
+          <%= link_to "Delete session", session_path(@session), method: :delete, class: "ui fluid basic red button", data: { confirm: "Are you sure you want to delete this session?" } %>
+        </div>
+        <div class="item">
           <%= link_to "Cancel", session_path(@session), class: "ui fluid basic button" %>
         </div>
       </div>

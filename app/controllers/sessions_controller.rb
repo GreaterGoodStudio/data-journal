@@ -55,6 +55,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    project = @session.project
+
+    if @session.destroy
+      flash[:notice] = "Session was deleted."
+    else
+      flash[:error] = "Problem deleting session."
+    end
+
+    redirect_to project_sessions_path(project)
+  end
+
   def upload
     @photo = @session.photos.new(key: params[:key])
 

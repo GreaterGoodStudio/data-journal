@@ -23,7 +23,7 @@ class Session < ApplicationRecord
     end
   end
 
-  validates :name, presence: true, uniqueness: { scope: :project_id }
+  validates :name, presence: true
   validates :date, presence: true
 
   private

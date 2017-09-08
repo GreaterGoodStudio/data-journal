@@ -9,7 +9,7 @@
 </div>
 
 <div class="croppable field">
-  <%= f.label :avatar, "Profile Picture" %>
+  <%= f.label :avatar %>
   <%= f.file_field :avatar %>
   <%= f.hidden_field :avatar_cache %>
   <%= image_tag resource.avatar_url(:thumb) if resource.avatar? %>

@@ -4,8 +4,9 @@ $(document).on "turbolinks:load", ->
 
   $btnAction = $modal.find(".action.button")
   $btnClose = $modal.find(".close.button")
+  $btnDelete = $modal.find(".delete.button")
 
-  $btnPrevNext = $modal.find(".chevron.circle.icon")
+  $btnPrevNext = $modal.find(".prevnext .angle.icon")
   $btnPrev = $btnPrevNext.filter(".left")
   $btnNext = $btnPrevNext.filter(".right")
 
@@ -14,7 +15,6 @@ $(document).on "turbolinks:load", ->
 
   $slideIndex = $("[data-slide-index]")
   $slideTotal = $("[data-slide-total]")
-
 
   initialIndex = 0
   btnActionCallback = (() -> )
@@ -33,6 +33,9 @@ $(document).on "turbolinks:load", ->
     $slideIndex.text slideIndex + 1
     $currentImg.attr "src", $currentSlide.data("photo-square")
 
+    photoId = $currentSlide.data("photo-id")
+    $btnDelete.attr "href", "/photos/#{photoId}"
+
     $slick
       .slick "slickGoTo", slideIndex, disableAnimation
       .show()
@@ -43,26 +46,30 @@ $(document).on "turbolinks:load", ->
       $btnPrevNext.addClass("disabled")
       $currentImg.attr "src", ""
     onVisible: ->
-      unless $slick.hasClass("slick-initialized")
-        $slideTotal.text $slick.find("[data-photo-id]").length
+      # FIX: Delay the carousel loading a little bit
+      setTimeout ->
+        unless $slick.hasClass("slick-initialized")
+          $slideTotal.text $slick.find("[data-photo-id]").length
 
-        $slick
-          .slick
-            accessibility: false
-            # centerMode: true
-            # centerPadding: 0
-            infinite: false
-            slidesToScroll: 3
-            slidesToShow: 7
-            prevArrow: "<i class=\"angle left icon\"></i>"
-            nextArrow: "<i class=\"angle right icon\"></i>"
+          $slick
+            .slick
+              accessibility: false
+              # centerMode: true
+              # centerPadding: 0
+              infinite: false
+              slidesToScroll: 3
+              slidesToShow: 7
+              prevArrow: "<i class=\"angle left icon\"></i>"
+              nextArrow: "<i class=\"angle right icon\"></i>"
 
-        $(document).keydown (e) ->
-          switch e.which
-            when 37 then $btnPrev.trigger "click"
-            when 39 then $btnNext.trigger "click"
+          $(document).keydown (e) ->
+            switch e.which
+              when 37 then $btnPrev.trigger "click"
+              when 39 then $btnNext.trigger "click"
+              when 13 then $btnAction.trigger "click"
 
-      selectSlide(initialIndex, true)
+        selectSlide(initialIndex, true)
+      , 250
 
   $slick.on "click", ".slick-slide", (e) ->
     e.preventDefault()

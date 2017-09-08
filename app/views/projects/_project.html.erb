@@ -1,6 +1,6 @@
 <tr class="top aligned project<%= ' archived' if project.archived? %>">
   <td>
-    <div class="ui large header"><%= link_to project.name, project_sessions_path(project) %></div>
+    <div class="ui large header"><%= link_to project.name, project_members_path(project) %></div>
     <% unless project.archived? %>
       <div class="ui list">
         <%= content_tag :div, project.activity_status, class: "item" %>
@@ -16,7 +16,7 @@
     <% else %>
       <div class="ui horizontal large divided sessions list">
         <%= link_to "My Sessions", project_sessions_path(project), class: "ui red bold item", data: { sessions: project.sessions.for_member(current_user).count, data_points: project.data_points.for_member(current_user).count, project_summary: true } %>
-        <%= link_to "All Sessions", project_members_path(project), class: "ui red bold item", data: { sessions: project.sessions_count, data_points: project.data_points.count, project_summary: true } %>
+        <%= link_to "My Team's Sessions", project_members_path(project), class: "ui red bold item", data: { sessions: project.sessions_count, data_points: project.data_points.count, project_summary: true } %>
       </div>
         <% if policy(project).edit? %>
           <div>Design Team Members (<%= project.memberships.size %>)</div>

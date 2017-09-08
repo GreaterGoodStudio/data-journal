@@ -33,21 +33,21 @@
     <div class="ui pointing secondary menu">
       <%= link_to tab_session_path(@session, tab: :photos), class: "item #{active_tab('photos')}" do %>
         <span class="ui medium text">
-          <i class="icon image"></i><%= content_tag :span, nil, "data-count" => @session.photos.count %>
+          <i class="icon image"></i>
         </span>
-        Photos
+        Photos (<%= content_tag :span, nil, "data-count" => @session.photos.count %>)
       <% end %>
       <%= link_to tab_session_path(@session, tab: :consent_forms), class: "item #{active_tab('consent_forms')}" do %>
         <span class="ui medium text">
-          <i class="icon file"></i><%= content_tag :span, nil, "data-count" => @session.consent_forms_count %>
+          <i class="icon file"></i>
         </span>
-        Consent Forms
+        Consent Forms (<%= content_tag :span, nil, "data-count" => @session.consent_forms_count %>)
       <% end %>
       <%= link_to tab_session_path(@session, tab: :data_points), class: "item #{active_tab('data_points')}" do %>
         <span class="ui medium text">
-          <i class="icon sticky note"></i><%= content_tag :span, nil, "data-count" => @session.data_points_count %>
+          <i class="icon sticky note"></i>
         </span>
-        Data Points
+        Data Points (<%= content_tag :span, nil, "data-count" => @session.data_points_count %>)
       <% end %>
 
       <%= content_tag :div, class: "item floated right" do %>

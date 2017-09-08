@@ -13,10 +13,6 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 body {
   /* For some reason, Heroku is printing smaller fonts */
   font-size: <%= "#{Rails.env.development? ? 16 : 20}px" %>;
@@ -30,17 +26,18 @@ body {
 .data_point {
   position: relative;
   float: left;
-  /* For some reason, Heroku isn't calculating orientation/sizes correctly */
-  width: <%= "#{Rails.env.development? ? 4.625 : 6}in" %>;
-  height: <%= "#{Rails.env.development? ? 7.5 : 9.5}in" %>;
+  width: <%= "#{Rails.env.development? ? 4.25 : 5.625}in" %>;
+  height: <%= "#{Rails.env.development? ? 7.25 : 9.25}in" %>;
+  margin-left: 0.5in;
 
   &:first-child {
+    margin-left: 0;
     margin-right: 0.5in;
   }
 
   img {
-    max-width: 80%;
-    margin-bottom: 1.5em;
+    max-width: <%= "#{Rails.env.development? ? 3.25 : 4.25}in" %>;
+    margin-bottom: 0.25in;
   }
 
   h2 {
@@ -59,10 +56,10 @@ body {
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 0.5em;
+    font-size: 0.75em;
     line-height: 1em;
     font-family: $font-sans;
-    color: $lightGrey;
+    color: $grey;
   }
 
   .bookmark {

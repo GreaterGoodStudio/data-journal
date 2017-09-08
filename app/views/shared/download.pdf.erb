@@ -4,16 +4,19 @@
     <div class="data_point">
       <%= wicked_pdf_image_tag(data_point.photo.image_url(:square)) %>
 
-      <h2>Observation, Quote or Story</h2>
+      <h2>Observation</h2>
       <p><%= data_point.observation %></p>
 
-      <h2>Possible Meaning</h2>
+      <h2>Interpretation</h2>
       <p><%= data_point.meaning %></p>
 
       <small class="attribution">
         <%= data_point.session.name %>, <%= data_point.member.name %></em>
       </small>
-      <i class="huge blue bookmark icon <%= 'remove' unless data_point.bookmark_member? %>"></i>
+
+      <% if data_point.bookmark_member? || (data_point.bookmark_moderator? && data_point.member == current_user) %>
+        <i class="huge blue bookmark icon"></i>
+      <% end %>
     </div>
   <% end %>
 </div>

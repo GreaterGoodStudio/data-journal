@@ -74,8 +74,10 @@
       <% @project.memberships.accepted.each do |membership| %>
       <tr>
         <td>
-          <%= image_tag membership.member.avatar_url(:thumb), class: "ui avatar image" %>
-          <%= membership.member.name %>
+          <%= link_to project_member_path(@project, membership.member) do %>
+            <%= image_tag membership.member.avatar_url(:thumb), class: "ui avatar image" %>
+            <%= membership.member.name %>
+          <% end %>
           <% if membership.moderator? %>
             &nbsp;
             <span class="ui teal horizontal small label">Moderator</span>
