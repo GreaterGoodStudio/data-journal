@@ -22,6 +22,9 @@ $(document).on "turbolinks:load", ->
       done: ->
         $dimmer.removeClass "active"
         $loader.text "Saving"
+      error: (xhr, status, error) ->
+        $dimmer.removeClass "active"
+        alert "Error uploading photo: #{error}"
       success: (data) ->
         return unless data
         $.post uploadPath,
