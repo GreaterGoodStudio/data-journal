@@ -11,5 +11,6 @@ CarrierWave.configure do |config|
     }
     config.fog_directory      = Rails.application.secrets.aws_s3_bucket
     config.use_action_status  = true
+    config.max_file_size      = 20.megabytes
   end
 end

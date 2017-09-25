@@ -18,13 +18,13 @@ A design research tool from the [Greater Good Studio](http://greatergoodstudio.c
 
 ## Development
 
-* create a feature branch off of the `master` branch: `git checkout -b feature-name`. Create a pull request to be merged back into `master`.
+* create a feature branch off of the `develop` branch: `git checkout -b feature-name`. Create a pull request to be merged back into `develop`.
 
 ## Deploying
 
-* `master` branch is auto-deployed to staging
-* `production` branch is auto-deployed to production
+* `develop` branch is auto-deployed to staging
+* `master` branch is auto-deployed to production
 
 ## Branches
 
-The `production` branch is reserved for production-ready code only. All development and pull requests should take place off of the `master` branch.
+The `master` branch is reserved for production-ready code only. All development and pull requests should take place off of the `develop` branch.
