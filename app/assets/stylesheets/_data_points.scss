@@ -2,6 +2,10 @@
   .ui.cards {
     .card {
       min-width: 100px;
+
+      &.current {
+        border: 2px solid $red;
+      }
     }
 
     .content {
@@ -12,6 +16,20 @@
     .extra.content {
       display: none;
     }
+  }
+
+  #prev,
+  #next {
+    position: absolute;
+    top: 40%;
+    z-index: 100;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &#prev { left: -20px; }
+    &#next { right: -25px; }
   }
 
   textarea[maxlength] + small {

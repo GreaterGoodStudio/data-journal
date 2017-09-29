@@ -46,7 +46,7 @@ $(document).on "turbolinks:load", ->
     $(this).find("span").text(descriptor)
 
 
-  $("a .bookmark.icon").click (e) ->
+  $("body").on "click", "a .bookmark.icon", (e) ->
     $(this).toggleClass "remove"
 
   # Helper to make whole card clickable

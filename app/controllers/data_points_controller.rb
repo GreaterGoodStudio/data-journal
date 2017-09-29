@@ -36,6 +36,8 @@ class DataPointsController < ApplicationController
   end
 
   def show
+    @all_point_ids = @data_point.session.data_points.order(id: :desc).pluck(:id)
+
     respond_to do |format|
       format.html
       format.pdf do
@@ -46,7 +48,6 @@ class DataPointsController < ApplicationController
   end
 
   def destroy
-    session = @data_point.session
     if @data_point.destroy
       flash[:notice] = "Data point was deleted."
     else
@@ -77,7 +78,8 @@ class DataPointsController < ApplicationController
 
     def find_related_points
       @session ||= @data_point.session
-      @related_points = @session.data_points.recent(6, params[:id]).decorate
+      @starting_point = params[:sid] || params[:id]
+      @related_points = @session.data_points.recent(6, @starting_point).decorate
     end
 
     def data_point_params
