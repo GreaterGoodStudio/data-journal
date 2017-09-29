@@ -11,6 +11,11 @@ class PhotosController < ApplicationController
     redirect_to @photo.photographable
   end
 
+  def download
+    data = open(@photo.image_url).read
+    send_data data, disposition: "attachment", filename: @photo.image.file.filename
+  end
+
   private
 
     def find_photo

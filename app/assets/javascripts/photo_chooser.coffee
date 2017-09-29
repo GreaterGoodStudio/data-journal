@@ -4,6 +4,7 @@ $(document).on "turbolinks:load", ->
 
   $btnAction = $modal.find(".action.button")
   $btnClose = $modal.find(".close.button")
+  $btnDownload = $modal.find(".download.button")
   $btnDelete = $modal.find(".delete.button")
 
   $btnPrevNext = $modal.find(".prevnext .angle.icon")
@@ -35,6 +36,7 @@ $(document).on "turbolinks:load", ->
 
     photoId = $currentSlide.data("photo-id")
     $btnDelete.attr "href", "/photos/#{photoId}"
+    $btnDownload.attr "href", "/photos/#{photoId}/download"
 
     $slick
       .slick "slickGoTo", slideIndex, disableAnimation

@@ -25,6 +25,9 @@
             <a href="#" class="ui fluid primary action button"></a>
           <% end if policy(@session).edit? %>
           <div class="item">
+            <a href="#" class="ui fluid basic download button" target="_blank">Download</a>
+          </div>
+          <div class="item">
             <a href="#" class="ui fluid basic close button">Cancel</a>
           </div>
           <%= content_tag :div, class: "item" do %>
