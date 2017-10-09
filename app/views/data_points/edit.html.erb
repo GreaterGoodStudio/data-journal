@@ -5,9 +5,10 @@
 
   <%= form_for @data_point, html: { class: "ui form", data: { loading_text: "Updating Data Point", dirty: false } } do |f| %>
     <div class="ui grid">
-      <div class="five wide column">
+      <div class="four wide column">
         <%= render "info" %>
       </div>
+      <div class="one wide column"></div>
 
       <div class="seven wide column">
         <%= render "form_fields", f: f %>
@@ -23,6 +24,7 @@
           </div>
         </div>
       </div>
+      <div class="one wide column"></div>
 
       <div class="three wide column">
         <div class="ui sticky">

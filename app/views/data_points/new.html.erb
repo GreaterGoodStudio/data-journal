@@ -5,9 +5,10 @@
 
   <%= form_for @data_point, url: session_data_points_path(@session), remote: true, html: { class: "ui form", data: { loading_text: "Creating Data Point" } } do |f| %>
     <div class="ui grid">
-      <div class="five wide column">
+      <div class="four wide column">
         <%= render "info" %>
       </div>
+      <div class="one wide column"></div>
 
       <div class="seven wide column">
 
@@ -24,6 +25,7 @@
           </div>
         </div>
       </div>
+      <div class="one wide column"></div>
 
       <div class="two wide column">
         <div class="ui sticky">

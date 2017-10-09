@@ -1,15 +1,19 @@
 <%= content_for :page_title, "Data Point for #{@data_point.session.name}" %>
 
-<div id="data_point">
+<div id="data_point" data-points-all="<%= @all_point_ids %>">
   <%= render "back" %>
 
   <div class="ui grid">
-    <div class="five wide column">
+    <div class="four wide column">
       <%= render "info" %>
     </div>
+    <div class="one wide column"></div>
 
     <div class="seven wide column">
-      <div class="ui padded segment">
+      <a href="#" id="prev"><i class="angle large left icon"></i></a>
+      <a href="#" id="next"><i class="angle large right icon"></i></a>
+
+      <div id="data-point-content" class="ui padded segment">
         <div class="ui grid">
           <div class="thirteen wide column">
             <%= image_tag @data_point.photo.image_url(:square), class: "ui fluid image" %>
@@ -25,11 +29,16 @@
         <h5>Interpretation</h5>
         <p><%= @data_point.meaning %></p>
       </div>
+
+      <div class="ui inverted dimmer">
+        <div class="ui text loader">Loading Data Point</div>
+      </div>
     </div>
+    <div class="one wide column"></div>
 
     <div class="three wide column">
       <div class="ui sticky">
-        <div class="ui actions list">
+        <div id="data-point-actions" class="ui actions list">
           <%= link_to edit_data_point_path(@data_point), class: "item" do %>
             <i class="icon pencil"></i>
             <div class="content">Edit Data Point</div>

@@ -17,9 +17,14 @@ class Session < ApplicationRecord
     end
 
     def recent(limit, starting_id = nil)
-      query = order(id: :desc).limit(limit)
-      query = query.where("id < ?", starting_id) unless starting_id.nil?
-      query
+      query = order(id: :desc)
+
+      # Always return the limit if we can
+      last_ids = query.last(limit).pluck(:id)
+      starting_id = last_ids.first if last_ids.include?(starting_id.to_i)
+
+      query = query.where("id <= ?", starting_id) unless starting_id.nil?
+      query.limit(limit)
     end
   end
 

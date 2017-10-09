@@ -7,7 +7,8 @@
   <div class="ui small header">
     <%= pluralize(@data_point.session.data_points.count, "Completed Data Point") %>
   </div>
-  <div class="ui three cards">
+  
+  <div id="related" class="ui three cards">
     <%= render @related_points, cached: true %>
   </div>
 </div>
