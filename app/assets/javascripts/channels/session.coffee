@@ -22,6 +22,7 @@ $(document).on "turbolinks:load", ->
 
         if $photo.length
           $photo.replaceWith data.html
+          $("[data-tab=data_points]").show()
         else
           $tab.find('form').after data.html
 
