@@ -8,7 +8,7 @@
     </ul>
   </div>
 
-  <%= link_to :back, class: "ui left floated medium header" do %>
+  <%= link_to "javascript:history.go(-1)", class: "ui left floated medium header" do %>
     <i class="angle left icon"></i>Back
   <% end %>
 </div>
@@ -48,7 +48,7 @@
           <i class="icon sticky note"></i>
         </span>
         Data Points (<%= content_tag :span, nil, "data-count" => @session.data_points_count %>)
-      <% end %>
+      <% end if @session.photos.any? %>
 
       <%= content_tag :div, class: "item floated right" do %>
         <%= link_to "#", id: "toggle-bookmarks", class: "bold gold" do %>

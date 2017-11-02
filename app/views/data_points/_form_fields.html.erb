@@ -9,7 +9,7 @@
         <% end %>
       </p>
 
-      <%= button_tag "Choose a Photo", class: "ui basic button", id: "choose-photo" %>
+      <%= button_tag (@data_point.photo.present? ? "Choose a Different Photo " : "Choose a Photo"), class: "ui basic button", id: "choose-photo" %>
 
       <div class="field">
         <%= f.hidden_field :croppable_photo_id %>

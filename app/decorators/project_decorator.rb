@@ -22,9 +22,9 @@ class ProjectDecorator < BaseDecorator
   def due_date_status
     dd = project.due_date
 
-    return if dd.blank? || dd < Date.today || dd > 3.weeks.from_now
+    return if dd.blank? || dd < Date.today.beginning_of_day || dd > 3.weeks.from_now
 
-    words_to_now = distance_of_time_in_words_to_now(project.due_date)
+    words_to_now = distance_of_time_in_words_to_now(project.due_date.end_of_day)
     date_in_words = case words_to_now
                     when "7 days" then "1 week"
                     when "14 days" then "2 weeks"
@@ -32,8 +32,10 @@ class ProjectDecorator < BaseDecorator
                     else words_to_now
     end
 
+    date_in_words = dd == Date.today ? "today" : "in #{date_in_words}"
+
     content_tag(:span, nil, class: "ui yellow empty horizontal circular label") +
-      "Project data points are due in&nbsp;".html_safe +
+      "Project data points are due ".html_safe +
       content_tag(:strong, date_in_words)
   end
   # rubocop:enable Metrics/CyclomaticComplexity

@@ -4,7 +4,7 @@ class PhotoPolicy < ApplicationPolicy
   end
 
   def new?
-    member?
+    member? && !project.archived?
   end
 
   def show?
@@ -12,7 +12,7 @@ class PhotoPolicy < ApplicationPolicy
   end
 
   def destroy?
-    owner?
+    owner? && !project.archived?
   end
 
   def download?

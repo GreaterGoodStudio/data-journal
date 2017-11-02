@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update_attributes(project_params)
       InviteMembers.call(@project, *@project.invitees)
-      redirect_to edit_project_path(@project), notice: "Project updated."
+      redirect_to root_path, notice: "Project updated."
     else
       flash.now[:error] = @project.errors.full_messages.to_sentence
       render :edit
@@ -58,12 +58,14 @@ class ProjectsController < ApplicationController
 
   def archive
     @project.update_attributes archived: true
-    redirect_to :back
+    flash[:notice] = "Project archived."
+    redirect_to root_path
   end
 
   def unarchive
     @project.update_attributes archived: false
-    redirect_to :back
+    flash[:notice] = "Project unarchived."
+    redirect_to root_path
   end
 
   private
