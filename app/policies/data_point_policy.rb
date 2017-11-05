@@ -4,7 +4,7 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def new?
-    member?
+    member? && session.photos.any? && !project.archived?
   end
 
   def show?
@@ -12,11 +12,11 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def edit?
-    owner?
+    owner? && !project.archived?
   end
 
   def destroy?
-    owner?
+    owner? && !project.archived?
   end
 
   def download?
@@ -24,7 +24,7 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def bookmark?
-    bookmark_member? || bookmark_moderator?
+    (bookmark_member? || bookmark_moderator?) && !project.archived?
   end
 
   def unbookmark?

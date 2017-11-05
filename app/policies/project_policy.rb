@@ -12,7 +12,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def edit?
-    moderator?
+    moderator? && !record.archived?
   end
 
   def download?

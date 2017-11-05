@@ -1,17 +1,17 @@
 class ProjectMembershipPolicy < ApplicationPolicy
   def destroy?
-    moderator?
+    moderator? && !project.archived?
   end
 
   def promote?
-    moderator?
+    moderator? && !project.archived?
   end
 
   def demote?
-    moderator?
+    moderator? && !project.archived?
   end
 
   def reinvite?
-    moderator?
+    moderator? && !project.archived?
   end
 end

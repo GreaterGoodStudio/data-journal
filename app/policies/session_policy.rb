@@ -8,15 +8,15 @@ class SessionPolicy < ApplicationPolicy
   end
 
   def new?
-    member?
+    member? && !project.archived?
   end
 
   def edit?
-    owner?
+    owner? && !project.archived?
   end
 
   def upload?
-    owner?
+    owner? && !project.archived?
   end
 
   def download?

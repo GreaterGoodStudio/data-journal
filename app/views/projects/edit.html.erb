@@ -90,12 +90,12 @@
             <span class="disabled">Remove Team Member</span>
           <% else %>
             <% if membership.moderator? %>
-              <%= link_to "Demote Moderator", demote_membership_path(membership), method: :post, class: "item" %>
+              <%= link_to("Demote Moderator", demote_membership_path(membership), method: :post, class: "item") if policy(membership).demote? %>
             <% else %>
-              <%= link_to "Promote to Moderator", promote_membership_path(membership), method: :post, class: "item" %>
+              <%= link_to("Promote to Moderator", promote_membership_path(membership), method: :post, class: "item") if policy(membership).promote? %>
             <% end %>
             |
-            <%= link_to "Remove Team Member", membership_path(membership), method: :delete, class: "item" %>
+            <%= link_to("Remove Team Member", membership_path(membership), method: :delete, class: "item") if policy(membership).destroy? %>
           <% end %>
         </td>
       </tr>
@@ -110,9 +110,9 @@
         </td>
         <td colspan="2"></td>
         <td class="right aligned">
-          <%= link_to "Resend Invitation", reinvite_membership_path(membership), method: :post %>
+          <%= link_to("Resend Invitation", reinvite_membership_path(membership), method: :post) if policy(membership).reinvite? %>
           |
-          <%= link_to "Remove Team Member", membership_path(membership), method: :delete, class: "item" %>
+          <%= link_to("Remove Team Member", membership_path(membership), method: :delete, class: "item") if policy(membership).destroy? %>
         </td>
       </tr>
       <% end %>

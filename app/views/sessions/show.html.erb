@@ -8,7 +8,7 @@
     </ul>
   </div>
 
-  <%= link_to :back, class: "ui left floated medium header" do %>
+  <%= link_to "javascript:history.go(-1)", class: "ui left floated medium header" do %>
     <i class="angle left icon"></i>Back
   <% end %>
 </div>
@@ -31,19 +31,19 @@
 
   <div class="ui vertical segment">
     <div class="ui pointing secondary menu">
-      <%= link_to tab_session_path(@session, tab: :photos), class: "item #{active_tab('photos')}" do %>
+      <%= link_to tab_session_path(@session, tab: :photos), class: "item #{active_tab('photos')}", data: { tab: "photos" } do %>
         <span class="ui medium text">
           <i class="icon image"></i>
         </span>
         Photos (<%= content_tag :span, nil, "data-count" => @session.photos.count %>)
       <% end %>
-      <%= link_to tab_session_path(@session, tab: :consent_forms), class: "item #{active_tab('consent_forms')}" do %>
+      <%= link_to tab_session_path(@session, tab: :consent_forms), class: "item #{active_tab('consent_forms')}", data: { tab: "consent_forms" } do %>
         <span class="ui medium text">
           <i class="icon file"></i>
         </span>
         Consent Forms (<%= content_tag :span, nil, "data-count" => @session.consent_forms_count %>)
       <% end %>
-      <%= link_to tab_session_path(@session, tab: :data_points), class: "item #{active_tab('data_points')}" do %>
+      <%= link_to tab_session_path(@session, tab: :data_points), class: "item #{active_tab('data_points')}", data: { tab: "data_points" }, style: @session.photos.empty? ? "display: none" : nil do %>
         <span class="ui medium text">
           <i class="icon sticky note"></i>
         </span>
