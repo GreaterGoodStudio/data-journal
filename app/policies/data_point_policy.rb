@@ -4,7 +4,7 @@ class DataPointPolicy < ApplicationPolicy
   end
 
   def new?
-    member? && session.photos.any? && !project.archived?
+    member? && record.session.photos.any? && !project.archived?
   end
 
   def show?
