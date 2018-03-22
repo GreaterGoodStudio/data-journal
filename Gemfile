@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Rails, etc.
-gem "rails", "~> 5.1.1"
+gem "rails", "~> 5.1.5"
 gem "pg"
 gem "puma", "~> 3.7"
 
@@ -100,7 +100,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "letter_opener"
-  gem "rubocop", "~> 0.47.1", require: false
+  # gem "rubocop", "~> 0.49", require: false
 end
 
 group :test do
