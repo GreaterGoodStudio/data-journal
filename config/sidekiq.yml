@@ -2,7 +2,7 @@
 staging:
   :concurrency: 10
 production:
-  :concurrency: 25
+  :concurrency: 10
 :queues:
   - default
   - photos
