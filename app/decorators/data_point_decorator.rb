@@ -26,7 +26,7 @@ class DataPointDecorator < BaseDecorator
   private
 
     def bookmark_icon(selected, owner = false)
-      selected_class = selected ? "" :  "remove"
+      selected_class = selected ? "" :  "outline"
       color_class = owner ? "blue" : "grey"
       content_tag(:i, nil, class: "large icon bookmark #{selected_class} #{color_class}")
     end
