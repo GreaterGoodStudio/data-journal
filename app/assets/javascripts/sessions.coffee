@@ -38,7 +38,7 @@ $(document).on "turbolinks:load", ->
 
     if $(this).hasClass("active")
       descriptor = "All Data Points"
-      $(".icon.remove.bookmark").closest(".ui.card").hide()
+      $(".icon.outline.bookmark").closest(".ui.card").hide()
     else
       descriptor = "Bookmarks"
       $(".icon.bookmark").closest(".ui.card").show()
@@ -47,7 +47,12 @@ $(document).on "turbolinks:load", ->
 
 
   $("body").on "click", "a .bookmark.icon", (e) ->
-    $(this).toggleClass "remove"
+    $link = $(this).closest("a")
+    action = if $(this).hasClass("outline") then "bookmark" else "unbookmark"
+    href = $link.attr("href").replace(/\/[^\/]*$/, "/#{action}")
+
+    $link.attr("href", href)
+    $(this).toggleClass("outline")
 
   # Helper to make whole card clickable
   $("#session .ui.card").click (e) ->
