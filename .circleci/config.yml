@@ -41,6 +41,11 @@ jobs:
           paths:
             - vendor/bundle
 
+      # Wait for DB
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
       - run:
           name: Database Setup
           command: |
