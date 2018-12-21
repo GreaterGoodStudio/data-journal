@@ -374,7 +374,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4)
   jquery-rails
   kaminari (~> 1.0)
-  less-rails-semantic_ui (~> 2.2)
+  less-rails-semantic_ui (= 2.3.0)
   letter_opener
   listen (~> 3.0.5)
   mandrill-api

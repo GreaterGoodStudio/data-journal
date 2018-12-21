@@ -16,7 +16,7 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
 gem "jquery-rails"
 gem "turbolinks", "~> 5"
-gem "less-rails-semantic_ui", "~> 2.2"
+gem "less-rails-semantic_ui", "2.3.0"
 gem "jquery-fileupload-rails", "~> 0.4"
 
 # Authentication
