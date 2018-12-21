@@ -106,7 +106,7 @@ end
 group :test do
   gem "capybara", "~> 2.13"
   gem "poltergeist", "~> 1.15"
-  gem "factory_girl_rails", "~> 4.0"
+  gem "factory_bot_rails", "~> 4.11"
   gem "database_cleaner", "~> 1.6"
   gem "shoulda", "~> 3.5"
   gem "shoulda-matchers", "~> 2.0"

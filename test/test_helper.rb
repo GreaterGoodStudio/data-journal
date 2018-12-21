@@ -7,7 +7,7 @@ require "rails/test_help"
 require "database_cleaner"
 
 class ActiveSupport::TestCase
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
   include Devise::Test::IntegrationHelpers
 
   ActiveRecord::Migration.maintain_test_schema!
