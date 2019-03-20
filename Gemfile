@@ -20,7 +20,7 @@ gem "less-rails-semantic_ui", "~> 2.2"
 gem "jquery-fileupload-rails", "~> 0.4"
 
 # Authentication
-gem "devise", "~> 4.2"
+gem "devise", "~> 4.6"
 gem "devise_invitable", "~> 1.7"
 gem "pundit", "~> 1.1"
 
