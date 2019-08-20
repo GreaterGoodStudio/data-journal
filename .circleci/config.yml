@@ -25,21 +25,22 @@ jobs:
       # Restore bundle cache
       - restore_cache:
           keys:
-            - rails-demo-{{ checksum "Gemfile.lock" }}
-            - rails-demo-
+          - v1-{{ .Environment.CIRCLE_STAGE }}-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-{{ .Environment.CIRCLE_STAGE }}-dependencies
 
-      # Bundle install dependencies
+      # Bundler
+      - run:
+          name: Install bundler
+          command: |
+            gem install bundler
       - run:
           name: Install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - run: sudo apt install -y postgresql-client || true
-
-      # Store bundle cache
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Wait for DB
       - run:
@@ -53,9 +54,9 @@ jobs:
       #       bundle exec rake db:create
       #       bundle exec rake db:structure:load
 
-      - run:
-          name: Tests
-          command: bin/rails test
+      - run: 
+          name: Run tests
+          command: bundle exec rails test
 
       # Save artifacts
       - store_test_results:
