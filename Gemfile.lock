@@ -86,7 +86,6 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.1)
     crass (1.0.4)
-    curb (0.9.4)
     database_cleaner (1.6.2)
     devise (4.6.1)
       bcrypt (~> 3.0)
@@ -483,10 +482,9 @@ GEM
     xml-simple (1.1.5)
     xpath (3.0.0)
       nokogiri (~> 1.8)
-    zip_tricks (4.5.2)
-    zipline (0.0.13)
-      curb (>= 0.8.0, < 0.10)
-      rails (>= 3.2.1, < 5.2)
+    zip_tricks (4.8.0)
+    zipline (1.1.1)
+      rails (>= 3.2.1, < 6.1)
       zip_tricks (>= 4.2.1, <= 5.0.0)
 
 PLATFORMS
@@ -544,7 +542,10 @@ DEPENDENCIES
   wicked_pdf (~> 1.1)
   wkhtmltopdf-binary (~> 0.12)
   wkhtmltopdf-heroku (~> 2.0)
-  zipline (~> 0.0.12)
+  zipline (~> 1.1)
+
+RUBY VERSION
+   ruby 2.6.4p104
 
 BUNDLED WITH
    2.0.2

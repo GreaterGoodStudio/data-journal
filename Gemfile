@@ -1,3 +1,4 @@
+ruby "~> 2.6"
 source "https://rubygems.org"
 
 git_source(:github) do |repo_name|
@@ -66,7 +67,7 @@ gem "ancestry", "~> 2.2"
 gem "best_in_place", "~> 3.0"
 
 # ZIP files
-gem "zipline", "~> 0.0.12"
+gem "zipline", "~> 1.1"
 
 # Possesive nouns
 gem "possessive"
