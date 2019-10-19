@@ -2,7 +2,7 @@
 <div class="page">
   <% group.each do |data_point| %>
     <div class="data_point">
-      <%= wicked_pdf_image_tag(data_point.photo.image_url(:square)) %>
+      <%= wicked_pdf_image_tag(data_point.photo.image_url(:square).gsub("https", "http")) %>
 
       <h2>Observation</h2>
       <p><%= data_point.observation %></p>
