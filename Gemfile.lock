@@ -213,7 +213,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
-    rack-cors (0.4.1)
+    rack-cors (1.0.5)
+      rack (>= 1.6.0)
     rack-protection (2.0.7)
       rack
     rack-test (1.1.0)
@@ -382,7 +383,7 @@ DEPENDENCIES
   possessive
   puma (~> 3.7)
   pundit (~> 1.1)
-  rack-cors (~> 0.4)
+  rack-cors (~> 1.0)
   rails (~> 5.1.6)
   rails_12factor
   redis-rails (~> 5.0)
