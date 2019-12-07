@@ -55,7 +55,7 @@ gem "draper", "3.0"
 gem "mandrill-api"
 
 # CORS
-gem "rack-cors", "~> 0.4"
+gem "rack-cors", "~> 1.1"
 
 # Static Pages
 gem "high_voltage", "~> 3.0"
