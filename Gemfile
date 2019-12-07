@@ -9,7 +9,7 @@ end
 # Rails, etc.
 gem "rails", "~> 5.1.6"
 gem "pg"
-gem "puma", "~> 3.7"
+gem "puma", "~> 3.12"
 
 # Assets
 gem "sass-rails", "~> 5.0"
@@ -55,7 +55,7 @@ gem "draper", "3.0"
 gem "mandrill-api"
 
 # CORS
-gem "rack-cors", "~> 0.4"
+gem "rack-cors", "~> 1.1"
 
 # Static Pages
 gem "high_voltage", "~> 3.0"
@@ -77,6 +77,9 @@ gem "wicked_pdf", "~> 1.1"
 
 # Custom error pages
 gem "gaffe", "~> 1.2"
+
+# Addressing security vulnerabilities
+gem "loofah", "~> 2.3"
 
 group :assets do
   gem "therubyracer", platforms: :ruby
