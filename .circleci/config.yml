@@ -2,37 +2,22 @@ version: 2
 jobs:
   build:
     working_directory: ~/data-journal
-    
-    # Primary container image where all commands run
-    
     docker:
       - image: circleci/ruby:2.6-node
         environment:
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
+          PGHOST: localhost
           PGUSER: root
-    
-    # Service container image available at `host: localhost`
-    
-      - image: circleci/postgres:9.6.2-alpine
+      - image: circleci/postgres:11-alpine
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: data_journal_test
-        
     steps:
       - checkout
-
-      # Restore bundle cache
       - restore_cache:
           keys:
           - v1-{{ .Environment.CIRCLE_STAGE }}-dependencies-{{ checksum "Gemfile.lock" }}
           - v1-{{ .Environment.CIRCLE_STAGE }}-dependencies
-
-      # Bundler
-      - run:
-          name: Install bundler
-          command: |
-            gem install bundler
       - run:
           name: Install dependencies
           command: |
@@ -40,24 +25,20 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Wait for DB
+          key: v1-{{ .Environment.CIRCLE_STAGE }}-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
-          name: Wait for DB
+          name: Wait for database
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      # TODO: CircleCI is failing because it says DB is already created
-      # - run:
-      #     name: Database Setup
-      #     command: |
-      #       bundle exec rake db:create
-      #       bundle exec rake db:structure:load
-
-      - run: 
+      - run:
+          name: Setup database
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+      - run:
           name: Run tests
           command: bundle exec rails test
-
-      # Save artifacts
       - store_test_results:
           path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
