@@ -31,7 +31,7 @@ gem "carrierwave", "~> 1.0"
 gem "carrierwave_direct"
 
 # Pagination
-gem "kaminari", "~> 1.0"
+gem "kaminari", "~> 1.2"
 
 # Friendly IDs
 gem "friendly_id", "~> 5.1"
