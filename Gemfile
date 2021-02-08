@@ -27,7 +27,7 @@ gem "pundit", "~> 1.1"
 
 # File attachments
 gem "mini_magick"
-gem "carrierwave", "~> 1.0"
+gem "carrierwave", "~> 1.3"
 gem "carrierwave_direct"
 
 # Pagination
