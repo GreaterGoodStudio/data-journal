@@ -40,7 +40,7 @@ gem "friendly_id", "~> 5.1"
 gem "redis-rails", "~> 5.0"
 
 # Background jobs
-gem "sidekiq", "~> 4.2"
+gem "sidekiq", "~> 5.2"
 
 # Active links
 gem "active_link_to", "~> 1.0"
