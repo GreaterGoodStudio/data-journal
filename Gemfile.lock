@@ -343,7 +343,8 @@ GEM
       websocket-driver (>= 0.2.0)
     possessive (1.0.1)
     public_suffix (3.0.2)
-    puma (3.12.2)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
@@ -524,7 +525,7 @@ DEPENDENCIES
   pg
   poltergeist (~> 1.15)
   possessive
-  puma (~> 3.12)
+  puma (~> 4.3)
   pundit (~> 1.1)
   rack-cors (~> 1.1)
   rails (~> 5.1.6)
