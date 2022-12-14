@@ -79,7 +79,7 @@ gem "wicked_pdf", "~> 1.1"
 gem "gaffe", "~> 1.2"
 
 # Addressing security vulnerabilities
-gem "loofah", "~> 2.3"
+gem "loofah", "~> 2.19"
 
 group :assets do
   gem "therubyracer", platforms: :ruby
